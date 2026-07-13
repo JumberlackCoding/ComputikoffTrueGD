@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://di7wlu4ix6g1j"]
+
+[resource]
+MarginContainer_MainMenu/base_type = &"MarginContainer"
+MarginContainer_MainMenu/constants/margin_bottom = 5
+MarginContainer_MainMenu/constants/margin_left = 5
+MarginContainer_MainMenu/constants/margin_right = 5
+MarginContainer_MainMenu/constants/margin_top = 5
+PanelContainer_MainMenu_Games/base_type = &"PanelContainer"
