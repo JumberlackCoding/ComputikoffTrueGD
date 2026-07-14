@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://85jpy2e80q2q"
-path="res://.godot/imported/menu_background_image3.png-da47330d054d354e32febfc0dbdb68d0.ctex"
+uid="uid://di2fd63sssot1"
+path="res://.godot/imported/flip7.webp-93b824e3fedf1a5af80c6d8ead8278fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainMenu/menu_background_image3.png"
-dest_files=["res://.godot/imported/menu_background_image3.png-da47330d054d354e32febfc0dbdb68d0.ctex"]
+source_file="res://Games/Flip7/Textures/flip7.webp"
+dest_files=["res://.godot/imported/flip7.webp-93b824e3fedf1a5af80c6d8ead8278fb.ctex"]
 
 [params]
 

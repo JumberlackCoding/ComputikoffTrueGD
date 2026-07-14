@@ -27,14 +27,20 @@ window/handheld/orientation=1
 
 folder_colors={
 "res://Games/": "red",
+"res://Games/Flip7/Textures/": "green",
 "res://Games/Lost Cities/": "orange",
 "res://Games/Lost Cities/Textures/": "green",
 "res://Games/WordBreaker/": "yellow",
-"res://Games/Yahtzee/": "teal",
+"res://Games/Yahtzee/": "green",
 "res://Games/Yahtzee/Textures/": "green",
 "res://MainMenu/": "orange",
-"res://MainMenu/Scripts/": "yellow",
-"res://Theme/": "blue"
+"res://MainMenu/Scenes/": "blue",
+"res://MainMenu/StandaloneScripts/": "yellow",
+"res://MainMenu/Textures/": "green",
+"res://Shared/": "pink",
+"res://Shared/Scenes/": "blue",
+"res://Theme/": "purple",
+"res://android/": "gray"
 }
 
 [gui]

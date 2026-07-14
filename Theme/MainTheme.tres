@@ -1,6 +1,20 @@
 [gd_resource type="Theme" format=3 uid="uid://di7wlu4ix6g1j"]
 
 [resource]
+GameGrid_PerButton_MarginContainer_MainMenu/base_type = &"MarginContainer"
+GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_bottom = 10
+GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_left = 5
+GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_right = 5
+GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_top = 10
+MainTitleLabel/base_type = &"Label"
+MainTitleLabel/colors/font_color = Color(1, 1, 1, 1)
+MainTitleLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+MainTitleLabel/colors/font_shadow_color = Color(0.009947279, 0.23879656, 0.9999998, 1)
+MainTitleLabel/constants/outline_size = 20
+MainTitleLabel/constants/shadow_offset_x = 5
+MainTitleLabel/constants/shadow_offset_y = 5
+MainTitleLabel/constants/shadow_outline_size = 16
+MainTitleLabel/font_sizes/font_size = 82
 MarginContainer_MainMenu/base_type = &"MarginContainer"
 MarginContainer_MainMenu/constants/margin_bottom = 5
 MarginContainer_MainMenu/constants/margin_left = 5

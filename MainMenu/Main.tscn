@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://cxv07nca3hed7"]
 
-[ext_resource type="Script" uid="uid://jkcq04rjurj" path="res://MainMenu/Scripts/main_ui_tween.gd" id="1_53r08"]
-[ext_resource type="Texture2D" uid="uid://85jpy2e80q2q" path="res://MainMenu/menu_background_image3.png" id="1_xwb2u"]
+[ext_resource type="Script" uid="uid://jkcq04rjurj" path="res://MainMenu/StandaloneScripts/main_ui_tween.gd" id="1_53r08"]
+[ext_resource type="Texture2D" uid="uid://85jpy2e80q2q" path="res://MainMenu/Textures/menu_background_image3.png" id="1_xwb2u"]
 [ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Games/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="2_68jy3"]
-[ext_resource type="Script" uid="uid://dar67w3afl07q" path="res://MainMenu/Scripts/game_button_sizer.gd" id="2_c0135"]
+[ext_resource type="Script" uid="uid://dar67w3afl07q" path="res://MainMenu/StandaloneScripts/game_grid_sizer.gd" id="2_c0135"]
 [ext_resource type="Texture2D" uid="uid://c7wtnqyh3b75x" path="res://Games/Lost Cities/Textures/LostCities.jpg" id="2_xwb2u"]
 [ext_resource type="Texture2D" uid="uid://cl8dyqd5lau2x" path="res://Games/Yahtzee/Textures/Yahtzee.png" id="3_s0ee6"]
-[ext_resource type="Script" uid="uid://cfn7eo6iknfw8" path="res://MainMenu/Scripts/hover_button_tween.gd" id="5_vlxbm"]
+[ext_resource type="PackedScene" uid="uid://ba0b0qcvktvya" path="res://Shared/Scenes/hover_button_scale.tscn" id="5_n7oha"]
+[ext_resource type="PackedScene" uid="uid://x4s37tv2jaay" path="res://Shared/Scenes/on_click_load_scene.tscn" id="6_n7oha"]
+[ext_resource type="PackedScene" uid="uid://2nftanwihjkq" path="res://Games/Lost Cities/LostCities.tscn" id="7_70bl3"]
+[ext_resource type="PackedScene" uid="uid://c3t7mmixhc7uy" path="res://Games/Yahtzee/Yahtzee.tscn" id="9_6fn4h"]
+[ext_resource type="PackedScene" uid="uid://bpeh5hqub6iby" path="res://Games/WordBreaker/WordBreaker.tscn" id="11_7kjp4"]
+[ext_resource type="Texture2D" uid="uid://di2fd63sssot1" path="res://Games/Flip7/Textures/flip7.webp" id="12_5s4ww"]
+[ext_resource type="PackedScene" uid="uid://doyqs0f58ijc6" path="res://Games/Flip7/Flip7.tscn" id="12_rxbsb"]
 
 [node name="MainMenu" type="MarginContainer" unique_id=1579489465]
 anchors_preset = 15
@@ -26,350 +32,163 @@ offset_transform_enabled = true
 offset_transform_position_ratio = Vector2(0, 1)
 script = ExtResource("1_53r08")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=302214484]
+[node name="MainBody" type="VBoxContainer" parent="Control" unique_id=302214484]
 layout_mode = 0
 offset_right = 638.0
 offset_bottom = 1142.0
-theme_override_constants/separation = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer" unique_id=1475064023]
+[node name="PanelContainer" type="PanelContainer" parent="Control/MainBody" unique_id=1475064023]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.4
 
-[node name="BackgroundPicture" type="TextureRect" parent="Control/VBoxContainer/PanelContainer" unique_id=1478312624]
+[node name="BackgroundPicture" type="TextureRect" parent="Control/MainBody/PanelContainer" unique_id=1478312624]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_xwb2u")
 expand_mode = 3
 
-[node name="Title" type="Label" parent="Control/VBoxContainer/PanelContainer" unique_id=585007472]
+[node name="Title" type="Label" parent="Control/MainBody/PanelContainer" unique_id=585007472]
 layout_mode = 2
-theme_override_font_sizes/font_size = 59
+theme_type_variation = &"MainTitleLabel"
 text = "Computikoff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/VBoxContainer" unique_id=996768077]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MainBody" unique_id=416449754]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MainBody/MarginContainer" unique_id=996768077]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Control/VBoxContainer/ScrollContainer" unique_id=1707906334]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer" unique_id=261217642]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer" unique_id=1707906334]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_c0135")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=611010336]
-custom_minimum_size = Vector2(0, 100)
+[node name="LostCitiesContainer" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer" unique_id=1332518385]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
+theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
 
-[node name="LostCitiesButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer" unique_id=1145615133]
+[node name="LostCitiesButton" type="TextureButton" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/LostCitiesContainer" unique_id=1922358029]
 layout_mode = 2
 texture_normal = ExtResource("2_xwb2u")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer/LostCitiesButton" unique_id=1818370101]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
+[node name="OnClickLoadScene" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton" unique_id=174934922 instance=ExtResource("6_n7oha")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scene_to_load = ExtResource("7_70bl3")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=967644271]
+[node name="HoverButtonScale" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton" unique_id=467243021 instance=ExtResource("5_n7oha")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scale_xy_separately = false
+scale_xy = 1.1
+
+[node name="YahtzeeContainer" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer" unique_id=1355426033]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
+theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
 
-[node name="YahtzeeButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer2" unique_id=1898900139]
+[node name="YahtzeeButton" type="TextureButton" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/YahtzeeContainer" unique_id=1389526810]
 layout_mode = 2
 texture_normal = ExtResource("3_s0ee6")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer2/YahtzeeButton" unique_id=270092720]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
+[node name="OnClickLoadScene" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton" unique_id=1642775983 instance=ExtResource("6_n7oha")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scene_to_load = ExtResource("9_6fn4h")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=768154766]
+[node name="HoverButtonScale" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton" unique_id=591472165 instance=ExtResource("5_n7oha")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scale_xy_separately = false
+scale_xy = 1.1
+
+[node name="WordBreakerContainer" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer" unique_id=1098106456]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
+theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
 
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer3" unique_id=160379980]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer3/WordBreakerButton" unique_id=1851547071]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer4" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=936905125]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer4" unique_id=1726903167]
+[node name="WordBreakerButton" type="TextureButton" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/WordBreakerContainer" unique_id=609279343]
 layout_mode = 2
 texture_normal = ExtResource("2_68jy3")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer4/WordBreakerButton" unique_id=1959819356]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
+[node name="OnClickLoadScene" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/WordBreakerContainer/WordBreakerButton" unique_id=335423877 instance=ExtResource("6_n7oha")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scene_to_load = ExtResource("11_7kjp4")
 
-[node name="MarginContainer5" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=1587027529]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
+[node name="HoverButtonScale" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/WordBreakerContainer/WordBreakerButton" unique_id=148638136 instance=ExtResource("5_n7oha")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scale_xy_separately = false
+scale_xy = 1.1
 
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer5" unique_id=959594612]
+[node name="Flip7Container" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer" unique_id=56068317]
 layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
+theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
+
+[node name="Flip7Button" type="TextureButton" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/Flip7Container" unique_id=353959932]
+layout_mode = 2
+texture_normal = ExtResource("12_5s4ww")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer5/WordBreakerButton" unique_id=887202157]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
+[node name="OnClickLoadScene" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/Flip7Container/Flip7Button" unique_id=109824366 instance=ExtResource("6_n7oha")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scene_to_load = ExtResource("12_rxbsb")
 
-[node name="MarginContainer6" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=869542942]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
+[node name="HoverButtonScale" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/Flip7Container/Flip7Button" unique_id=1339620663 instance=ExtResource("5_n7oha")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scale_xy_separately = false
+scale_xy = 1.1
 
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer6" unique_id=963891041]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer6/WordBreakerButton" unique_id=2125079223]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer7" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=440956666]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer7" unique_id=507379256]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer7/WordBreakerButton" unique_id=452115610]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer8" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=144619907]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer8" unique_id=825563822]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer8/WordBreakerButton" unique_id=1663960439]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer9" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=336427618]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer9" unique_id=907980258]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer9/WordBreakerButton" unique_id=2084244243]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer10" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=1071183493]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer10" unique_id=1909793483]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer10/WordBreakerButton" unique_id=19281061]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer11" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=1909725511]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer11" unique_id=378587215]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer11/WordBreakerButton" unique_id=470727634]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer12" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=714502989]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer12" unique_id=2089579016]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer12/WordBreakerButton" unique_id=838492495]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer13" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=887118221]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer13" unique_id=888229203]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer13/WordBreakerButton" unique_id=1325677995]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer14" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=839941250]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer14" unique_id=880814778]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer14/WordBreakerButton" unique_id=1823124964]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer15" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=1565815332]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer15" unique_id=326759836]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer15/WordBreakerButton" unique_id=285758314]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer16" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=348497376]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer16" unique_id=1909212615]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer16/WordBreakerButton" unique_id=205241955]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer17" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=1704531255]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer17" unique_id=721741171]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer17/WordBreakerButton" unique_id=1750724488]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="MarginContainer18" type="MarginContainer" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer" unique_id=1454171941]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer18" unique_id=1836951425]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" type="Control" parent="Control/VBoxContainer/ScrollContainer/HFlowContainer/MarginContainer18/WordBreakerButton" unique_id=1413169881]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_vlxbm")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=903084273]
+[node name="MenuOptionsContainer" type="HBoxContainer" parent="Control" unique_id=903084273]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 0
 offset_right = 638.0
@@ -377,7 +196,7 @@ offset_bottom = 100.0
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/HBoxContainer" unique_id=1810622268]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MenuOptionsContainer" unique_id=1810622268]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -385,22 +204,22 @@ size_flags_stretch_ratio = 0.0
 theme_type_variation = &"MarginContainer_MainMenu"
 theme_override_constants/margin_left = 5
 
-[node name="OptionsButton" type="Button" parent="Control/HBoxContainer/MarginContainer" unique_id=1647008146]
+[node name="OptionsButton" type="Button" parent="Control/MenuOptionsContainer/MarginContainer" unique_id=1647008146]
 layout_mode = 2
 text = "Options"
 
-[node name="Control" type="Control" parent="Control/HBoxContainer" unique_id=1730534073]
+[node name="Control" type="Control" parent="Control/MenuOptionsContainer" unique_id=1730534073]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/HBoxContainer" unique_id=1505072108]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MenuOptionsContainer" unique_id=1505072108]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
 theme_type_variation = &"MarginContainer_MainMenu"
 
-[node name="UnusedSlot" type="PanelContainer" parent="Control/HBoxContainer/MarginContainer2" unique_id=1538651233]
+[node name="UnusedSlot" type="PanelContainer" parent="Control/MenuOptionsContainer/MarginContainer2" unique_id=1538651233]
 layout_mode = 2
 
 [node name="Menus" type="CanvasLayer" parent="." unique_id=775330194]

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ba0b0qcvktvya"]
+
+[ext_resource type="Script" uid="uid://cfn7eo6iknfw8" path="res://Shared/Scenes/hover_button_scale.gd" id="1_hx0fv"]
+
+[node name="HoverButtonScale" type="Control" unique_id=467243021]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hx0fv")

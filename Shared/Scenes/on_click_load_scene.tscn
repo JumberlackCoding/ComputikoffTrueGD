@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://x4s37tv2jaay"]
+
+[ext_resource type="Script" uid="uid://dg8hlg28xvi1i" path="res://Shared/Scenes/on_click_load_scene.gd" id="1_eyiqy"]
+
+[node name="OnClickLoadScene" type="Control" unique_id=174934922]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_eyiqy")
