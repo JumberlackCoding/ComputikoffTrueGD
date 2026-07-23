@@ -1,26 +1,56 @@
 [gd_scene format=3 uid="uid://cxv07nca3hed7"]
 
 [ext_resource type="Script" uid="uid://jkcq04rjurj" path="res://MainMenu/StandaloneScripts/main_ui_tween.gd" id="1_53r08"]
+[ext_resource type="Script" uid="uid://gqjtwbeex0jj" path="res://MainMenu/StandaloneScripts/main_menu_manager.gd" id="1_vlxbm"]
 [ext_resource type="Texture2D" uid="uid://85jpy2e80q2q" path="res://MainMenu/Textures/menu_background_image3.png" id="1_xwb2u"]
-[ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Games/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="2_68jy3"]
-[ext_resource type="Script" uid="uid://dar67w3afl07q" path="res://MainMenu/StandaloneScripts/game_grid_sizer.gd" id="2_c0135"]
-[ext_resource type="Texture2D" uid="uid://c7wtnqyh3b75x" path="res://Games/Lost Cities/Textures/LostCities.jpg" id="2_xwb2u"]
-[ext_resource type="Texture2D" uid="uid://cl8dyqd5lau2x" path="res://Games/Yahtzee/Textures/Yahtzee.png" id="3_s0ee6"]
-[ext_resource type="PackedScene" uid="uid://ba0b0qcvktvya" path="res://Shared/Scenes/hover_button_scale.tscn" id="5_n7oha"]
-[ext_resource type="PackedScene" uid="uid://x4s37tv2jaay" path="res://Shared/Scenes/on_click_load_scene.tscn" id="6_n7oha"]
-[ext_resource type="PackedScene" uid="uid://2nftanwihjkq" path="res://Games/Lost Cities/LostCities.tscn" id="7_70bl3"]
-[ext_resource type="PackedScene" uid="uid://c3t7mmixhc7uy" path="res://Games/Yahtzee/Yahtzee.tscn" id="9_6fn4h"]
-[ext_resource type="PackedScene" uid="uid://bpeh5hqub6iby" path="res://Games/WordBreaker/WordBreaker.tscn" id="11_7kjp4"]
-[ext_resource type="Texture2D" uid="uid://di2fd63sssot1" path="res://Games/Flip7/Textures/flip7.webp" id="12_5s4ww"]
-[ext_resource type="PackedScene" uid="uid://doyqs0f58ijc6" path="res://Games/Flip7/Flip7.tscn" id="12_rxbsb"]
+[ext_resource type="PackedScene" uid="uid://ciij7sor26wpg" path="res://MainMenu/Scenes/main_menu_categories.tscn" id="3_c0135"]
+[ext_resource type="PackedScene" uid="uid://b4l2taemeli43" path="res://MainMenu/Scenes/scorecard_scrolling_list.tscn" id="4_53r08"]
+[ext_resource type="Script" uid="uid://bpg84ha2x72ak" path="res://MainMenu/StandaloneScripts/phase_tween_controller.gd" id="8_70bl3"]
+[ext_resource type="Script" uid="uid://dlkh1w8uf43jt" path="res://MainMenu/StandaloneScripts/slide_tween_controller.gd" id="9_6fn4h"]
+[ext_resource type="Texture2D" uid="uid://dfqkruu607730" path="res://Shared/Textures/hamburger_icon.png" id="14_ml3xc"]
+[ext_resource type="Texture2D" uid="uid://m0lnkf44dg64" path="res://Shared/Textures/hamburger_background.png" id="14_t6dt3"]
 
-[node name="MainMenu" type="MarginContainer" unique_id=1579489465]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_70bl3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0jgb"]
+bg_color = Color(0.23753911, 0.23753914, 0.23753908, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ml3xc"]
+texture = ExtResource("14_t6dt3")
+
+[node name="MainMenu" type="MarginContainer" unique_id=1579489465 node_paths=PackedStringArray("phase_controller", "slide_controller", "main_category_container", "main_scorecard_container", "inputBlocker")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"MarginContainer_MainMenu"
+script = ExtResource("1_vlxbm")
+phase_controller = NodePath("PhaseTweenController")
+slide_controller = NodePath("SlideTweenController")
+main_category_container = NodePath("Control/MainBody/ParentBottomContainer/MainMenuCategories")
+cat_buts_in_dir = Vector2(1, 0)
+cat_buts_in_duration = 0.75
+cat_buts_in_trans = 2
+cat_buts_in_ease = 2
+cat_buts_out_dir = Vector2(-1, 0)
+cat_buts_out_duration = 0.75
+cat_buts_out_trans = 2
+cat_buts_out_ease = 2
+main_scorecard_container = NodePath("Control/MainBody/ParentBottomContainer/ScorecardScrollingList")
+score_buts_in_dir = Vector2(-1, 0)
+score_buts_in_duration = 0.75
+score_buts_in_trans = 2
+score_buts_in_ease = 2
+score_buts_out_dir = Vector2(1, 0)
+score_buts_out_duration = 0.75
+score_buts_out_trans = 2
+score_buts_out_ease = 2
+inputBlocker = NodePath("InputBlocker")
 
 [node name="BackgroundColor" type="ColorRect" parent="." unique_id=613726173]
 layout_mode = 2
@@ -55,138 +85,18 @@ text = "Computikoff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MainBody" unique_id=416449754]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_bottom = 20
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/MainBody/MarginContainer" unique_id=996768077]
+[node name="ParentBottomContainer" type="PanelContainer" parent="Control/MainBody" unique_id=1936024981]
 layout_mode = 2
 size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_70bl3")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer" unique_id=261217642]
+[node name="MainMenuCategories" parent="Control/MainBody/ParentBottomContainer" unique_id=228685291 instance=ExtResource("3_c0135")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_right = 8
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer" unique_id=1707906334]
+[node name="ScorecardScrollingList" parent="Control/MainBody/ParentBottomContainer" unique_id=155324355 instance=ExtResource("4_53r08")]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("2_c0135")
-
-[node name="LostCitiesContainer" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer" unique_id=1332518385]
-layout_mode = 2
-theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
-
-[node name="LostCitiesButton" type="TextureButton" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/LostCitiesContainer" unique_id=1922358029]
-layout_mode = 2
-texture_normal = ExtResource("2_xwb2u")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="OnClickLoadScene" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton" unique_id=174934922 instance=ExtResource("6_n7oha")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scene_to_load = ExtResource("7_70bl3")
-
-[node name="HoverButtonScale" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton" unique_id=467243021 instance=ExtResource("5_n7oha")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scale_xy_separately = false
-scale_xy = 1.1
-
-[node name="YahtzeeContainer" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer" unique_id=1355426033]
-layout_mode = 2
-theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
-
-[node name="YahtzeeButton" type="TextureButton" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/YahtzeeContainer" unique_id=1389526810]
-layout_mode = 2
-texture_normal = ExtResource("3_s0ee6")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="OnClickLoadScene" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton" unique_id=1642775983 instance=ExtResource("6_n7oha")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scene_to_load = ExtResource("9_6fn4h")
-
-[node name="HoverButtonScale" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton" unique_id=591472165 instance=ExtResource("5_n7oha")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scale_xy_separately = false
-scale_xy = 1.1
-
-[node name="WordBreakerContainer" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer" unique_id=1098106456]
-layout_mode = 2
-theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
-
-[node name="WordBreakerButton" type="TextureButton" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/WordBreakerContainer" unique_id=609279343]
-layout_mode = 2
-texture_normal = ExtResource("2_68jy3")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="OnClickLoadScene" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/WordBreakerContainer/WordBreakerButton" unique_id=335423877 instance=ExtResource("6_n7oha")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scene_to_load = ExtResource("11_7kjp4")
-
-[node name="HoverButtonScale" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/WordBreakerContainer/WordBreakerButton" unique_id=148638136 instance=ExtResource("5_n7oha")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scale_xy_separately = false
-scale_xy = 1.1
-
-[node name="Flip7Container" type="MarginContainer" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer" unique_id=56068317]
-layout_mode = 2
-theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
-
-[node name="Flip7Button" type="TextureButton" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/Flip7Container" unique_id=353959932]
-layout_mode = 2
-texture_normal = ExtResource("12_5s4ww")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="OnClickLoadScene" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/Flip7Container/Flip7Button" unique_id=109824366 instance=ExtResource("6_n7oha")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scene_to_load = ExtResource("12_rxbsb")
-
-[node name="HoverButtonScale" parent="Control/MainBody/MarginContainer/ScrollContainer/MarginContainer/HFlowContainer/Flip7Container/Flip7Button" unique_id=1339620663 instance=ExtResource("5_n7oha")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scale_xy_separately = false
-scale_xy = 1.1
+offset_transform_enabled = false
 
 [node name="MenuOptionsContainer" type="HBoxContainer" parent="Control" unique_id=903084273]
 custom_minimum_size = Vector2(0, 100)
@@ -202,11 +112,31 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
 theme_type_variation = &"MarginContainer_MainMenu"
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ButtonBackground" type="Panel" parent="Control/MenuOptionsContainer/MarginContainer" unique_id=137283633]
+clip_children = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0jgb")
+
+[node name="BackgroundGradient" type="Panel" parent="Control/MenuOptionsContainer/MarginContainer/ButtonBackground" unique_id=1563838224]
+self_modulate = Color(0.7038074, 0.703808, 0.70380765, 1)
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ml3xc")
 
 [node name="OptionsButton" type="Button" parent="Control/MenuOptionsContainer/MarginContainer" unique_id=1647008146]
+self_modulate = Color(0.12955844, 0.12955847, 0.12955844, 1)
+texture_filter = 1
 layout_mode = 2
-text = "Options"
+icon = ExtResource("14_ml3xc")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Control" type="Control" parent="Control/MenuOptionsContainer" unique_id=1730534073]
 layout_mode = 2
@@ -220,9 +150,28 @@ size_flags_stretch_ratio = 0.0
 theme_type_variation = &"MarginContainer_MainMenu"
 
 [node name="UnusedSlot" type="PanelContainer" parent="Control/MenuOptionsContainer/MarginContainer2" unique_id=1538651233]
+visible = false
+layout_mode = 2
+
+[node name="PhaseTweenController" type="Control" parent="." unique_id=444503486]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("8_70bl3")
+
+[node name="SlideTweenController" type="Control" parent="." unique_id=159117966]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("9_6fn4h")
+
+[node name="InputBlocker" type="Control" parent="." unique_id=1973175588]
+visible = false
 layout_mode = 2
 
 [node name="Menus" type="CanvasLayer" parent="." unique_id=775330194]
+visible = false
 
 [node name="Transitions" type="CanvasLayer" parent="." unique_id=1168425770]
 layer = 2
+visible = false

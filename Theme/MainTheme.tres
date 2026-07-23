@@ -1,6 +1,15 @@
 [gd_resource type="Theme" format=3 uid="uid://di7wlu4ix6g1j"]
 
 [resource]
+CategoryButtonLabel_MainMenu/base_type = &"Label"
+CategoryButtonLabel_MainMenu/colors/font_color = Color(1, 1, 1, 1)
+CategoryButtonLabel_MainMenu/colors/font_outline_color = Color(0, 0, 0, 1)
+CategoryButtonLabel_MainMenu/colors/font_shadow_color = Color(0.5176471, 0, 0, 1)
+CategoryButtonLabel_MainMenu/constants/outline_size = 10
+CategoryButtonLabel_MainMenu/constants/shadow_offset_x = 4
+CategoryButtonLabel_MainMenu/constants/shadow_offset_y = 4
+CategoryButtonLabel_MainMenu/constants/shadow_outline_size = 9
+CategoryButtonLabel_MainMenu/font_sizes/font_size = 43
 GameGrid_PerButton_MarginContainer_MainMenu/base_type = &"MarginContainer"
 GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_bottom = 10
 GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_left = 5
@@ -21,3 +30,8 @@ MarginContainer_MainMenu/constants/margin_left = 5
 MarginContainer_MainMenu/constants/margin_right = 5
 MarginContainer_MainMenu/constants/margin_top = 5
 PanelContainer_MainMenu_Games/base_type = &"PanelContainer"
+TopLevelGame_MarginContainer/base_type = &"MarginContainer"
+TopLevelGame_MarginContainer/constants/margin_bottom = 20
+TopLevelGame_MarginContainer/constants/margin_left = 20
+TopLevelGame_MarginContainer/constants/margin_right = 20
+TopLevelGame_MarginContainer/constants/margin_top = 20

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://b67kspald1se2"]
+
+[ext_resource type="Texture2D" uid="uid://dik1mejg14j5x" path="res://Games/Lost Cities/Textures/number_button_background_dots.png" id="1_xm67k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_518qj"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MarginContainer" type="MarginContainer" unique_id=1303060723]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="Panel" parent="." unique_id=383270892]
+clip_children = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_518qj")
+
+[node name="Foreground" type="TextureRect" parent="Background" unique_id=2049222077]
+texture_filter = 1
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("1_xm67k")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=1335043120]
+layout_mode = 2
+flat = true
+
+[node name="Number" type="Label" parent="." unique_id=453771904]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.46618086, 0.4661808, 0.4661808, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 36
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+max_lines_visible = 1
+visible_characters = 2

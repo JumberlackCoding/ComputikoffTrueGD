@@ -29,6 +29,7 @@ folder_colors={
 "res://Games/": "red",
 "res://Games/Flip7/Textures/": "green",
 "res://Games/Lost Cities/": "orange",
+"res://Games/Lost Cities/Scenes/": "blue",
 "res://Games/Lost Cities/Textures/": "green",
 "res://Games/WordBreaker/": "yellow",
 "res://Games/Yahtzee/": "green",
@@ -39,6 +40,7 @@ folder_colors={
 "res://MainMenu/Textures/": "green",
 "res://Shared/": "pink",
 "res://Shared/Scenes/": "blue",
+"res://Shared/Textures/": "green",
 "res://Theme/": "purple",
 "res://android/": "gray"
 }

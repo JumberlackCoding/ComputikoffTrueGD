@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://b4l2taemeli43"]
+
+[ext_resource type="Script" uid="uid://dar67w3afl07q" path="res://MainMenu/StandaloneScripts/game_grid_sizer.gd" id="1_0lcy4"]
+[ext_resource type="Texture2D" uid="uid://c7wtnqyh3b75x" path="res://Games/Lost Cities/Textures/LostCities.jpg" id="2_5iomd"]
+[ext_resource type="PackedScene" uid="uid://x4s37tv2jaay" path="res://Shared/Scenes/on_click_load_scene.tscn" id="3_ohenx"]
+[ext_resource type="PackedScene" uid="uid://2nftanwihjkq" path="res://Games/Lost Cities/LostCities.tscn" id="4_yitey"]
+[ext_resource type="PackedScene" uid="uid://ba0b0qcvktvya" path="res://Shared/Scenes/hover_button_scale.tscn" id="5_2dl6b"]
+[ext_resource type="Texture2D" uid="uid://cl8dyqd5lau2x" path="res://Games/Yahtzee/Textures/Yahtzee.png" id="6_hdhn7"]
+[ext_resource type="PackedScene" uid="uid://c3t7mmixhc7uy" path="res://Games/Yahtzee/Yahtzee.tscn" id="7_2tdvk"]
+[ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Games/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="8_jpa2a"]
+[ext_resource type="PackedScene" uid="uid://bpeh5hqub6iby" path="res://Games/WordBreaker/WordBreaker.tscn" id="9_8gwgj"]
+[ext_resource type="Texture2D" uid="uid://di2fd63sssot1" path="res://Games/Flip7/Textures/flip7.webp" id="10_tpqqe"]
+[ext_resource type="PackedScene" uid="uid://doyqs0f58ijc6" path="res://Games/Flip7/Flip7.tscn" id="11_02w4w"]
+
+[node name="ScorecardScrollingList" type="MarginContainer" unique_id=155324355]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+offset_transform_enabled = true
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1314542793]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=1826925572]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=102897518]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1659181447]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_0lcy4")
+
+[node name="LostCitiesContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=304759048]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
+
+[node name="LostCitiesButton" type="TextureButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/LostCitiesContainer" unique_id=300272282]
+layout_mode = 2
+texture_normal = ExtResource("2_5iomd")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="OnClickLoadScene" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton" unique_id=174934922 instance=ExtResource("3_ohenx")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scene_to_load = ExtResource("4_yitey")
+
+[node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton" unique_id=467243021 instance=ExtResource("5_2dl6b")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scale_xy_separately = false
+scale_xy = 1.1
+
+[node name="YahtzeeContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=1862302570]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
+
+[node name="YahtzeeButton" type="TextureButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/YahtzeeContainer" unique_id=1689362653]
+layout_mode = 2
+texture_normal = ExtResource("6_hdhn7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="OnClickLoadScene" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton" unique_id=93322836 instance=ExtResource("3_ohenx")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scene_to_load = ExtResource("7_2tdvk")
+
+[node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton" unique_id=1665892212 instance=ExtResource("5_2dl6b")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scale_xy_separately = false
+scale_xy = 1.1
+
+[node name="WordBreakerContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=774764582]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
+
+[node name="WordBreakerButton" type="TextureButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/WordBreakerContainer" unique_id=1545571336]
+layout_mode = 2
+texture_normal = ExtResource("8_jpa2a")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="OnClickLoadScene" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/WordBreakerContainer/WordBreakerButton" unique_id=1778007204 instance=ExtResource("3_ohenx")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scene_to_load = ExtResource("9_8gwgj")
+
+[node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/WordBreakerContainer/WordBreakerButton" unique_id=574097813 instance=ExtResource("5_2dl6b")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scale_xy_separately = false
+scale_xy = 1.1
+
+[node name="Flip7Container" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=1863023021]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
+
+[node name="Flip7Button" type="TextureButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container" unique_id=1514998064]
+layout_mode = 2
+texture_normal = ExtResource("10_tpqqe")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="OnClickLoadScene" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container/Flip7Button" unique_id=284153748 instance=ExtResource("3_ohenx")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scene_to_load = ExtResource("11_02w4w")
+
+[node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container/Flip7Button" unique_id=958978206 instance=ExtResource("5_2dl6b")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 90.0
+scale_xy_separately = false
+scale_xy = 1.1
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=75517519]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BackButton" type="TextureButton" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1143268781]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+texture_normal = ExtResource("8_jpa2a")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/BackButton" unique_id=1884467207 instance=ExtResource("5_2dl6b")]
+layout_mode = 0
+scale_xy_separately = false
+scale_xy = 1.1

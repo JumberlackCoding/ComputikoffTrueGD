@@ -1,20 +1,18 @@
 [gd_scene format=3 uid="uid://2nftanwihjkq"]
 
-[node name="Control" type="Control" unique_id=1205196104]
-layout_mode = 3
+[node name="LostCities" type="MarginContainer" unique_id=1981477530]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=982769353]
+layout_mode = 2
+color = Color(0.87720656, 0.8671704, 0.7669223, 1)
+
 [node name="Label" type="Label" parent="." unique_id=796338065]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_font_sizes/font_size = 89
 text = "Lost Cities"
 horizontal_alignment = 1
