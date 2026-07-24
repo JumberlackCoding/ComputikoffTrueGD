@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl8dyqd5lau2x"
-path="res://.godot/imported/Yahtzee.png-51b0c23fac7d1488c20e4708405eda00.ctex"
+uid="uid://bncptmaa4f7rq"
+path="res://.godot/imported/flip7_banner.png-8a9e14e0bc09efd39706a60f4609dafa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Games/Yahtzee/Textures/Yahtzee.png"
-dest_files=["res://.godot/imported/Yahtzee.png-51b0c23fac7d1488c20e4708405eda00.ctex"]
+source_file="res://Scorecards/Flip7/Textures/flip7_banner.png"
+dest_files=["res://.godot/imported/flip7_banner.png-8a9e14e0bc09efd39706a60f4609dafa.ctex"]
 
 [params]
 

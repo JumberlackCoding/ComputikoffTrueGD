@@ -45,6 +45,7 @@ func slide_out(target_node: Control, relative_direction: Vector2, position_by_ra
     tween.set_ease(ease_type)
     tween.tween_property(target_node, transform_property, end, duration).from(start)
     await tween.finished
+    target_node.visible = false
     slide_out_finished.emit(target_node)
 
 func all_tweens_finished() -> bool:

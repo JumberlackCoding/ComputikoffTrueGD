@@ -1,0 +1,278 @@
+[gd_scene format=3 uid="uid://cxv07nca3hed7"]
+
+[ext_resource type="Script" uid="uid://gqjtwbeex0jj" path="res://MainMenu/StandaloneScripts/main_menu_manager.gd" id="1_vlxbm"]
+[ext_resource type="Texture2D" uid="uid://85jpy2e80q2q" path="res://MainMenu/Textures/menu_background_image3.png" id="1_xwb2u"]
+[ext_resource type="Script" uid="uid://cvg6mnmh6ny5k" path="res://Shared/Scripts/scorecard_data.gd" id="2_o2rkg"]
+[ext_resource type="PackedScene" uid="uid://ciij7sor26wpg" path="res://MainMenu/Scenes/main_menu_categories.tscn" id="3_c0135"]
+[ext_resource type="PackedScene" uid="uid://b4l2taemeli43" path="res://MainMenu/Scenes/scorecard_scrolling_list.tscn" id="4_53r08"]
+[ext_resource type="Texture2D" uid="uid://brna1weuy3uqe" path="res://Scorecards/Lost Cities/Textures/LostCities_banner.png" id="4_it0xl"]
+[ext_resource type="Texture2D" uid="uid://c7crho3rkjibp" path="res://Scorecards/Yahtzee/Textures/yahtzee_banner.png" id="5_o1r2d"]
+[ext_resource type="Script" uid="uid://bpg84ha2x72ak" path="res://MainMenu/StandaloneScripts/phase_tween_controller.gd" id="8_70bl3"]
+[ext_resource type="Script" uid="uid://dlkh1w8uf43jt" path="res://MainMenu/StandaloneScripts/slide_tween_controller.gd" id="9_6fn4h"]
+[ext_resource type="Texture2D" uid="uid://ylr0v7qm18wm" path="res://Scorecards/Flip7/Textures/flip7_banner_shrunk.png" id="10_5ai8d"]
+[ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Scorecards/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="11_o2rkg"]
+[ext_resource type="PackedScene" uid="uid://ba0b0qcvktvya" path="res://Shared/Scenes/hover_button_scale.tscn" id="12_it0xl"]
+[ext_resource type="Texture2D" uid="uid://dfqkruu607730" path="res://Shared/Textures/hamburger_icon.png" id="14_ml3xc"]
+[ext_resource type="Texture2D" uid="uid://m0lnkf44dg64" path="res://Shared/Textures/hamburger_background.png" id="14_t6dt3"]
+[ext_resource type="PackedScene" uid="uid://c3t7mmixhc7uy" path="res://Scorecards/Yahtzee/Yahtzee.tscn" id="15_t71g8"]
+[ext_resource type="PackedScene" uid="uid://2nftanwihjkq" path="res://Scorecards/Lost Cities/LostCities.tscn" id="16_un1er"]
+[ext_resource type="PackedScene" uid="uid://ccd8x3eqakpjt" path="res://Scorecards/Flip7/flip_7.tscn" id="17_un1er"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_70bl3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0jgb"]
+bg_color = Color(0.23753911, 0.23753914, 0.23753908, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ml3xc"]
+texture = ExtResource("14_t6dt3")
+
+[node name="MainMenu" type="MarginContainer" unique_id=1579489465 node_paths=PackedStringArray("phase_controller", "flip_7_container", "lost_cities_container", "yahtzee_container", "slide_controller", "main_category_container", "main_scorecard_list_container", "top_instance_container", "main_menu_container", "background_color_rect", "logo", "main_menu_button", "inputBlocker")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vlxbm")
+phase_controller = NodePath("PhaseTweenController")
+score_trans_duration = 1.0
+score_trans_trans = 2
+score_trans_ease = 2
+flip_7_container = NodePath("TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/Flip7")
+lost_cities_container = NodePath("TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities")
+yahtzee_container = NodePath("TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/Yahtzee")
+slide_controller = NodePath("SlideTweenController")
+main_category_container = NodePath("MainMenuContainer/MainBody/ParentBottomContainer/MainCategoryContainer")
+cat_buts_in_dir = Vector2(1, 0)
+cat_buts_in_duration = 0.5
+cat_buts_in_trans = 2
+cat_buts_in_ease = 2
+cat_buts_out_dir = Vector2(-1, 0)
+cat_buts_out_duration = 0.5
+cat_buts_out_trans = 2
+cat_buts_out_ease = 2
+main_scorecard_list_container = NodePath("MainMenuContainer/MainBody/ParentBottomContainer/MainScorecardListContainer")
+score_buts_in_dir = Vector2(-1, 0)
+score_buts_in_duration = 0.5
+score_buts_in_trans = 2
+score_buts_in_ease = 2
+score_buts_out_dir = Vector2(1, 0)
+score_buts_out_duration = 0.5
+score_buts_out_trans = 2
+score_buts_out_ease = 2
+top_instance_container = NodePath("TopInstanceContainer")
+top_instance_in_dir = Vector2(-1, 0)
+top_instance_in_duration = 0.5
+top_instance_in_trans = 2
+top_instance_in_ease = 2
+top_instance_out_dir = Vector2(1, 0)
+top_instance_out_duration = 0.5
+top_instance_out_trans = 2
+top_instance_out_ease = 2
+main_menu_container = NodePath("MainMenuContainer")
+background_color_rect = NodePath("BackgroundColor")
+logo = NodePath("TopInstanceContainer/VBoxContainer/TopBar/Logo")
+main_menu_button = NodePath("TopInstanceContainer/VBoxContainer/TopBar/MainMenuButton")
+inputBlocker = NodePath("InputBlocker")
+
+[node name="ScorecardData" type="Control" parent="." unique_id=514675382]
+layout_mode = 2
+
+[node name="Flip7" type="Control" parent="ScorecardData" unique_id=273670442]
+anchors_preset = 0
+offset_right = 648.0
+offset_bottom = 1152.0
+script = ExtResource("2_o2rkg")
+scene_path = "res://Scorecards/Flip7/Flip7.tscn"
+background_color = Color(0.8980392, 0.84705883, 0.84313726, 1)
+logo = ExtResource("10_5ai8d")
+
+[node name="LostCities" type="Control" parent="ScorecardData" unique_id=914036435]
+anchors_preset = 0
+offset_right = 648.0
+offset_bottom = 1152.0
+script = ExtResource("2_o2rkg")
+scene_path = "res://Scorecards/Lost Cities/LostCities.tscn"
+background_color = Color(0.8784314, 0.8666667, 0.76862746, 1)
+logo = ExtResource("4_it0xl")
+
+[node name="Yahtzee" type="Control" parent="ScorecardData" unique_id=75104784]
+anchors_preset = 0
+offset_right = 648.0
+offset_bottom = 1152.0
+script = ExtResource("2_o2rkg")
+scene_path = "res://Scorecards/Yahtzee/Yahtzee.tscn"
+background_color = Color(0.7647059, 0.9098039, 0.75686276, 1)
+logo = ExtResource("5_o1r2d")
+
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=613726173]
+layout_mode = 2
+color = Color(0.75686276, 0.8784314, 0.9882353, 1)
+
+[node name="MainMenuContainer" type="MarginContainer" parent="." unique_id=637232827]
+layout_mode = 2
+
+[node name="MainBody" type="VBoxContainer" parent="MainMenuContainer" unique_id=302214484]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenuContainer/MainBody" unique_id=1475064023]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="BackgroundPicture" type="TextureRect" parent="MainMenuContainer/MainBody/PanelContainer" unique_id=1478312624]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_xwb2u")
+expand_mode = 3
+
+[node name="Title" type="Label" parent="MainMenuContainer/MainBody/PanelContainer" unique_id=585007472]
+layout_mode = 2
+theme_type_variation = &"MainTitleLabel"
+text = "Computikoff"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ParentBottomContainer" type="PanelContainer" parent="MainMenuContainer/MainBody" unique_id=1936024981]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_70bl3")
+
+[node name="MainCategoryContainer" parent="MainMenuContainer/MainBody/ParentBottomContainer" unique_id=228685291 instance=ExtResource("3_c0135")]
+layout_mode = 2
+
+[node name="MainScorecardListContainer" parent="MainMenuContainer/MainBody/ParentBottomContainer" unique_id=155324355 instance=ExtResource("4_53r08")]
+visible = false
+layout_mode = 2
+offset_transform_enabled = false
+
+[node name="MenuOptionsContainer" type="HBoxContainer" parent="MainMenuContainer" unique_id=903084273]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuContainer/MenuOptionsContainer" unique_id=1810622268]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+theme_type_variation = &"MarginContainer_MainMenu"
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ButtonBackground" type="Panel" parent="MainMenuContainer/MenuOptionsContainer/MarginContainer" unique_id=137283633]
+clip_children = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0jgb")
+
+[node name="BackgroundGradient" type="Panel" parent="MainMenuContainer/MenuOptionsContainer/MarginContainer/ButtonBackground" unique_id=1563838224]
+self_modulate = Color(0.7038074, 0.703808, 0.70380765, 1)
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ml3xc")
+
+[node name="OptionsButton" type="Button" parent="MainMenuContainer/MenuOptionsContainer/MarginContainer" unique_id=1647008146]
+self_modulate = Color(0.12955844, 0.12955847, 0.12955844, 1)
+texture_filter = 1
+layout_mode = 2
+icon = ExtResource("14_ml3xc")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Control" type="Control" parent="MainMenuContainer/MenuOptionsContainer" unique_id=1730534073]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainMenuContainer/MenuOptionsContainer" unique_id=1505072108]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+theme_type_variation = &"MarginContainer_MainMenu"
+
+[node name="UnusedSlot" type="PanelContainer" parent="MainMenuContainer/MenuOptionsContainer/MarginContainer2" unique_id=1538651233]
+visible = false
+layout_mode = 2
+
+[node name="TopInstanceContainer" type="MarginContainer" parent="." unique_id=1859612397]
+visible = false
+layout_mode = 2
+theme_type_variation = &"TopLevelGame_MarginContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopInstanceContainer" unique_id=230339361]
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer" unique_id=21290530]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Logo" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/TopBar" unique_id=206627929]
+custom_minimum_size = Vector2(160, 80)
+custom_maximum_size = Vector2(240, 80)
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("10_5ai8d")
+expand_mode = 1
+
+[node name="MainMenuButton" type="TextureButton" parent="TopInstanceContainer/VBoxContainer/TopBar" unique_id=1989252846]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("11_o2rkg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HoverButtonScale" parent="TopInstanceContainer/VBoxContainer/TopBar/MainMenuButton" unique_id=467243021 instance=ExtResource("12_it0xl")]
+layout_mode = 0
+scale_xy_separately = false
+scale_xy = 1.1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TopInstanceContainer/VBoxContainer" unique_id=814750253]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScorecardContainer" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer" unique_id=535483106]
+layout_mode = 2
+
+[node name="Flip7" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=1432165757 instance=ExtResource("17_un1er")]
+visible = false
+layout_mode = 2
+
+[node name="LostCities" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=1981477530 instance=ExtResource("16_un1er")]
+visible = false
+layout_mode = 2
+
+[node name="Yahtzee" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=1261929141 instance=ExtResource("15_t71g8")]
+visible = false
+layout_mode = 2
+
+[node name="PhaseTweenController" type="Control" parent="." unique_id=444503486]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("8_70bl3")
+
+[node name="SlideTweenController" type="Control" parent="." unique_id=159117966]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("9_6fn4h")
+
+[node name="InputBlocker" type="Control" parent="." unique_id=1973175588]
+visible = false
+layout_mode = 2
+
+[node name="Menus" type="CanvasLayer" parent="." unique_id=775330194]
+visible = false
+
+[node name="Transitions" type="CanvasLayer" parent="." unique_id=1168425770]
+layer = 2
+visible = false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xos4qblpxr5s"
-path="res://.godot/imported/CoverImage.jpg-a6754dad7e77e3c93c3f78841ea57c6a.ctex"
+uid="uid://cl8dyqd5lau2x"
+path="res://.godot/imported/Yahtzee.png-9ab468f1c4a17b1fc9cdb8203f4187fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Games/Lost Cities/Textures/CoverImage.jpg"
-dest_files=["res://.godot/imported/CoverImage.jpg-a6754dad7e77e3c93c3f78841ea57c6a.ctex"]
+source_file="res://Scorecards/Yahtzee/Textures/Yahtzee.png"
+dest_files=["res://.godot/imported/Yahtzee.png-9ab468f1c4a17b1fc9cdb8203f4187fc.ctex"]
 
 [params]
 

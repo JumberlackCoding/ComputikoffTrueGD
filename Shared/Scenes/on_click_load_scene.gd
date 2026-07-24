@@ -1,6 +1,6 @@
 extends Control
 
-@export var scene_to_load: PackedScene
+@export var scene_to_load: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,4 +10,4 @@ func _ready() -> void:
         push_error("Expected parent to be BaseButton. Found ", get_parent().get_class(), ".")
 
 func _on_click() -> void:
-    get_tree().change_scene_to_packed(scene_to_load)
+    get_tree().change_scene_to_file(scene_to_load)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ciij7sor26wpg"]
 
-[ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Games/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="1_ldwj1"]
+[ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Scorecards/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="1_ldwj1"]
 [ext_resource type="PackedScene" uid="uid://ba0b0qcvktvya" path="res://Shared/Scenes/hover_button_scale.tscn" id="2_txf2n"]
 
 [node name="MainMenuCategories" type="MarginContainer" unique_id=228685291]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b67kspald1se2"]
 
-[ext_resource type="Texture2D" uid="uid://dik1mejg14j5x" path="res://Games/Lost Cities/Textures/number_button_background_dots.png" id="1_xm67k"]
+[ext_resource type="Texture2D" uid="uid://dik1mejg14j5x" path="res://Scorecards/Lost Cities/Textures/number_button_background_dots.png" id="1_xm67k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_518qj"]
 bg_color = Color(1, 1, 1, 1)

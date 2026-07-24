@@ -1,16 +1,11 @@
 [gd_scene format=3 uid="uid://b4l2taemeli43"]
 
 [ext_resource type="Script" uid="uid://dar67w3afl07q" path="res://MainMenu/StandaloneScripts/game_grid_sizer.gd" id="1_0lcy4"]
-[ext_resource type="Texture2D" uid="uid://c7wtnqyh3b75x" path="res://Games/Lost Cities/Textures/LostCities.jpg" id="2_5iomd"]
-[ext_resource type="PackedScene" uid="uid://x4s37tv2jaay" path="res://Shared/Scenes/on_click_load_scene.tscn" id="3_ohenx"]
-[ext_resource type="PackedScene" uid="uid://2nftanwihjkq" path="res://Games/Lost Cities/LostCities.tscn" id="4_yitey"]
+[ext_resource type="Texture2D" uid="uid://c7wtnqyh3b75x" path="res://Scorecards/Lost Cities/Textures/LostCities.jpg" id="2_5iomd"]
 [ext_resource type="PackedScene" uid="uid://ba0b0qcvktvya" path="res://Shared/Scenes/hover_button_scale.tscn" id="5_2dl6b"]
-[ext_resource type="Texture2D" uid="uid://cl8dyqd5lau2x" path="res://Games/Yahtzee/Textures/Yahtzee.png" id="6_hdhn7"]
-[ext_resource type="PackedScene" uid="uid://c3t7mmixhc7uy" path="res://Games/Yahtzee/Yahtzee.tscn" id="7_2tdvk"]
-[ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Games/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="8_jpa2a"]
-[ext_resource type="PackedScene" uid="uid://bpeh5hqub6iby" path="res://Games/WordBreaker/WordBreaker.tscn" id="9_8gwgj"]
-[ext_resource type="Texture2D" uid="uid://di2fd63sssot1" path="res://Games/Flip7/Textures/flip7.webp" id="10_tpqqe"]
-[ext_resource type="PackedScene" uid="uid://doyqs0f58ijc6" path="res://Games/Flip7/Flip7.tscn" id="11_02w4w"]
+[ext_resource type="Texture2D" uid="uid://cl8dyqd5lau2x" path="res://Scorecards/Yahtzee/Textures/Yahtzee.png" id="6_hdhn7"]
+[ext_resource type="Texture2D" uid="uid://db11lvlhryplr" path="res://Scorecards/Flip7/Textures/flip7.webp" id="7_gggil"]
+[ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Scorecards/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="8_jpa2a"]
 
 [node name="ScorecardScrollingList" type="MarginContainer" unique_id=155324355]
 anchors_preset = 15
@@ -57,14 +52,6 @@ texture_normal = ExtResource("2_5iomd")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="OnClickLoadScene" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton" unique_id=174934922 instance=ExtResource("3_ohenx")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scene_to_load = ExtResource("4_yitey")
-
 [node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton" unique_id=467243021 instance=ExtResource("5_2dl6b")]
 layout_mode = 0
 offset_left = 9.0
@@ -84,14 +71,6 @@ layout_mode = 2
 texture_normal = ExtResource("6_hdhn7")
 ignore_texture_size = true
 stretch_mode = 0
-
-[node name="OnClickLoadScene" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton" unique_id=93322836 instance=ExtResource("3_ohenx")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scene_to_load = ExtResource("7_2tdvk")
 
 [node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton" unique_id=1665892212 instance=ExtResource("5_2dl6b")]
 layout_mode = 0
@@ -113,14 +92,6 @@ texture_normal = ExtResource("8_jpa2a")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="OnClickLoadScene" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/WordBreakerContainer/WordBreakerButton" unique_id=1778007204 instance=ExtResource("3_ohenx")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scene_to_load = ExtResource("9_8gwgj")
-
 [node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/WordBreakerContainer/WordBreakerButton" unique_id=574097813 instance=ExtResource("5_2dl6b")]
 layout_mode = 0
 offset_left = 9.0
@@ -135,21 +106,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
 
-[node name="Flip7Button" type="TextureButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container" unique_id=1514998064]
+[node name="Flip7Button" type="TextureButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container" unique_id=2071419266]
 layout_mode = 2
-texture_normal = ExtResource("10_tpqqe")
+texture_normal = ExtResource("7_gggil")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="OnClickLoadScene" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container/Flip7Button" unique_id=284153748 instance=ExtResource("3_ohenx")]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 150.0
-offset_bottom = 90.0
-scene_to_load = ExtResource("11_02w4w")
-
-[node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container/Flip7Button" unique_id=958978206 instance=ExtResource("5_2dl6b")]
+[node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container/Flip7Button" unique_id=1940497526 instance=ExtResource("5_2dl6b")]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 10.0

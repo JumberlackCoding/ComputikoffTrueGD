@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgexj6g3tivig"
-path="res://.godot/imported/ComputikoffLogoBackground.jpg-1c0b3af4a9e3445a22bee63f79196393.ctex"
+uid="uid://xos4qblpxr5s"
+path="res://.godot/imported/CoverImage.jpg-227cebf9cf621e6f9bf3a6c100f042e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Games/Lost Cities/Textures/ComputikoffLogoBackground.jpg"
-dest_files=["res://.godot/imported/ComputikoffLogoBackground.jpg-1c0b3af4a9e3445a22bee63f79196393.ctex"]
+source_file="res://Scorecards/Lost Cities/Textures/CoverImage.jpg"
+dest_files=["res://.godot/imported/CoverImage.jpg-227cebf9cf621e6f9bf3a6c100f042e1.ctex"]
 
 [params]
 

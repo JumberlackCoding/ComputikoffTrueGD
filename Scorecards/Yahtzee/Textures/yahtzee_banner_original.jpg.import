@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjru77hjgnv8l"
-path="res://.godot/imported/Flip7Banner.png-ee5a284062014fa1fe80753fb458a8a4.ctex"
+uid="uid://ctj3w83gb5duu"
+path="res://.godot/imported/yahtzee_banner_original.jpg-226519bccd466e046488dd6abf51191d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Games/Flip7/Textures/Flip7Banner.png"
-dest_files=["res://.godot/imported/Flip7Banner.png-ee5a284062014fa1fe80753fb458a8a4.ctex"]
+source_file="res://Scorecards/Yahtzee/Textures/yahtzee_banner_original.jpg"
+dest_files=["res://.godot/imported/yahtzee_banner_original.jpg-226519bccd466e046488dd6abf51191d.ctex"]
 
 [params]
 

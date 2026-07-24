@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7wtnqyh3b75x"
-path="res://.godot/imported/LostCities.jpg-6e9df0b535fa57a2cfc2be3b62fe3d20.ctex"
+uid="uid://ylr0v7qm18wm"
+path="res://.godot/imported/flip7_banner_shrunk.png-169a6e9c5c1de6a998704d47f989b382.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Games/Lost Cities/Textures/LostCities.jpg"
-dest_files=["res://.godot/imported/LostCities.jpg-6e9df0b535fa57a2cfc2be3b62fe3d20.ctex"]
+source_file="res://Scorecards/Flip7/Textures/flip7_banner_shrunk.png"
+dest_files=["res://.godot/imported/flip7_banner_shrunk.png-169a6e9c5c1de6a998704d47f989b382.ctex"]
 
 [params]
 
