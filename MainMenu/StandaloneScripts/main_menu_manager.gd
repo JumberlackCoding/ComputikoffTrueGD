@@ -68,13 +68,13 @@ var yahtzee_data: Control
 @export var main_menu_button: BaseButton
 @export var inputBlocker: Control
 
-var games_button: BaseButton
-var games_grid_back_button: BaseButton
-var scorecards_button: BaseButton
-var scorecards_grid_back_button: BaseButton
-var scorecards_flip7_button: BaseButton
-var scorecards_lost_cities_button: BaseButton
-var scorecards_yahtzee_button: BaseButton
+@onready var games_button: BaseButton = main_category_container.get_node("HBoxContainer/MarginContainer/GamesButton")
+@onready var games_grid_back_button: BaseButton
+@onready var scorecards_button: BaseButton = main_category_container.get_node("HBoxContainer/MarginContainer2/ScorecardsButton")
+@onready var scorecards_grid_back_button: BaseButton = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/BackButton")
+@onready var scorecards_flip7_button: BaseButton = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container/Flip7Button")
+@onready var scorecards_lost_cities_button: BaseButton = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton")
+@onready var scorecards_yahtzee_button: BaseButton = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -82,13 +82,6 @@ func _ready() -> void:
     flip_7_data = $ScorecardData/Flip7
     lost_cities_data = $ScorecardData/LostCities
     yahtzee_data = $ScorecardData/Yahtzee
-
-    games_button = main_category_container.get_node("HBoxContainer/MarginContainer/GamesButton")
-    scorecards_button = main_category_container.get_node("HBoxContainer/MarginContainer2/ScorecardsButton")
-    scorecards_grid_back_button = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/BackButton")
-    scorecards_flip7_button = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container/Flip7Button")
-    scorecards_lost_cities_button = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton")
-    scorecards_yahtzee_button = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/YahtzeeContainer/YahtzeeButton")
 
     # Make event connections
     # Slide admin
@@ -156,8 +149,13 @@ func _on_in_instance_main_menu_button_pressed() -> void:
     slide_controller.slide_out(top_instance_container, top_instance_out_dir, top_instance_out_dir_ratio, top_instance_out_duration, top_instance_out_trans, top_instance_out_ease)
 
 
-func _on_slide_in_finished(_target_node: Control) -> void:
+func _on_slide_in_finished(target_node: Control) -> void:
     _try_unlock_ui()
+
+    for con: Control in get_tree().get_nodes_in_group("ScorecardContainerInstance"):
+        con.visible = false
+
+    target_node.visible = true
 
 func _on_slide_out_finished(target_node: Control) -> void:
     target_node.offset_transform_position = Vector2.ZERO
