@@ -1,5 +1,85 @@
 [gd_resource type="Theme" format=3 uid="uid://di7wlu4ix6g1j"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t71g8"]
+draw_center = false
+skew = Vector2(0.3, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.050109006, 0.7254742, 0.8807121, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jme7d"]
+bg_color = Color(0.33312225, 0.78823316, 0.83950055, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.3882353, 0.6431373, 0.85490197, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2rkg"]
+bg_color = Color(0.7414724, 0.91931766, 0.36279964, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.46352863, 0.6999978, 0.27392805, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htk7t"]
+bg_color = Color(0.84313726, 0.8901961, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8156863, 0.44313726, 0.54509807, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kgdn"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.73300546, 0.73300546, 0.7330051, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu2c6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ti8mq"]
+bg_color = Color(0.60933006, 0.6093302, 0.60932994, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.08627451, 0.08627451, 0.08627451, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [resource]
 CategoryButtonLabel_MainMenu/base_type = &"Label"
 CategoryButtonLabel_MainMenu/colors/font_color = Color(1, 1, 1, 1)
@@ -19,15 +99,56 @@ Flip7_HeadersLabel/constants/shadow_offset_x = 0
 Flip7_HeadersLabel/constants/shadow_offset_y = 0
 Flip7_HeadersLabel/constants/shadow_outline_size = 0
 Flip7_HeadersLabel/font_sizes/font_size = 16
-Flip7_PlayerGridHbox_Inner/base_type = &"HBoxContainer"
-Flip7_PlayerGridHbox_Inner/constants/separation = 20
+Flip7_HeadersLabel/styles/normal = SubResource("StyleBoxFlat_t71g8")
 Flip7_PlayerGridHbox_Outer/base_type = &"HBoxContainer"
-Flip7_PlayerGridHbox_Outer/constants/separation = 20
+Flip7_PlayerGridHbox_Outer/constants/separation = 10
+Flip7_PlayerGridInputBoxes/base_type = &"LineEdit"
+Flip7_PlayerGridInputBoxes/colors/font_color = Color(0, 0, 0, 1)
+Flip7_PlayerGridInputBoxes/colors/font_outline_color = Color(0, 0, 0, 1)
+Flip7_PlayerGridInputBoxes/colors/font_uneditable_color = Color(0, 0, 0, 1)
+Flip7_PlayerGridInputBoxes/constants/minimum_character_width = 0
+Flip7_PlayerGridInputBoxes/constants/outline_size = 0
+Flip7_PlayerGridInputBoxes/font_sizes/font_size = 16
+Flip7_PlayerGridInputBoxes/icons/clear = null
+Flip7_PlayerGridInputBoxes/styles/normal = SubResource("StyleBoxFlat_jme7d")
+Flip7_PlayerGridPlayerName/base_type = &"LineEdit"
+Flip7_PlayerGridPlayerName/colors/font_color = Color(0, 0, 0, 1)
+Flip7_PlayerGridPlayerName/colors/font_outline_color = Color(0, 0, 0, 1)
+Flip7_PlayerGridPlayerName/colors/font_uneditable_color = Color(0, 0, 0, 1)
+Flip7_PlayerGridPlayerName/constants/minimum_character_width = 0
+Flip7_PlayerGridPlayerName/constants/outline_size = 0
+Flip7_PlayerGridPlayerName/font_sizes/font_size = 16
+Flip7_PlayerGridPlayerName/styles/normal = SubResource("StyleBoxFlat_o2rkg")
+Flip7_PlayerGridTotal/base_type = &"LineEdit"
+Flip7_PlayerGridTotal/colors/font_color = Color(0, 0, 0, 1)
+Flip7_PlayerGridTotal/colors/font_outline_color = Color(0, 0, 0, 1)
+Flip7_PlayerGridTotal/colors/font_uneditable_color = Color(0, 0, 0, 1)
+Flip7_PlayerGridTotal/constants/minimum_character_width = 0
+Flip7_PlayerGridTotal/constants/outline_size = 0
+Flip7_PlayerGridTotal/font_sizes/font_size = 16
+Flip7_PlayerGridTotal/styles/normal = null
+Flip7_PlayerGridTotal/styles/read_only = SubResource("StyleBoxFlat_htk7t")
+Flip7_PlayerGridVbox/base_type = &"VBoxContainer"
+Flip7_PlayerGridVbox/constants/separation = 30
+Flip7_PlayerGrid_Inner/base_type = &"GridContainer"
+Flip7_PlayerGrid_Inner/constants/h_separation = 37
 GameGrid_PerButton_MarginContainer_MainMenu/base_type = &"MarginContainer"
 GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_bottom = 10
 GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_left = 5
 GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_right = 5
 GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_top = 10
+LostCities_ColorButton/base_type = &"Button"
+LostCities_ColorButton/styles/normal = SubResource("StyleBoxFlat_3kgdn")
+LostCities_ColumnVBox/base_type = &"VBoxContainer"
+LostCities_ColumnVBox/constants/separation = 5
+LostCities_NumberPickerButtons/base_type = &"Button"
+LostCities_NumberPickerButtons/styles/disabled = SubResource("StyleBoxFlat_qu2c6")
+LostCities_NumberPickerButtons/styles/normal = SubResource("StyleBoxFlat_ti8mq")
+LostCities_NumberPickerLabels/base_type = &"Label"
+LostCities_NumberPickerLabels/colors/font_color = Color(0.89492244, 0.89492244, 0.8949223, 1)
+LostCities_NumberPickerLabels/colors/font_outline_color = Color(0, 0, 0, 1)
+LostCities_NumberPickerLabels/constants/outline_size = 12
+LostCities_NumberPickerLabels/font_sizes/font_size = 70
 MainTitleLabel/base_type = &"Label"
 MainTitleLabel/colors/font_color = Color(1, 1, 1, 1)
 MainTitleLabel/colors/font_outline_color = Color(0, 0, 0, 1)

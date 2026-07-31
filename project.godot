@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=648
-window/size/viewport_height=1152
+window/size/viewport_width=720
+window/size/viewport_height=1604
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
@@ -34,9 +34,12 @@ folder_colors={
 "res://MainMenu/Textures/": "green",
 "res://Scorecards/": "yellow",
 "res://Scorecards/Flip7/": "red",
+"res://Scorecards/Flip7/Scenes/": "blue",
+"res://Scorecards/Flip7/Standalone Scripts/": "yellow",
 "res://Scorecards/Flip7/Textures/": "green",
 "res://Scorecards/Lost Cities/": "orange",
 "res://Scorecards/Lost Cities/Scenes/": "blue",
+"res://Scorecards/Lost Cities/Scripts/": "yellow",
 "res://Scorecards/Lost Cities/Textures/": "green",
 "res://Scorecards/Yahtzee/": "yellow",
 "res://Scorecards/Yahtzee/Textures/": "green",

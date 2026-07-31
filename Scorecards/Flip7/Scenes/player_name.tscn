@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cdw22582pwk4t"]
+
+[node name="Player1" type="LineEdit" unique_id=2139044080]
+custom_minimum_size = Vector2(90, 30)
+theme_type_variation = &"Flip7_PlayerGridPlayerName"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2

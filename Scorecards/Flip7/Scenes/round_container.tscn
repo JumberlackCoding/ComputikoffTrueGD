@@ -1,0 +1,230 @@
+[gd_scene format=3 uid="uid://bsr63u1oas74f"]
+
+[node name="RoundContainer" type="GridContainer" unique_id=64290086]
+theme_type_variation = &"Flip7_PlayerGrid_Inner"
+columns = 16
+
+[node name="TextEdit" type="LineEdit" parent="." unique_id=278251402]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
+virtual_keyboard_type = 2
+
+[node name="TextEdit2" type="LineEdit" parent="." unique_id=805331459]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit3" type="LineEdit" parent="." unique_id=103430427]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit4" type="LineEdit" parent="." unique_id=1069552889]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit5" type="LineEdit" parent="." unique_id=231632228]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit6" type="LineEdit" parent="." unique_id=1069131802]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit7" type="LineEdit" parent="." unique_id=1827881126]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit8" type="LineEdit" parent="." unique_id=321531581]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit9" type="LineEdit" parent="." unique_id=1916622462]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit10" type="LineEdit" parent="." unique_id=304002029]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit11" type="LineEdit" parent="." unique_id=1252344459]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit12" type="LineEdit" parent="." unique_id=1214714603]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit13" type="LineEdit" parent="." unique_id=379575777]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit14" type="LineEdit" parent="." unique_id=949785097]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit15" type="LineEdit" parent="." unique_id=908801492]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+
+[node name="TextEdit16" type="LineEdit" parent="." unique_id=1705237418]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+theme_type_variation = &"Flip7_PlayerGridInputBoxes"
+text = "0"
+alignment = 1
+max_length = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2

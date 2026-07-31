@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://coux7oyy4hyj2"]
+
+[ext_resource type="Script" uid="uid://b8paco1xepw1m" path="res://Scorecards/Flip7/Scenes/score_total.gd" id="1_2a233"]
+
+[node name="ScoreTotal" type="LineEdit" unique_id=317180380]
+custom_minimum_size = Vector2(90, 30)
+theme_type_variation = &"Flip7_PlayerGridTotal"
+text = "0"
+alignment = 1
+max_length = 3
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_type = 2
+script = ExtResource("1_2a233")
