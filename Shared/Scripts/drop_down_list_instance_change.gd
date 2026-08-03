@@ -6,7 +6,7 @@ extends Control
 @export var collapse_control: Control
 @export var collapsable_content: MarginContainer
 
-@onready var mainMenu: MarginContainer = get_node("/root/MainMenu")
+@onready var main_menu: MarginContainer = get_node("/root/MainMenu")
 @onready var switch_buttons: Array[Node] = $CollapseControl/CollapsableContent/VBoxContainer.get_children() as Array[Node]
 
 var tween: Tween
@@ -33,7 +33,7 @@ func _ready() -> void:
                 break
 
         if matching_instance:
-            but.pressed.connect(mainMenu.on_switch_instance.bind(matching_instance))
+            but.pressed.connect(main_menu.on_switch_instance.bind(matching_instance))
 
 
 func _on_button_toggled(toggled_on: bool) -> void:

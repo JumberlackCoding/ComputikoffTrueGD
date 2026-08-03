@@ -1,5 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://di7wlu4ix6g1j"]
 
+[ext_resource type="Texture2D" uid="uid://cvubhrhggd601" path="res://Scorecards/Lost Cities/Textures/BridgeSymbol.png" id="1_3kgdn"]
+[ext_resource type="Texture2D" uid="uid://16h3i1ertuj1" path="res://Scorecards/Lost Cities/Textures/VaseOnTop.png" id="1_jme7d"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t71g8"]
 draw_center = false
 skew = Vector2(0.3, 0)
@@ -54,6 +57,10 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xy8dj"]
+texture = ExtResource("1_3kgdn")
+modulate_color = Color(0.98039216, 0.7411765, 0.5137255, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kgdn"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 2
@@ -67,6 +74,16 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu2c6"]
+bg_color = Color(0.35906908, 0.35906908, 0.35906908, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.08627451, 0.08627451, 0.08627451, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ti8mq"]
 bg_color = Color(0.60933006, 0.6093302, 0.60932994, 1)
@@ -79,6 +96,10 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqkpf"]
+texture = ExtResource("1_jme7d")
+modulate_color = Color(0.9811292, 0.74262935, 0.51482224, 1)
 
 [resource]
 CategoryButtonLabel_MainMenu/base_type = &"Label"
@@ -137,8 +158,23 @@ GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_bottom = 10
 GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_left = 5
 GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_right = 5
 GameGrid_PerButton_MarginContainer_MainMenu/constants/margin_top = 10
+LostCities_BridgeButton/base_type = &"Button"
+LostCities_BridgeButton/styles/hover = SubResource("StyleBoxTexture_xy8dj")
+LostCities_BridgeButton/styles/normal = SubResource("StyleBoxTexture_xy8dj")
+LostCities_BridgeButton/styles/pressed = SubResource("StyleBoxTexture_xy8dj")
 LostCities_ColorButton/base_type = &"Button"
+LostCities_ColorButton/styles/hover = SubResource("StyleBoxFlat_3kgdn")
 LostCities_ColorButton/styles/normal = SubResource("StyleBoxFlat_3kgdn")
+LostCities_ColorButton/styles/pressed = SubResource("StyleBoxFlat_3kgdn")
+LostCities_ColoredColumnsNumLabels/base_type = &"Label"
+LostCities_ColoredColumnsNumLabels/colors/font_color = Color(0, 0, 0, 1)
+LostCities_ColoredColumnsNumLabels/colors/font_outline_color = Color(0, 0, 0, 1)
+LostCities_ColoredColumnsNumLabels/colors/font_shadow_color = Color(0, 0, 0, 1)
+LostCities_ColoredColumnsNumLabels/constants/outline_size = 0
+LostCities_ColoredColumnsNumLabels/constants/shadow_offset_x = 0
+LostCities_ColoredColumnsNumLabels/constants/shadow_offset_y = 0
+LostCities_ColoredColumnsNumLabels/constants/shadow_outline_size = 0
+LostCities_ColoredColumnsNumLabels/font_sizes/font_size = 16
 LostCities_ColumnVBox/base_type = &"VBoxContainer"
 LostCities_ColumnVBox/constants/separation = 5
 LostCities_NumberPickerButtons/base_type = &"Button"
@@ -149,6 +185,10 @@ LostCities_NumberPickerLabels/colors/font_color = Color(0.89492244, 0.89492244, 
 LostCities_NumberPickerLabels/colors/font_outline_color = Color(0, 0, 0, 1)
 LostCities_NumberPickerLabels/constants/outline_size = 12
 LostCities_NumberPickerLabels/font_sizes/font_size = 70
+LostCities_VaseButton/base_type = &"Button"
+LostCities_VaseButton/styles/hover = SubResource("StyleBoxTexture_iqkpf")
+LostCities_VaseButton/styles/normal = SubResource("StyleBoxTexture_iqkpf")
+LostCities_VaseButton/styles/pressed = SubResource("StyleBoxTexture_iqkpf")
 MainTitleLabel/base_type = &"Label"
 MainTitleLabel/colors/font_color = Color(1, 1, 1, 1)
 MainTitleLabel/colors/font_outline_color = Color(0, 0, 0, 1)

@@ -13,9 +13,18 @@ extends MarginContainer
 @export var switch_color_trans: Tween.TransitionType
 @export var switch_color_ease: Tween.EaseType
 
-var flip_7_data: Control
-var lost_cities_data: Control
-var yahtzee_data: Control
+@export_group("Phase and Scale Properties")
+@export var lc_num_sel_phase_duration: float
+@export var lc_num_sel_scale_duration: float
+@export var lc_num_sel_scale_pivot_ratio: Vector2
+@export var lc_num_sel_trans: Tween.TransitionType
+@export var lc_num_sel_ease: Tween.EaseType
+@export_subgroup("In")
+@export var lc_num_sel_in_scale_start: Vector2
+@export var lc_num_sel_in_scale_end: Vector2
+@export_subgroup("Out")
+@export var lc_num_sel_out_scale_start: Vector2
+@export var lc_num_sel_out_scale_end: Vector2
 
 @export_category("Slide Tweening Properties")
 @export_group("Main Menu Category Buttons")
@@ -63,6 +72,16 @@ var yahtzee_data: Control
 @export var top_instance_out_trans: Tween.TransitionType
 @export var top_instance_out_ease: Tween.EaseType
 
+@export_category("Shake Tweening Properties")
+@export_group("Lost Cities Invalid Button")
+@export var lc_shake_repetitions: int
+@export var lc_shake_repetition_duration: float
+@export var lc_shake_intensity: float
+@export var lc_shake_dir: Vector2
+@export var lc_shake_use_relative_pos: bool
+@export var lc_shake_trans: Tween.TransitionType
+@export var lc_shake_ease: Tween.EaseType
+
 @export_category("Other Properties")
 @export_group("Shared Nodes")
 @export var main_menu_container: Control
@@ -75,7 +94,12 @@ var yahtzee_data: Control
 @export var lost_cities_container: Control
 @export var yahtzee_container: Control
 
+# Setup all the node references
+@onready var flip_7_data = $ScorecardData/Flip7
+@onready var lost_cities_data = $ScorecardData/LostCities
+@onready var yahtzee_data = $ScorecardData/Yahtzee
 @onready var games_button: BaseButton = main_category_container.get_node("HBoxContainer/MarginContainer/GamesButton")
+#TODO when implementing games
 @onready var games_grid_back_button: BaseButton
 @onready var scorecards_button: BaseButton = main_category_container.get_node("HBoxContainer/MarginContainer2/ScorecardsButton")
 @onready var scorecards_grid_back_button: BaseButton = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/BackButton")
@@ -85,18 +109,16 @@ var yahtzee_data: Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    # Setup all the node references
-    flip_7_data = $ScorecardData/Flip7
-    lost_cities_data = $ScorecardData/LostCities
-    yahtzee_data = $ScorecardData/Yahtzee
-
     # Make event connections
     # Slide admin
     tween_controller.slide_in_finished.connect(_on_slide_in_finished)
     tween_controller.slide_out_finished.connect(_on_slide_out_finished)
     tween_controller.phase_in_finished.connect(_on_phase_in_finished)
     tween_controller.phase_out_finished.connect(_on_phase_out_finished)
+    tween_controller.phase_and_scale_in_finished.connect(_on_phase_and_scale_in_finished)
+    tween_controller.phase_and_scale_out_finished.connect(_on_phase_and_scale_out_finished)
     tween_controller.tween_color_finished.connect(_on_color_tween_finished)
+    tween_controller.shake_finished.connect(_on_shake_finished)
 
     # Main menu category buttons
     games_button.pressed.connect(_on_category_button_pressed)
@@ -158,6 +180,56 @@ func _on_in_instance_main_menu_button_pressed() -> void:
     tween_controller.slide_in(main_menu_container, top_instance_out_dir, top_instance_out_dir_ratio, top_instance_out_duration, top_instance_out_trans, top_instance_out_ease)
     tween_controller.slide_out(top_instance_container, top_instance_out_dir, top_instance_out_dir_ratio, top_instance_out_duration, top_instance_out_trans, top_instance_out_ease)
 
+func _on_slide_in_finished(target_node: Control) -> void:
+    _try_unlock_ui()
+
+    if target_node.is_in_group("ScorecardContainerInstance"):
+        for con: Control in get_tree().get_nodes_in_group("ScorecardContainerInstance"):
+            con.visible = false
+
+        target_node.visible = true
+
+func _on_slide_out_finished(_target_node: Control) -> void:
+    _try_unlock_ui()
+
+func _on_phase_in_finished(target_node: Control) -> void:
+    _try_unlock_ui()
+
+    if target_node.is_in_group("ScorecardContainerInstance"):
+        for con: Control in get_tree().get_nodes_in_group("ScorecardContainerInstance"):
+            con.visible = false
+
+        target_node.visible = true
+
+func _on_phase_out_finished(_target_node: Control) -> void:
+    _try_unlock_ui()
+
+func _on_color_tween_finished(_target_node: Control) -> void:
+    _try_unlock_ui()
+
+func _on_phase_and_scale_in_finished(_target_node: Control) -> void:
+    _try_unlock_ui()
+
+func _on_phase_and_scale_out_finished(_target_node: Control) -> void:
+    _try_unlock_ui()
+
+func _on_shake_finished(_target_node: Control) -> void:
+    _try_unlock_ui()
+
+func _ui_is_locked() -> bool:
+    return inputBlocker.visible
+
+func _lock_ui() -> void:
+    inputBlocker.visible = true
+
+func _try_unlock_ui() -> void:
+    for attempts in range(3):
+        if tween_controller.all_tweens_finished() and _ui_is_locked():
+            inputBlocker.visible = false
+            break
+        elif _ui_is_locked():
+            await get_tree().process_frame
+
 func on_switch_instance(target_instance: Control) -> void:
     _lock_ui()
 
@@ -193,37 +265,16 @@ func on_switch_instance(target_instance: Control) -> void:
         tween_controller.phase_out(current_logo, switch_phase_duration, switch_phase_trans, switch_phase_ease)
         tween_controller.phase_in(target_logo, switch_phase_duration, switch_phase_trans, switch_phase_ease)
 
-func _on_slide_in_finished(target_node: Control) -> void:
-    _try_unlock_ui()
+func on_show_lc_num_selector(target_node: Control) -> void:
+    _lock_ui()
+    tween_controller.phase_and_scale_in(target_node, lc_num_sel_phase_duration, lc_num_sel_scale_duration, lc_num_sel_in_scale_start,
+                                        lc_num_sel_in_scale_end, lc_num_sel_scale_pivot_ratio, lc_num_sel_trans, lc_num_sel_ease)
 
-    if target_node.is_in_group("ScorecardContainerInstance"):
-        for con: Control in get_tree().get_nodes_in_group("ScorecardContainerInstance"):
-            con.visible = false
+func on_hide_lc_num_selector(target_node: Control) -> void:
+    _lock_ui()
+    tween_controller.phase_and_scale_out(target_node, lc_num_sel_phase_duration, lc_num_sel_scale_duration, lc_num_sel_out_scale_start,
+                                        lc_num_sel_out_scale_end, lc_num_sel_scale_pivot_ratio, lc_num_sel_trans, lc_num_sel_ease)
 
-        target_node.visible = true
-
-func _on_slide_out_finished(_target_node: Control) -> void:
-    _try_unlock_ui()
-
-func _on_phase_in_finished(target_node: Control) -> void:
-    _try_unlock_ui()
-
-    if target_node.is_in_group("ScorecardContainerInstance"):
-        for con: Control in get_tree().get_nodes_in_group("ScorecardContainerInstance"):
-            con.visible = false
-
-        target_node.visible = true
-
-func _on_phase_out_finished(_target_node: Control) -> void:
-    _try_unlock_ui()
-
-func _on_color_tween_finished(_target_node: Control) -> void:
-    _try_unlock_ui()
-
-func _lock_ui() -> void:
-    inputBlocker.visible = true
-
-func _try_unlock_ui() -> void:
-    await get_tree().process_frame
-    if tween_controller.all_tweens_finished():
-        inputBlocker.visible = false
+func on_shake_num_button(target_node: Control) -> void:
+    # _lock_ui()
+    tween_controller.shake(target_node, lc_shake_dir, lc_shake_use_relative_pos, lc_shake_repetition_duration, lc_shake_repetitions, lc_shake_intensity, lc_shake_trans, lc_shake_ease)
