@@ -2,40 +2,16 @@ extends MarginContainer
 
 @export var tween_controller: Control
 
-@export_category("Phase and Color Tweening Properties")
-@export_group("Transition Phase Properties")
-@export var switch_phase_duration: float
-@export var switch_phase_trans: Tween.TransitionType
-@export var switch_phase_ease: Tween.EaseType
-
-@export_group("Transition Color Properties")
-@export var switch_color_duration: float
-@export var switch_color_trans: Tween.TransitionType
-@export var switch_color_ease: Tween.EaseType
-
-@export_group("Phase and Scale Properties")
-@export var lc_num_sel_phase_duration: float
-@export var lc_num_sel_scale_duration: float
-@export var lc_num_sel_scale_pivot_ratio: Vector2
-@export var lc_num_sel_trans: Tween.TransitionType
-@export var lc_num_sel_ease: Tween.EaseType
-@export_subgroup("In")
-@export var lc_num_sel_in_scale_start: Vector2
-@export var lc_num_sel_in_scale_end: Vector2
-@export_subgroup("Out")
-@export var lc_num_sel_out_scale_start: Vector2
-@export var lc_num_sel_out_scale_end: Vector2
-
-@export_category("Slide Tweening Properties")
+@export_category("Main Menu Tween Properties")
 @export_group("Main Menu Category Buttons")
 @export var main_category_container: Control
-@export_subgroup("In")
+@export_subgroup("In", "cat_buts_in_")
 @export var cat_buts_in_dir: Vector2
 @export var cat_buts_in_dir_ratio: bool = true
 @export var cat_buts_in_duration: float
 @export var cat_buts_in_trans: Tween.TransitionType
 @export var cat_buts_in_ease: Tween.EaseType
-@export_subgroup("Out")
+@export_subgroup("Out", "cat_buts_out_")
 @export var cat_buts_out_dir: Vector2
 @export var cat_buts_out_dir_ratio: bool = true
 @export var cat_buts_out_duration: float
@@ -44,13 +20,13 @@ extends MarginContainer
 
 @export_group("Main Menu Scorecards List Container")
 @export var main_scorecard_list_container: Control
-@export_subgroup("In")
+@export_subgroup("In", "score_buts_in_")
 @export var score_buts_in_dir: Vector2
 @export var score_buts_in_dir_ratio: bool = true
 @export var score_buts_in_duration: float
 @export var score_buts_in_trans: Tween.TransitionType
 @export var score_buts_in_ease: Tween.EaseType
-@export_subgroup("Out")
+@export_subgroup("Out", "score_buts_out_")
 @export var score_buts_out_dir: Vector2
 @export var score_buts_out_dir_ratio: bool = true
 @export var score_buts_out_duration: float
@@ -59,28 +35,78 @@ extends MarginContainer
 
 @export_group("Top Instance Container")
 @export var top_instance_container: Control
-@export_subgroup("In")
+@export_subgroup("In", "top_instance_in_")
 @export var top_instance_in_dir: Vector2
 @export var top_instance_in_dir_ratio: bool = true
 @export var top_instance_in_duration: float
 @export var top_instance_in_trans: Tween.TransitionType
 @export var top_instance_in_ease: Tween.EaseType
-@export_subgroup("Out")
+@export_subgroup("Out", "top_instance_out")
 @export var top_instance_out_dir: Vector2
 @export var top_instance_out_dir_ratio: bool = true
 @export var top_instance_out_duration: float
 @export var top_instance_out_trans: Tween.TransitionType
 @export var top_instance_out_ease: Tween.EaseType
 
-@export_category("Shake Tweening Properties")
-@export_group("Lost Cities Invalid Button")
+@export_category("Shared UI Tween Properties")
+@export_group("Transition Phase Properties", "switch_")
+@export var switch_phase_duration: float
+@export var switch_phase_trans: Tween.TransitionType
+@export var switch_phase_ease: Tween.EaseType
+
+@export_group("Transition Color Properties", "switch_")
+@export var switch_color_duration: float
+@export var switch_color_trans: Tween.TransitionType
+@export var switch_color_ease: Tween.EaseType
+
+@export_category("Lost Cities Tween Properties")
+@export_group("Number Selector Properties", "lc_num_sel_")
+@export var lc_num_sel_phase_duration: float
+@export var lc_num_sel_scale_duration: float
+@export var lc_num_sel_scale_pivot_ratio: Vector2
+@export var lc_num_sel_trans: Tween.TransitionType
+@export var lc_num_sel_ease: Tween.EaseType
+@export_subgroup("In", "lc_num_sel_in_")
+@export var lc_num_sel_in_scale_start: Vector2 = Vector2.ONE
+@export var lc_num_sel_in_scale_end: Vector2 = Vector2.ONE
+@export_subgroup("Out", "lc_num_sel_out_")
+@export var lc_num_sel_out_scale_start: Vector2 = Vector2.ONE
+@export var lc_num_sel_out_scale_end: Vector2 = Vector2.ONE
+
+@export_group("Invalid Button Selection", "lc_shake_")
 @export var lc_shake_repetitions: int
 @export var lc_shake_repetition_duration: float
 @export var lc_shake_intensity: float
 @export var lc_shake_dir: Vector2
+## When [code]true[/code] the dir is normalized and intensity is used for magnitude and it uses the [code]offset_transform_position_ratio[/code] property
 @export var lc_shake_use_relative_pos: bool
 @export var lc_shake_trans: Tween.TransitionType
 @export var lc_shake_ease: Tween.EaseType
+
+@export_group("Colored Button To Number Selection Transition")
+@export_subgroup("Slide", "lc_col_to_num_sel_")
+@export var lc_col_to_num_sel_slide_in_duration: float = 1.0
+@export var lc_col_to_num_sel_slide_out_duration: float = 1.0
+@export var lc_col_to_num_sel_slide_in_delay: float = 0.1
+@export var lc_col_to_num_sel_slide_out_delay: float = 0.0
+@export_subgroup("Scale", "lc_col_to_num_sel_")
+@export var lc_col_to_num_sel_scale_in_duration: float = 1.0
+@export var lc_col_to_num_sel_scale_out_duration: float = 1.0
+@export var lc_col_to_num_sel_scale_in_delay: float = 0.1
+@export var lc_col_to_num_sel_scale_out_delay: float = 0.0
+@export_subgroup("Phase", "lc_col_to_num_sel_")
+@export var lc_col_to_num_sel_phase_in_duration: float = 1.0
+@export var lc_col_to_num_sel_phase_out_duration: float = 1.0
+@export var lc_col_to_num_sel_phase_in_delay: float = 0.0
+@export var lc_col_to_num_sel_phase_out_delay: float = 0.1
+@export var lc_col_to_num_sel_phase_in_start: float = 0.3
+@export var lc_col_to_num_sel_phase_in_end: float = 1.0
+@export var lc_col_to_num_sel_phase_out_start: float = 1.0
+@export var lc_col_to_num_sel_phase_out_end: float = 0.3
+@export var lc_col_to_num_sel_other_node_tween_delay: float = 0.3
+@export_subgroup("Shared", "lc_col_to_num_sel_")
+@export var lc_col_to_num_sel_transition: Tween.TransitionType
+@export var lc_col_to_num_sel_ease: Tween.EaseType = Tween.EaseType.EASE_IN_OUT
 
 @export_category("Other Properties")
 @export_group("Shared Nodes")
@@ -112,13 +138,11 @@ func _ready() -> void:
     # Make event connections
     # Slide admin
     tween_controller.slide_in_finished.connect(_on_slide_in_finished)
-    tween_controller.slide_out_finished.connect(_on_slide_out_finished)
     tween_controller.phase_in_finished.connect(_on_phase_in_finished)
-    tween_controller.phase_out_finished.connect(_on_phase_out_finished)
-    tween_controller.phase_and_scale_in_finished.connect(_on_phase_and_scale_in_finished)
-    tween_controller.phase_and_scale_out_finished.connect(_on_phase_and_scale_out_finished)
-    tween_controller.tween_color_finished.connect(_on_color_tween_finished)
-    tween_controller.shake_finished.connect(_on_shake_finished)
+
+    # Generic tween for when nothing but unlocking the UI is needed after tweening is done
+    tween_controller.generic_tween_finished.connect(_on_generic_tween_finished)
+    tween_controller.slide_phase_and_scale_finished.connect(_on_slide_phase_and_scale_finished)
 
     # Main menu category buttons
     games_button.pressed.connect(_on_category_button_pressed)
@@ -189,7 +213,7 @@ func _on_slide_in_finished(target_node: Control) -> void:
 
         target_node.visible = true
 
-func _on_slide_out_finished(_target_node: Control) -> void:
+func _on_generic_tween_finished(_target_node: Control) -> void:
     _try_unlock_ui()
 
 func _on_phase_in_finished(target_node: Control) -> void:
@@ -201,20 +225,19 @@ func _on_phase_in_finished(target_node: Control) -> void:
 
         target_node.visible = true
 
-func _on_phase_out_finished(_target_node: Control) -> void:
+func _on_slide_phase_and_scale_finished(target_node: Control, direction_in: bool) -> void:
     _try_unlock_ui()
 
-func _on_color_tween_finished(_target_node: Control) -> void:
-    _try_unlock_ui()
+    if target_node.is_in_group("LostCitiesNumberButton"):
+        if direction_in:
+            target_node.modulate.a = 1.0
+        else:
+            target_node.modulate.a = 0.0
+    elif target_node.is_in_group("ScorecardContainerInstance"):
+        for con: Control in get_tree().get_nodes_in_group("ScorecardContainerInstance"):
+            con.visible = false
 
-func _on_phase_and_scale_in_finished(_target_node: Control) -> void:
-    _try_unlock_ui()
-
-func _on_phase_and_scale_out_finished(_target_node: Control) -> void:
-    _try_unlock_ui()
-
-func _on_shake_finished(_target_node: Control) -> void:
-    _try_unlock_ui()
+        target_node.visible = true
 
 func _ui_is_locked() -> bool:
     return inputBlocker.visible
@@ -259,20 +282,47 @@ func on_switch_instance(target_instance: Control) -> void:
         new_color = yahtzee_data.background_color
 
     if current_instance and new_color and current_logo and target_logo:
+        # Background Color
         tween_controller.tween_color_rect_color(background_color_rect, new_color, switch_color_duration, switch_color_trans, switch_color_ease)
+
+        # Top Scorecard Instance
         tween_controller.phase_out(current_instance, switch_phase_duration, switch_phase_trans, switch_phase_ease)
         tween_controller.phase_in(target_instance, switch_phase_duration, switch_phase_trans, switch_phase_ease)
+
+        # Logo
         tween_controller.phase_out(current_logo, switch_phase_duration, switch_phase_trans, switch_phase_ease)
         tween_controller.phase_in(target_logo, switch_phase_duration, switch_phase_trans, switch_phase_ease)
 
-func on_show_lc_num_selector(target_node: Control) -> void:
+func on_show_lc_num_selector(number_selector: Control, color_button: Control) -> void:
     _lock_ui()
-    tween_controller.phase_and_scale_in(target_node, lc_num_sel_phase_duration, lc_num_sel_scale_duration, lc_num_sel_in_scale_start,
+    var num_sel_container: PanelContainer = number_selector.get_node("PanelContainer") as PanelContainer
+    var num_sel_center: Vector2 = Vector2(num_sel_container.position + (num_sel_container.size / 2))
+    var color_center: Vector2 = Vector2(color_button.global_position + (color_button.size / 2))
+    var pos = color_center - num_sel_center
+    var size_diff = num_sel_container.size / color_button.size
+    tween_controller.slide_phase_and_scale(color_button, Vector2.ZERO, pos, false, lc_col_to_num_sel_slide_out_duration, lc_col_to_num_sel_scale_out_duration, lc_col_to_num_sel_phase_out_duration,
+                                           lc_col_to_num_sel_slide_out_delay, lc_col_to_num_sel_scale_out_delay, lc_col_to_num_sel_phase_out_delay, lc_col_to_num_sel_phase_out_start,
+                                           lc_col_to_num_sel_phase_out_end, Vector2.ONE, size_diff, false, lc_col_to_num_sel_transition, lc_col_to_num_sel_ease)
+    await get_tree().create_timer(lc_col_to_num_sel_other_node_tween_delay).timeout
+    tween_controller.phase_and_scale_in(number_selector, lc_num_sel_phase_duration, lc_col_to_num_sel_phase_in_start, lc_num_sel_scale_duration, lc_num_sel_in_scale_start,
                                         lc_num_sel_in_scale_end, lc_num_sel_scale_pivot_ratio, lc_num_sel_trans, lc_num_sel_ease)
 
-func on_hide_lc_num_selector(target_node: Control) -> void:
+func on_hide_lc_num_selector(number_selector: Control, color_button: Control) -> void:
     _lock_ui()
-    tween_controller.phase_and_scale_out(target_node, lc_num_sel_phase_duration, lc_num_sel_scale_duration, lc_num_sel_out_scale_start,
+    if color_button:
+        var num_sel_container: PanelContainer = number_selector.get_node("PanelContainer") as PanelContainer
+        var num_sel_center: Vector2 = Vector2(num_sel_container.global_position + (num_sel_container.size / 2))
+        var color_center: Vector2 = Vector2(color_button.global_position + (color_button.size / 2))
+        var start_pos = num_sel_center - color_center
+        var size_diff = num_sel_container.size / color_button.size
+        tween_controller.phase_and_scale_out(number_selector, lc_num_sel_phase_duration, lc_col_to_num_sel_phase_out_end, lc_num_sel_scale_duration, lc_num_sel_out_scale_start,
+                                        lc_num_sel_out_scale_end, lc_num_sel_scale_pivot_ratio, lc_num_sel_trans, lc_num_sel_ease)
+        await get_tree().create_timer(lc_col_to_num_sel_other_node_tween_delay).timeout
+        tween_controller.slide_phase_and_scale(color_button, start_pos, Vector2.ZERO, false, lc_col_to_num_sel_slide_in_duration, lc_col_to_num_sel_scale_in_duration, lc_col_to_num_sel_phase_in_duration,
+                                               lc_col_to_num_sel_slide_in_delay, lc_col_to_num_sel_scale_in_delay, lc_col_to_num_sel_phase_in_delay, lc_col_to_num_sel_phase_in_start,
+                                               lc_col_to_num_sel_phase_in_end, size_diff, Vector2.ONE, true, lc_col_to_num_sel_transition, lc_col_to_num_sel_ease)
+    else:
+        tween_controller.phase_and_scale_out(number_selector, lc_num_sel_phase_duration, lc_col_to_num_sel_phase_out_end, lc_num_sel_scale_duration, lc_num_sel_out_scale_start,
                                         lc_num_sel_out_scale_end, lc_num_sel_scale_pivot_ratio, lc_num_sel_trans, lc_num_sel_ease)
 
 func on_shake_num_button(target_node: Control) -> void:

@@ -10,6 +10,7 @@ var colored_button_pressed: Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    visible = true
     go_away_button.pressed.connect(_go_away)
 
     for button in button_container.get_children():
@@ -17,6 +18,11 @@ func _ready() -> void:
 
         if button:
             button.pressed.connect(_number_selected.bind(button))
+
+    call_deferred("_hide_after_ready")
+
+func _hide_after_ready() -> void:
+    visible = false
 
 func _number_selected(button: Control):
     var selection_label = button.get_node("Label") as Label
@@ -32,8 +38,8 @@ func _number_selected(button: Control):
     _go_away()
 
 func _go_away():
+    main_menu.on_hide_lc_num_selector(self, colored_button_pressed)
     colored_button_pressed = null
-    main_menu.on_hide_lc_num_selector(self)
 
 func prepare_number_selector(button: Control, prev_num: int = -1, next_num: int = 99):
     colored_button_pressed = button

@@ -80,7 +80,10 @@ func _cycle_stage():
             else:
                 _cycle_stage()
 
-func get_checked() -> bool:
+func is_scribbled() -> bool:
+    return true if stage == 1 else false
+
+func is_circled() -> bool:
     return true if stage == 2 else false
 
 func _generate_scribble() -> void:

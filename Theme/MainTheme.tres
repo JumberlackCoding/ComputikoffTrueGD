@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cvubhrhggd601" path="res://Scorecards/Lost Cities/Textures/BridgeSymbol.png" id="1_3kgdn"]
 [ext_resource type="Texture2D" uid="uid://16h3i1ertuj1" path="res://Scorecards/Lost Cities/Textures/VaseOnTop.png" id="1_jme7d"]
+[ext_resource type="Texture2D" uid="uid://8yxekqplkimu" path="res://Scorecards/Lost Cities/Textures/Dice.png" id="2_qu2c6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t71g8"]
 draw_center = false
@@ -73,6 +74,10 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ti8mq"]
+texture = ExtResource("2_qu2c6")
+modulate_color = Color(0.98039216, 0.7411765, 0.5137255, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu2c6"]
 bg_color = Color(0.35906908, 0.35906908, 0.35906908, 1)
 border_width_left = 6
@@ -97,9 +102,25 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_im68p"]
+bg_color = Color(0.89059, 0.89059, 0.89058983, 1)
+skew = Vector2(0.2, 0.05)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqkpf"]
 texture = ExtResource("1_jme7d")
 modulate_color = Color(0.9811292, 0.74262935, 0.51482224, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3kgdn"]
+texture = ExtResource("1_jme7d")
+modulate_color = Color(0.98039216, 0.7411765, 0.5137255, 1)
 
 [resource]
 CategoryButtonLabel_MainMenu/base_type = &"Label"
@@ -174,9 +195,13 @@ LostCities_ColoredColumnsNumLabels/constants/outline_size = 0
 LostCities_ColoredColumnsNumLabels/constants/shadow_offset_x = 0
 LostCities_ColoredColumnsNumLabels/constants/shadow_offset_y = 0
 LostCities_ColoredColumnsNumLabels/constants/shadow_outline_size = 0
-LostCities_ColoredColumnsNumLabels/font_sizes/font_size = 16
+LostCities_ColoredColumnsNumLabels/font_sizes/font_size = 50
 LostCities_ColumnVBox/base_type = &"VBoxContainer"
 LostCities_ColumnVBox/constants/separation = 5
+LostCities_DiceColumnButtons/base_type = &"Button"
+LostCities_DiceColumnButtons/styles/hover = SubResource("StyleBoxTexture_ti8mq")
+LostCities_DiceColumnButtons/styles/normal = SubResource("StyleBoxTexture_ti8mq")
+LostCities_DiceColumnButtons/styles/pressed = SubResource("StyleBoxTexture_ti8mq")
 LostCities_NumberPickerButtons/base_type = &"Button"
 LostCities_NumberPickerButtons/styles/disabled = SubResource("StyleBoxFlat_qu2c6")
 LostCities_NumberPickerButtons/styles/normal = SubResource("StyleBoxFlat_ti8mq")
@@ -185,10 +210,24 @@ LostCities_NumberPickerLabels/colors/font_color = Color(0.89492244, 0.89492244, 
 LostCities_NumberPickerLabels/colors/font_outline_color = Color(0, 0, 0, 1)
 LostCities_NumberPickerLabels/constants/outline_size = 12
 LostCities_NumberPickerLabels/font_sizes/font_size = 70
+LostCities_ScoreColumnLabels/base_type = &"Label"
+LostCities_ScoreColumnLabels/colors/font_color = Color(0.9559638, 0.9559633, 0.95596355, 1)
+LostCities_ScoreColumnLabels/colors/font_outline_color = Color(0, 0, 0, 1)
+LostCities_ScoreColumnLabels/colors/font_shadow_color = Color(0, 0, 0, 1)
+LostCities_ScoreColumnLabels/constants/outline_size = 10
+LostCities_ScoreColumnLabels/constants/shadow_offset_x = 0
+LostCities_ScoreColumnLabels/constants/shadow_offset_y = 0
+LostCities_ScoreColumnLabels/constants/shadow_outline_size = 0
+LostCities_ScoreColumnLabels/font_sizes/font_size = 30
+LostCities_ScoreColumnLabels/styles/normal = SubResource("StyleBoxFlat_im68p")
 LostCities_VaseButton/base_type = &"Button"
 LostCities_VaseButton/styles/hover = SubResource("StyleBoxTexture_iqkpf")
 LostCities_VaseButton/styles/normal = SubResource("StyleBoxTexture_iqkpf")
 LostCities_VaseButton/styles/pressed = SubResource("StyleBoxTexture_iqkpf")
+LostCities_VaseColumnButtons/base_type = &"Button"
+LostCities_VaseColumnButtons/styles/hover = SubResource("StyleBoxTexture_3kgdn")
+LostCities_VaseColumnButtons/styles/normal = SubResource("StyleBoxTexture_3kgdn")
+LostCities_VaseColumnButtons/styles/pressed = SubResource("StyleBoxTexture_3kgdn")
 MainTitleLabel/base_type = &"Label"
 MainTitleLabel/colors/font_color = Color(1, 1, 1, 1)
 MainTitleLabel/colors/font_outline_color = Color(0, 0, 0, 1)

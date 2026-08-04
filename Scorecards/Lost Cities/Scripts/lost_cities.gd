@@ -44,7 +44,7 @@ func _show_number_selector(target: Control) -> void:
                 # print("Next Num: ", next_number)
 
     if below_button_number == 10 or previous_number > 0:
-        main_menu.on_show_lc_num_selector(number_selector)
+        main_menu.on_show_lc_num_selector(number_selector, target)
         number_selector.prepare_number_selector(target, previous_number, next_number)
     else:
         main_menu.on_shake_num_button(target)
