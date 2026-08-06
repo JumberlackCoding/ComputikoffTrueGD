@@ -86,6 +86,9 @@ func is_scribbled() -> bool:
 func is_circled() -> bool:
     return true if stage == 2 else false
 
+func is_xed() -> bool:
+    return true if stage == 3 else false
+
 func _generate_scribble() -> void:
     drawn_paths.clear()
 
