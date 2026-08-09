@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ddl1q4a4aoicm" path="res://Shared/Scripts/tween_params_slide.gd" id="3_g0flb"]
 [ext_resource type="PackedScene" uid="uid://b4l2taemeli43" path="res://MainMenu/Scenes/scorecard_scrolling_list.tscn" id="4_53r08"]
 [ext_resource type="Texture2D" uid="uid://brna1weuy3uqe" path="res://Scorecards/Lost Cities/Textures/LostCities_banner.png" id="4_it0xl"]
+[ext_resource type="Script" uid="uid://8qov178sl2e6" path="res://Shared/Scripts/tween_params_color.gd" id="5_a8igl"]
 [ext_resource type="Texture2D" uid="uid://c7crho3rkjibp" path="res://Scorecards/Yahtzee/Textures/yahtzee_banner.png" id="5_o1r2d"]
 [ext_resource type="Script" uid="uid://dlkh1w8uf43jt" path="res://Shared/Scripts/tween_controller.gd" id="9_6fn4h"]
 [ext_resource type="Texture2D" uid="uid://ylr0v7qm18wm" path="res://Scorecards/Flip7/Textures/flip7_banner_shrunk.png" id="10_5ai8d"]
@@ -81,6 +82,51 @@ metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
 script = ExtResource("2_adqwt")
 slide = SubResource("Resource_8wrqy")
 final_visibility = false
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_48a3b"]
+script = ExtResource("2_yhftf")
+duration = 0.3
+start = 0.0
+metadata/_custom_type_script = "uid://cpxo1am25deec"
+
+[sub_resource type="Resource" id="Resource_5ovsn"]
+script = ExtResource("2_adqwt")
+phase = SubResource("Resource_48a3b")
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_8i1nu"]
+script = ExtResource("2_yhftf")
+duration = 0.3
+end = 0.0
+metadata/_custom_type_script = "uid://cpxo1am25deec"
+
+[sub_resource type="Resource" id="Resource_5cc6o"]
+script = ExtResource("2_adqwt")
+phase = SubResource("Resource_8i1nu")
+final_visibility = false
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_s2xdn"]
+script = ExtResource("5_a8igl")
+duration = 0.2
+metadata/_custom_type_script = "uid://8qov178sl2e6"
+
+[sub_resource type="Resource" id="Resource_xnhfc"]
+script = ExtResource("2_adqwt")
+color = SubResource("Resource_s2xdn")
+move_z_index_to_frontish = false
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_cu6g8"]
+script = ExtResource("3_g0flb")
+duration = 0.5
+end = Vector2(0.15, 0)
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_3rwhn"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_cu6g8")
 metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
 
 [sub_resource type="Resource" id="Resource_md3ct"]
@@ -247,27 +293,13 @@ cat_buts_transition_deeper_in_props = SubResource("Resource_re0uk")
 cat_buts_transition_higher_in_props = SubResource("Resource_hhhu8")
 cat_buts_transition_deeper_out_props = SubResource("Resource_i7upc")
 main_scorecard_list_container = NodePath("MainMenuContainer/MainBody/ParentBottomContainer/MainScorecardListContainer")
-score_buts_in_dir = Vector2(-1, 0)
-score_buts_in_duration = 0.5
-score_buts_in_trans = 2
-score_buts_in_ease = 2
-score_buts_out_dir = Vector2(1, 0)
-score_buts_out_duration = 0.5
-score_buts_out_trans = 2
-score_buts_out_ease = 2
 top_instance_container = NodePath("TopInstanceContainer")
-top_instance_in_dir = Vector2(-1, 0)
-top_instance_in_duration = 0.5
-top_instance_in_trans = 2
-top_instance_in_ease = 2
-top_instance_out_dir = Vector2(1, 0)
-top_instance_out_duration = 0.5
-top_instance_out_trans = 2
-top_instance_out_ease = 2
-switch_phase_duration = 1.0
-switch_color_duration = 1.0
-lc_shake_repetitions = 3
+scorecard_switch_instance_in_properties = SubResource("Resource_5ovsn")
+scorecard_switch_instance_out_properties = SubResource("Resource_5cc6o")
+scorecard_switch_instance_background_properties = SubResource("Resource_xnhfc")
+lc_shake_repetitions = 8
 lc_shake_repetition_duration = 0.04
+lc_shake_tween_parameters = SubResource("Resource_3rwhn")
 lc_shake_intensity = 0.08
 lc_shake_dir = Vector2(1, 0)
 lc_shake_use_relative_pos = true
@@ -438,7 +470,6 @@ layout_mode = 2
 [node name="TopBar" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer" unique_id=21290530]
 layout_mode = 2
 size_flags_vertical = 0
-mouse_filter = 2
 
 [node name="LogoContainer" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/TopBar" unique_id=1075474863]
 layout_mode = 2

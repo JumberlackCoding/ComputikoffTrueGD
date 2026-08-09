@@ -8,6 +8,7 @@ extends Resource
 @export var color: ColorParams
 @export var pivot: Vector2 = Vector2.ZERO ## Default [code]Vector2.ZERO[/code]
 @export var pivot_ratio: Vector2 = Vector2(0.5, 0.5) ## Default [code]Vector2(0.5, 0.5)[/code]
+@export var move_z_index_to_frontish: bool = true
 @export var visual_only: bool = false ## Default [code]false[/code]
 @export var final_visibility: bool = true ## Default [code]true[/code]
 @export_range(0, 1, 0.01) var final_alpha: float = 1.0 ## Default [code]1.0[/code]

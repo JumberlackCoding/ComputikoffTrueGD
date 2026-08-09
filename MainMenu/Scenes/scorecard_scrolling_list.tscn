@@ -88,6 +88,7 @@ theme_type_variation = &"GameGrid_PerButton_MarginContainer_MainMenu"
 
 [node name="WordBreakerButton" type="TextureButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/WordBreakerContainer" unique_id=1545571336]
 layout_mode = 2
+disabled = true
 texture_normal = ExtResource("8_jpa2a")
 ignore_texture_size = true
 stretch_mode = 0

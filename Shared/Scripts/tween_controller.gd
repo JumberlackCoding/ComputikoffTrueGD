@@ -1,9 +1,5 @@
 extends Control
 
-signal generic_tween_finished(target_node: Control)
-signal slide_in_finished(target_node: Control)
-signal phase_in_finished(target_node: Control)
-
 var slide_tweens := {}
 var rotate_tweens := {}
 var scale_tweens := {}
@@ -11,9 +7,11 @@ var phase_tweens := {}
 var color_tweens := {}
 var z_indexes := {}
 
-func _prepare_for_tween(target_node: Control, offset_pivot: Vector2 = Vector2.ZERO, offset_pivot_ratio: Vector2 = Vector2(0.5, 0.5)) -> void:
-    z_indexes[target_node] = target_node.z_index
-    target_node.z_index = 5
+func _prepare_for_tween(target_node: Control, offset_pivot: Vector2 = Vector2.ZERO, offset_pivot_ratio: Vector2 = Vector2(0.5, 0.5), move_z_index_to_frontish: bool = true) -> void:
+    if move_z_index_to_frontish:
+        z_indexes[target_node] = target_node.z_index
+        target_node.z_index = 5
+
     target_node.offset_transform_pivot = offset_pivot
     target_node.offset_transform_pivot_ratio = offset_pivot_ratio
     target_node.visible = true
@@ -45,33 +43,16 @@ func _prepare_for_color_tween(target_node: Control, color_start: Color = Color.W
     else:
         target_node.self_modulate = color_start
 
-func _cleanup_for_z_tween(target_node: Control) -> void:
-    if z_indexes.has(target_node):
-        target_node.z_index = z_indexes[target_node]
-    else:
-        target_node.z_index = 0
-
-    target_node.offset_transform_enabled = false
-
-func _cleanup_for_slide_tween(target_node: Control) -> void:
-    target_node.offset_transform_position = Vector2.ZERO
-    target_node.offset_transform_position_ratio = Vector2.ZERO
-
-func _cleanup_for_scale_tween(target_node: Control) -> void:
-    target_node.offset_transform_scale = Vector2.ONE
-
-func _cleanup_for_phase_tween(target_node: Control) -> void:
-    target_node.modulate.a = 1
-
 func cleanup_tween(params: TweenParams) -> void:
     params.target_node.offset_transform_position = Vector2.ZERO
     params.target_node.offset_transform_position_ratio = Vector2.ZERO
     params.target_node.offset_transform_scale = Vector2.ONE
 
-    if z_indexes.has(params.target_node):
-        params.target_node.z_index = z_indexes[params.target_node]
-    else:
-        params.target_node.z_index = 0
+    if params.move_z_index_to_frontish:
+        if z_indexes.has(params.target_node):
+            params.target_node.z_index = z_indexes[params.target_node]
+        else:
+            params.target_node.z_index = 0
 
     params.target_node.offset_transform_enabled = false
 
@@ -117,51 +98,11 @@ func _get_offset_alpha_property() -> String:
 func _get_offset_color_property(target_node: Control) -> String:
     return "color" if target_node is ColorRect else "modulate"
 
-func slide_in(target_node: Control, to_position: Vector2, position_by_ratio: bool, duration: float,
-              transition_type: Tween.TransitionType = Tween.TRANS_QUINT, ease_type: Tween.EaseType = Tween.EASE_IN_OUT) -> void:
-    _tween_safety_check(target_node, "slide")
-    _prepare_for_tween(target_node)
-
-    var start: Vector2 = target_node.position - to_position
-    var end: Vector2 = target_node.position
-    var transform_property: String = _get_offset_position_property(position_by_ratio)
-
-    var tween := target_node.create_tween()
-    slide_tweens[target_node] = tween
-    tween.set_trans(transition_type)
-    tween.set_ease(ease_type)
-    tween.tween_property(target_node, transform_property, end, duration).from(start)
-    await tween.finished
-    _cleanup_for_slide_tween(target_node)
-    _cleanup_for_z_tween(target_node)
-    slide_in_finished.emit(target_node)
-
-func slide_out(target_node: Control, to_position: Vector2, position_by_ratio: bool, duration: float,
-               transition_type: Tween.TransitionType = Tween.TRANS_QUINT, ease_type: Tween.EaseType = Tween.EASE_IN_OUT) -> void:
-    _tween_safety_check(target_node, "slide")
-    _prepare_for_tween(target_node)
-
-    var start: Vector2 = target_node.position
-    var end: Vector2 = target_node.position + to_position
-    var transform_property: String = _get_offset_position_property(position_by_ratio)
-
-    var tween := target_node.create_tween()
-    slide_tweens[target_node] = tween
-    tween.set_trans(transition_type)
-    tween.set_ease(ease_type)
-    tween.tween_property(target_node, transform_property, end, duration).from(start)
-    await tween.finished
-    target_node.visible = false
-    _cleanup_for_slide_tween(target_node)
-    _cleanup_for_z_tween(target_node)
-    generic_tween_finished.emit(target_node)
-
-
 func universal_tween(params: TweenParams) -> Dictionary:
     if not params.target_node:
         push_error("TweenParams missing target_node")
 
-    _prepare_for_tween(params.target_node, params.pivot, params.pivot_ratio)
+    _prepare_for_tween(params.target_node, params.pivot, params.pivot_ratio, params.move_z_index_to_frontish)
     var slide_tween: Tween
     var rotate_tween: Tween
     var scale_tween: Tween
@@ -220,117 +161,24 @@ func universal_tween(params: TweenParams) -> Dictionary:
 
     return {"slide": slide_tween, "rotate": rotate_tween, "scale": scale_tween, "phase": phase_tween, "color": color_tween}
 
-func phase_in(target_node: Control, duration: float, transition_type: Tween.TransitionType = Tween.TRANS_LINEAR, ease_type: Tween.EaseType = Tween.EASE_IN_OUT) -> void:
-    _tween_safety_check(target_node, "phase")
-    _prepare_for_tween(target_node)
-    _prepare_for_phase_tween(target_node, 0)
+func wait_for_all(tweens: Variant) -> void:
+    if tweens is Array:
+        for tween in tweens:
+            for key in tween.keys():
+                var v = tween.get(key)
 
-    var start: int = 0
-    var end: int = 1
-    var transform_property: String = _get_offset_alpha_property()
+                if v and v.is_running():
+                    await v.finished
 
-    var tween := target_node.create_tween()
-    slide_tweens[target_node] = tween
-    tween.set_trans(transition_type)
-    tween.set_ease(ease_type)
-    tween.tween_property(target_node, transform_property, end, duration).from(start)
-    target_node.visible = true
-    await tween.finished
-    _cleanup_for_phase_tween(target_node)
-    _cleanup_for_z_tween(target_node)
-    phase_in_finished.emit(target_node)
+                # print(key, " finished")
+    elif tweens is Dictionary:
+        for key in tweens.keys():
+                var v = tweens.get(key)
 
-func phase_out(target_node: Control, duration: float, transition_type: Tween.TransitionType = Tween.TRANS_LINEAR, ease_type: Tween.EaseType = Tween.EASE_IN_OUT) -> void:
-    _tween_safety_check(target_node, "phase")
-    _prepare_for_tween(target_node)
-    _prepare_for_phase_tween(target_node, 1)
+                if v and v.is_running():
+                    await v.finished
 
-    var start: int = 1
-    var end: int = 0
-    var transform_property: String = _get_offset_alpha_property()
-
-    var tween := target_node.create_tween()
-    slide_tweens[target_node] = tween
-    tween.set_trans(transition_type)
-    tween.set_ease(ease_type)
-    tween.tween_property(target_node, transform_property, end, duration).from(start)
-    await tween.finished
-    target_node.visible = false
-    _cleanup_for_phase_tween(target_node)
-    _cleanup_for_z_tween(target_node)
-    generic_tween_finished.emit(target_node)
-
-func tween_color_rect_color(target_node: Control, new_color: Color, duration: float, transition_type: Tween.TransitionType = Tween.TRANS_LINEAR, ease_type: Tween.EaseType = Tween.EASE_IN_OUT) -> void:
-    _tween_safety_check(target_node, "color")
-    _prepare_for_tween(target_node)
-    var colorRect = target_node as ColorRect
-
-    if colorRect:
-        var start: Color = colorRect.color
-        var end: Color = new_color
-        var transform_property: String = "color"
-
-        var tween := target_node.create_tween()
-        slide_tweens[target_node] = tween
-        tween.set_trans(transition_type)
-        tween.set_ease(ease_type)
-        tween.tween_property(target_node, transform_property, end, duration).from(start)
-        await tween.finished
-
-    _cleanup_for_z_tween(target_node)
-    generic_tween_finished.emit(target_node)
-
-func shake(target_node: Control, to_position: Vector2, position_by_ratio: bool, repetition_duration: float, repetitions: int, intensity: float,
-              transition_type: Tween.TransitionType = Tween.TRANS_QUINT, ease_type: Tween.EaseType = Tween.EASE_IN_OUT) -> void:
-    _prepare_for_tween(target_node)
-    _prepare_for_slide_tween(target_node)
-
-    var starting_pos = Vector2.ZERO
-    var transform_property: String = _get_offset_position_property(position_by_ratio)
-
-    for rep in range(repetitions):
-        _tween_safety_check(target_node, "slide")
-        var start_1: Vector2 = starting_pos
-        var end_1: Vector2 = starting_pos + (to_position.normalized() * intensity)
-        print("S: ", start_1, " E: ", end_1)
-        var tween := target_node.create_tween()
-        slide_tweens[target_node] = tween
-        tween.set_trans(transition_type)
-        tween.set_ease(ease_type)
-        tween.tween_property(target_node, transform_property, end_1, repetition_duration).from(start_1)
-        await tween.finished
-        _tween_safety_check(target_node, "slide")
-        var start_2: Vector2 = starting_pos + (to_position.normalized() * intensity)
-        var end_2: Vector2 = starting_pos - (to_position.normalized() * intensity)
-        tween = target_node.create_tween()
-        slide_tweens[target_node] = tween
-        tween.set_trans(transition_type)
-        tween.set_ease(ease_type)
-        tween.tween_property(target_node, transform_property, end_2, repetition_duration * 2).from(start_2)
-        await tween.finished
-        _tween_safety_check(target_node, "slide")
-        var start_3: Vector2 = starting_pos - (to_position.normalized() * intensity)
-        var end_3: Vector2 = starting_pos
-        tween = target_node.create_tween()
-        slide_tweens[target_node] = tween
-        tween.set_trans(transition_type)
-        tween.set_ease(ease_type)
-        tween.tween_property(target_node, transform_property, end_3, repetition_duration).from(start_3)
-        await tween.finished
-
-    _cleanup_for_slide_tween(target_node)
-    _cleanup_for_z_tween(target_node)
-    generic_tween_finished.emit(target_node)
-
-func wait_for_all(tweens: Dictionary) -> void:
-    for t in tweens.keys():
-        var v = tweens.get(t)
-
-        if v and v.is_running():
-            await v.finished
-
-        # print(t, " finished")
-
+                # print(key, " finished")
 
 func all_tweens_finished() -> bool:
     for key in slide_tweens:

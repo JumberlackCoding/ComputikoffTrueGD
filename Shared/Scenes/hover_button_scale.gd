@@ -60,7 +60,7 @@ func _get_property_list() -> Array[Dictionary]:
     return properties
 
 func _on_button_activate():
-    if Engine.is_editor_hint():
+    if Engine.is_editor_hint() or button.disabled:
         return
 
     if tween:
@@ -73,7 +73,7 @@ func _on_button_activate():
     tween.tween_property(get_parent(), "offset_transform_scale", newScale, 0.2)
 
 func _on_button_deactivate():
-    if Engine.is_editor_hint():
+    if Engine.is_editor_hint() or button.disabled:
         return
 
     if tween:
