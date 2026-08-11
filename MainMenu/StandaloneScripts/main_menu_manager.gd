@@ -28,14 +28,7 @@ extends MarginContainer
 @export_category("Lost Cities Tween Properties")
 @export_group("Invalid Button Selection", "lc_shake_")
 @export var lc_shake_repetitions: int
-@export var lc_shake_repetition_duration: float
 @export var lc_shake_tween_parameters: TweenParams
-@export var lc_shake_intensity: float
-@export var lc_shake_dir: Vector2
-## When [code]true[/code] the dir is normalized and intensity is used for magnitude and it uses the [code]offset_transform_position_ratio[/code] property
-@export var lc_shake_use_relative_pos: bool
-@export var lc_shake_trans: Tween.TransitionType
-@export var lc_shake_ease: Tween.EaseType
 
 @export_group("Colored Button To Number Selection Transition")
 @export_subgroup("Transition to open number selector", "lc_col_to_num_sel_")
@@ -46,6 +39,16 @@ extends MarginContainer
 @export var lc_num_sel_to_col_num_selector_properties: TweenParams
 ## Colored Button [code]slide_start[/code], [code]slide_by_ratio[/code], and [code]scale_scale[/code] are programatically overwritten
 @export var lc_num_sel_to_col_color_button_properties: TweenParams
+
+@export_group("Calculate Animation Properties", "lc_calc_")
+@export var lc_calc_text_animation_duration: float
+@export var lc_calc_minimum_delay_between_columns: float
+@export var lc_calc_column_climb_delay: float
+@export var lc_calc_final_score_shadow_color: Color
+@export var lc_calc_final_score_shadow_final_size: int
+@export var lc_calc_final_score_shadow_duration: float
+@export var lc_calc_column_properties: TweenParams
+@export var lc_calc_final_score_properties: TweenParams
 
 @export_category("Other Properties")
 @export_group("Shared Nodes")
@@ -80,12 +83,11 @@ var page_history: Array[Page] = []
 
 # Lost Cities node references
 @onready var lost_cities_calculate_button: BaseButton = %LostCitiesCalculateButton
+@onready var lost_cities_clear_button: BaseButton = %LostCitiesClearButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     # Make event connections
-    # Generic tween for when nothing but unlocking the UI is needed after tweening is done
-    # tween_controller.generic_tween_finished.connect(_on_generic_tween_finished)
     # Main menu category buttons
     games_button.pressed.connect(_on_scorecard_button_pressed)
     scorecards_button.pressed.connect(_on_scorecard_button_pressed)
@@ -101,6 +103,7 @@ func _ready() -> void:
 
     # Lost Cities
     lost_cities_calculate_button.pressed.connect(_on_lost_cities_calculate_pressed)
+    lost_cities_clear_button.pressed.connect(_on_lost_cities_clear_pressed)
 
 func _nav_deeper_to(page: Page) -> void:
     page_history.append(current_page)
@@ -148,8 +151,6 @@ func _animate_deeper(current: Page, next: Page) -> void:
     var tweens := []
     tweens.append(tween_controller.universal_tween(cat_buts_transition_deeper_in_props))
     await tween_controller.wait_for_all(tweens)
-    tween_controller.cleanup_tween(cat_buts_transition_higher_out_props)
-    tween_controller.cleanup_tween(cat_buts_transition_deeper_in_props)
     _try_unlock_ui()
 
 func _animate_higher(current: Page, previous_page: Page) -> void:
@@ -162,8 +163,6 @@ func _animate_higher(current: Page, previous_page: Page) -> void:
     tweens.append(tween_controller.universal_tween(cat_buts_transition_higher_in_props))
     tweens.append(tween_controller.universal_tween(cat_buts_transition_deeper_out_props))
     await tween_controller.wait_for_all(tweens)
-    tween_controller.cleanup_tween(cat_buts_transition_higher_in_props)
-    tween_controller.cleanup_tween(cat_buts_transition_deeper_out_props)
     _try_unlock_ui()
 
 func _on_scorecard_button_pressed() -> void:
@@ -193,9 +192,6 @@ func _on_in_instance_main_menu_button_pressed() -> void:
     # This logically steps up in the UI
     _nav_to_main_menu()
 
-# func _on_generic_tween_finished(_target_node: Control) -> void:
-#     _try_unlock_ui()
-
 func _on_phase_in_finished(target_node: Control) -> void:
     _try_unlock_ui()
 
@@ -205,8 +201,109 @@ func _on_phase_in_finished(target_node: Control) -> void:
 
         target_node.visible = true
 
+func _animate_button(params: TweenParams) -> Array:
+    var tweens := []
+    tweens.append(tween_controller.universal_tween(params, true, false))
+    tweens.append(tween_controller.universal_tween(_generate_tweenparams_reset(params), false, true))
+    return tweens
+
+func _animate_column(col: Array, count: int) -> void:
+    var zs := []
+    var tweens := []
+    for i in count:
+        var params := lc_calc_column_properties.duplicate(true)
+        params.target_node = col[i]
+        zs.append(params.target_node.z_index)
+        params.target_node.z_index += 7
+        tweens.append_array(_animate_button(params))
+        await get_tree().create_timer(lc_calc_column_climb_delay).timeout
+
+    await tween_controller.wait_for_all(tweens)
+    for j in count:
+        col[j].z_index = zs[j]
+
+func _animate_bridges(bridges: Array) -> void:
+    var zs := []
+    var tweens := []
+    for i in bridges.size():
+        var params := lc_calc_column_properties.duplicate(true)
+        params.target_node = bridges[i]
+        zs.append(params.target_node.z_index)
+        params.target_node.z_index += 7
+        tweens.append_array(_animate_button(params))
+        await get_tree().create_timer(lc_calc_column_climb_delay).timeout
+
+    await tween_controller.wait_for_all(tweens)
+    for j in bridges.size():
+        bridges[j].z_index = zs[j]
+
 func _on_lost_cities_calculate_pressed() -> void:
-    print(scorecard_data[Scorecard.LOST_CITIES].get_instance().calculate())
+    _lock_ui()
+    var points: Dictionary = scorecard_data[Scorecard.LOST_CITIES].get_instance().calculate()
+
+    var red_column := get_tree().get_nodes_in_group("LostCitiesColumnRed")
+    var orange_column := get_tree().get_nodes_in_group("LostCitiesColumnOrange")
+    var yellow_column := get_tree().get_nodes_in_group("LostCitiesColumnYellow")
+    var green_column := get_tree().get_nodes_in_group("LostCitiesColumnGreen")
+    var blue_column := get_tree().get_nodes_in_group("LostCitiesColumnBlue")
+    var purple_column := get_tree().get_nodes_in_group("LostCitiesColumnPurple")
+    var vase_column := get_tree().get_nodes_in_group("LostCitiesColumnVase")
+    var dice_column := get_tree().get_nodes_in_group("LostCitiesColumnDice")
+    var bridges := get_tree().get_nodes_in_group("LostCitiesBridges")
+
+    red_column.reverse()
+    orange_column.reverse()
+    yellow_column.reverse()
+    green_column.reverse()
+    blue_column.reverse()
+    purple_column.reverse()
+    vase_column.reverse()
+    dice_column.reverse()
+
+    await _animate_column(red_column, points["red_count"] + 1)
+    tween_controller.tween_text(%LcRedScore, str(points["red"]), lc_calc_text_animation_duration)
+    await get_tree().create_timer(lc_calc_minimum_delay_between_columns).timeout
+    await _animate_column(orange_column, points["orange_count"] + 1)
+    tween_controller.tween_text(%LcOrangeScore, str(points["orange"]), lc_calc_text_animation_duration)
+    await get_tree().create_timer(lc_calc_minimum_delay_between_columns).timeout
+    await _animate_column(yellow_column, points["yellow_count"] + 1)
+    tween_controller.tween_text(%LcYellowScore, str(points["yellow"]), lc_calc_text_animation_duration)
+    await get_tree().create_timer(lc_calc_minimum_delay_between_columns).timeout
+    await _animate_column(green_column, points["green_count"] + 1)
+    tween_controller.tween_text(%LcGreenScore, str(points["green"]), lc_calc_text_animation_duration)
+    await get_tree().create_timer(lc_calc_minimum_delay_between_columns).timeout
+    await _animate_column(blue_column, points["blue_count"] + 1)
+    tween_controller.tween_text(%LcBlueScore, str(points["blue"]), lc_calc_text_animation_duration)
+    await get_tree().create_timer(lc_calc_minimum_delay_between_columns).timeout
+    await _animate_column(purple_column, points["purple_count"] + 1)
+    tween_controller.tween_text(%LcPurpleScore, str(points["purple"]), lc_calc_text_animation_duration)
+    await get_tree().create_timer(lc_calc_minimum_delay_between_columns).timeout
+    await _animate_column(vase_column, points["vase_count"] + 1)
+    tween_controller.tween_text(%LcVaseScore, str(points["vase"]), lc_calc_text_animation_duration)
+    await get_tree().create_timer(lc_calc_minimum_delay_between_columns).timeout
+    await _animate_column(dice_column, points["dice_count"] + 1)
+    tween_controller.tween_text(%LcDiceScore, str(points["dice"]), lc_calc_text_animation_duration)
+    await get_tree().create_timer(lc_calc_minimum_delay_between_columns).timeout
+    await _animate_bridges(bridges)
+    tween_controller.tween_text(%LcBridgeScore, str(points["bridges"]), lc_calc_text_animation_duration)
+    await get_tree().create_timer(1.25).timeout
+
+    var fscore = %LcFinalScore as Label
+    lc_calc_final_score_properties.target_node = fscore
+    var screen_center := position + size / 2
+    var final_size := lc_calc_final_score_properties.target_node.global_position + (lc_calc_final_score_properties.target_node.size / 2) # * lc_calc_final_score_properties.scale.end)
+    lc_calc_final_score_properties.slide.end = screen_center - final_size
+
+    tween_controller.tween_override_stylebox_shadow(fscore, lc_calc_final_score_shadow_color, lc_calc_final_score_shadow_final_size, lc_calc_final_score_shadow_duration)
+    await tween_controller.wait_for_all(tween_controller.universal_tween(lc_calc_final_score_properties, true, false))
+    tween_controller.tween_text(fscore, str(points["total"]), lc_calc_text_animation_duration * 3, "999")
+
+    _try_unlock_ui()
+    # print(points)
+
+func _on_lost_cities_clear_pressed() -> void:
+    print("clear")
+    pass
 
 func _ui_is_locked() -> bool:
     return inputBlocker.visible
@@ -223,7 +320,7 @@ func _try_unlock_ui() -> void:
                 print("_try_unlock_ui() succeeded")
             break
         elif _ui_is_locked():
-            if attempt < max_attempts.max():
+            if attempt < max_attempts:
                 await get_tree().create_timer(0.1).timeout
                 print("_try_unlock_ui() failed")
             # await get_tree().process_frame
@@ -241,6 +338,55 @@ func _prep_scorecard_instance(scorecard: Scorecard) -> void:
     data.get_instance().visible = true
     data.get_logo().visible = true
     background_color_rect.color = data.background_color
+
+func _generate_tweenparams_reset(params: TweenParams) -> TweenParams:
+    var new_params = TweenParams.new()
+
+    new_params.target_node = params.target_node
+    new_params.pivot = params.pivot
+    new_params.pivot_ratio = params.pivot_ratio
+    new_params.move_z_index_to_frontish = params.move_z_index_to_frontish
+    new_params.ignore_safety_check = params.ignore_safety_check
+    new_params.visual_only = params.visual_only
+
+    if params.slide:
+        new_params.slide = SlideParams.new()
+        new_params.slide.duration = params.slide.duration
+        new_params.slide.delay = params.slide.duration # offset it so it executes right after the previous one without needing to await
+        new_params.slide.start = params.slide.end
+        new_params.slide.by_ratio = params.slide.by_ratio
+        new_params.slide.transition_type = params.slide.transition_type
+        new_params.slide.ease_type = params.slide.ease_type
+    if params.rotate:
+        new_params.rotate = RotateParams.new()
+        new_params.rotate.duration = params.rotate.duration
+        new_params.rotate.delay = params.rotate.duration # offset it so it executes right after the previous one without needing to await
+        new_params.rotate.start = params.rotate.end
+        new_params.rotate.transition_type = params.rotate.transition_type
+        new_params.rotate.ease_type = params.rotate.ease_type
+    if params.scale:
+        new_params.scale = ScaleParams.new()
+        new_params.scale.duration = params.scale.duration
+        new_params.scale.delay = params.scale.duration # offset it so it executes right after the previous one without needing to await
+        new_params.scale.start = params.scale.end
+        new_params.scale.transition_type = params.scale.transition_type
+        new_params.scale.ease_type = params.scale.ease_type
+    if params.phase:
+        new_params.phase = PhaseParams.new()
+        new_params.phase.duration = params.phase.duration
+        new_params.phase.delay = params.phase.duration # offset it so it executes right after the previous one without needing to await
+        new_params.phase.start = params.phase.end
+        new_params.phase.transition_type = params.phase.transition_type
+        new_params.phase.ease_type = params.phase.ease_type
+    if params.color:
+        new_params.color = ColorParams.new()
+        new_params.color.duration = params.color.duration
+        new_params.color.delay = params.color.duration # offset it so it executes right after the previous one without needing to await
+        new_params.color.start = params.color.end
+        new_params.color.transition_type = params.color.transition_type
+        new_params.color.ease_type = params.color.ease_type
+
+    return new_params
 
 func on_switch_scorecard_instance(target_scorecard: Scorecard) -> void:
     _lock_ui()
@@ -291,10 +437,6 @@ func on_switch_scorecard_instance(target_scorecard: Scorecard) -> void:
         tweens.append(tween_controller.universal_tween(in_params2))
         tweens.append(tween_controller.universal_tween(out_params2))
         await tween_controller.wait_for_all(tweens)
-        tween_controller.cleanup_tween(in_params1)
-        tween_controller.cleanup_tween(out_params1)
-        tween_controller.cleanup_tween(in_params2)
-        tween_controller.cleanup_tween(out_params2)
 
         _try_unlock_ui()
 
@@ -318,8 +460,6 @@ func on_show_lc_num_selector(number_selector: Control, color_button: Control) ->
     tweens.append(tween_controller.universal_tween(lc_col_to_num_sel_color_button_properties))
     tweens.append(tween_controller.universal_tween(lc_col_to_num_sel_num_selector_properties))
     await tween_controller.wait_for_all(tweens)
-    tween_controller.cleanup_tween(lc_col_to_num_sel_color_button_properties)
-    tween_controller.cleanup_tween(lc_col_to_num_sel_num_selector_properties)
     _try_unlock_ui()
 
 func on_hide_lc_num_selector(number_selector: Control, color_button: Control) -> void:
@@ -341,8 +481,6 @@ func on_hide_lc_num_selector(number_selector: Control, color_button: Control) ->
     tweens.append(tween_controller.universal_tween(lc_num_sel_to_col_num_selector_properties))
     tweens.append(tween_controller.universal_tween(lc_num_sel_to_col_color_button_properties))
     await tween_controller.wait_for_all(tweens)
-    tween_controller.cleanup_tween(lc_num_sel_to_col_num_selector_properties)
-    tween_controller.cleanup_tween(lc_num_sel_to_col_color_button_properties)
     _try_unlock_ui()
 
 func on_shake_num_button(target_node: Control) -> void:
@@ -363,5 +501,4 @@ func on_shake_num_button(target_node: Control) -> void:
     shake_params.slide.start = target_node.offset_transform_position_ratio if shake_params.slide.by_ratio else target_node.offset_transform_position
     shake_params.slide.end = shake_final_end
     await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params))
-    tween_controller.cleanup_tween(shake_params)
     target_node.z_index = z

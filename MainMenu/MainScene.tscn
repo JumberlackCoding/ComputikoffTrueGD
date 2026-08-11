@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://brna1weuy3uqe" path="res://Scorecards/Lost Cities/Textures/LostCities_banner.png" id="4_it0xl"]
 [ext_resource type="Script" uid="uid://8qov178sl2e6" path="res://Shared/Scripts/tween_params_color.gd" id="5_a8igl"]
 [ext_resource type="Texture2D" uid="uid://c7crho3rkjibp" path="res://Scorecards/Yahtzee/Textures/yahtzee_banner.png" id="5_o1r2d"]
+[ext_resource type="Script" uid="uid://c8usgae3nvmi7" path="res://Shared/Scripts/tween_params_rotate.gd" id="7_2w7el"]
 [ext_resource type="Script" uid="uid://dlkh1w8uf43jt" path="res://Shared/Scripts/tween_controller.gd" id="9_6fn4h"]
 [ext_resource type="Texture2D" uid="uid://ylr0v7qm18wm" path="res://Scorecards/Flip7/Textures/flip7_banner_shrunk.png" id="10_5ai8d"]
 [ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Scorecards/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="11_o2rkg"]
@@ -33,6 +34,10 @@
 [ext_resource type="Texture2D" uid="uid://wkrlglfg36pm" path="res://Scorecards/Lost Cities/Textures/TriangleSymbol.png" id="24_up70b"]
 [ext_resource type="Texture2D" uid="uid://c2dcg244t1edv" path="res://Scorecards/Lost Cities/Textures/PlusSymbol.png" id="25_6y3ok"]
 [ext_resource type="Texture2D" uid="uid://dfotqbn356thn" path="res://Scorecards/Lost Cities/Textures/StarSymbol.png" id="26_im68p"]
+[ext_resource type="Texture2D" uid="uid://16h3i1ertuj1" path="res://Scorecards/Lost Cities/Textures/VaseOnTop.png" id="32_pobwv"]
+[ext_resource type="Texture2D" uid="uid://8yxekqplkimu" path="res://Scorecards/Lost Cities/Textures/Dice.png" id="33_8wrqy"]
+[ext_resource type="Texture2D" uid="uid://cvubhrhggd601" path="res://Scorecards/Lost Cities/Textures/BridgeSymbol.png" id="34_0xw5w"]
+[ext_resource type="Texture2D" uid="uid://coi8v0rixqtsn" path="res://Scorecards/Lost Cities/Textures/trophy.png" id="35_k2oju"]
 
 [sub_resource type="Resource" id="Resource_a8igl"]
 script = ExtResource("3_g0flb")
@@ -209,6 +214,71 @@ scale = SubResource("Resource_gi7lq")
 phase = SubResource("Resource_30ei6")
 metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
 
+[sub_resource type="Resource" id="Resource_4stpn"]
+script = ExtResource("7_2w7el")
+duration = 0.3
+end = 0.17453292519943295
+transition_type = 1
+metadata/_custom_type_script = "uid://c8usgae3nvmi7"
+
+[sub_resource type="Resource" id="Resource_i1ea5"]
+script = ExtResource("3_a8igl")
+duration = 0.3
+end = Vector2(1.5, 1.5)
+transition_type = 1
+metadata/_custom_type_script = "uid://db7cfelcmki2x"
+
+[sub_resource type="Resource" id="Resource_4iyq1"]
+script = ExtResource("3_g0flb")
+duration = 0.3
+end = Vector2(-0.4, -0.4)
+transition_type = 1
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_eugwj"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_4iyq1")
+rotate = SubResource("Resource_4stpn")
+scale = SubResource("Resource_i1ea5")
+move_z_index_to_frontish = false
+ignore_safety_check = true
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_ayan7"]
+script = ExtResource("5_a8igl")
+duration = 3.0
+end = Color(1, 0.84313726, 0, 1)
+metadata/_custom_type_script = "uid://8qov178sl2e6"
+
+[sub_resource type="Resource" id="Resource_rgbho"]
+script = ExtResource("7_2w7el")
+duration = 3.0
+end = 6.283185307179586
+transition_type = 1
+metadata/_custom_type_script = "uid://c8usgae3nvmi7"
+
+[sub_resource type="Resource" id="Resource_uvvd1"]
+script = ExtResource("3_a8igl")
+duration = 3.0
+end = Vector2(2, 2)
+transition_type = 1
+metadata/_custom_type_script = "uid://db7cfelcmki2x"
+
+[sub_resource type="Resource" id="Resource_j2e2i"]
+script = ExtResource("3_g0flb")
+duration = 3.0
+by_ratio = false
+transition_type = 1
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_o1rpt"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_j2e2i")
+rotate = SubResource("Resource_rgbho")
+scale = SubResource("Resource_uvvd1")
+color = SubResource("Resource_ayan7")
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_70bl3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0jgb"]
@@ -298,17 +368,19 @@ scorecard_switch_instance_in_properties = SubResource("Resource_5ovsn")
 scorecard_switch_instance_out_properties = SubResource("Resource_5cc6o")
 scorecard_switch_instance_background_properties = SubResource("Resource_xnhfc")
 lc_shake_repetitions = 8
-lc_shake_repetition_duration = 0.04
 lc_shake_tween_parameters = SubResource("Resource_3rwhn")
-lc_shake_intensity = 0.08
-lc_shake_dir = Vector2(1, 0)
-lc_shake_use_relative_pos = true
-lc_shake_trans = 9
-lc_shake_ease = 2
 lc_col_to_num_sel_num_selector_properties = SubResource("Resource_olaor")
 lc_col_to_num_sel_color_button_properties = SubResource("Resource_tte43")
 lc_num_sel_to_col_num_selector_properties = SubResource("Resource_ojbv4")
 lc_num_sel_to_col_color_button_properties = SubResource("Resource_k2oju")
+lc_calc_text_animation_duration = 1.0
+lc_calc_minimum_delay_between_columns = 0.5
+lc_calc_column_climb_delay = 0.1
+lc_calc_final_score_shadow_color = Color(0.43134022, 0.43134025, 0.43134025, 1)
+lc_calc_final_score_shadow_final_size = 500
+lc_calc_final_score_shadow_duration = 3.0
+lc_calc_column_properties = SubResource("Resource_eugwj")
+lc_calc_final_score_properties = SubResource("Resource_o1rpt")
 main_menu_container = NodePath("MainMenuContainer")
 background_color_rect = NodePath("BackgroundColor")
 main_menu_button = NodePath("TopInstanceContainer/VBoxContainer/TopBar/MainMenuButton")
@@ -365,6 +437,7 @@ layout_mode = 2
 color = Color(0.75686276, 0.8784314, 0.9882353, 1)
 
 [node name="MainMenuContainer" type="MarginContainer" parent="." unique_id=637232827]
+visible = false
 layout_mode = 2
 
 [node name="MainBody" type="VBoxContainer" parent="MainMenuContainer" unique_id=302214484]
@@ -460,7 +533,6 @@ visible = false
 layout_mode = 2
 
 [node name="TopInstanceContainer" type="MarginContainer" parent="." unique_id=1859612397]
-visible = false
 layout_mode = 2
 theme_type_variation = &"TopLevelGame_MarginContainer"
 
@@ -590,6 +662,7 @@ scale_xy_separately = false
 scale_xy = 1.1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TopInstanceContainer/VBoxContainer" unique_id=814750253]
+clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -876,8 +949,6 @@ layout_mode = 2
 
 [node name="LostCities" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=2067309494 node_paths=PackedStringArray("number_selector") groups=["ScorecardContainerInstance"]]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
 script = ExtResource("18_xy8dj")
 number_selector = NodePath("../../../../../LostCitiesNumberSelector")
 
@@ -914,7 +985,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/Section1/MarginContainer" unique_id=1155704176]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -928,7 +999,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/Section1/MarginContainer2" unique_id=79638583]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "35"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -942,7 +1013,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/Section1/MarginContainer3" unique_id=767066163]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "30"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -968,7 +1039,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/Section2/MarginContainer4" unique_id=1380322337]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -982,7 +1053,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/Section2/MarginContainer5" unique_id=222781337]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -996,7 +1067,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/Section2/MarginContainer6" unique_id=697569569]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1010,7 +1081,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/Section2/MarginContainer7" unique_id=984726737]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.54640853, 7.3399394e-07, 3.85046e-07, 1)
 text = "-10"
@@ -1026,7 +1097,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/Section2/MarginContainer8" unique_id=1681943909]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.54640853, 7.3399394e-07, 3.85046e-07, 1)
 text = "-15"
@@ -1042,7 +1113,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/Section2/MarginContainer9" unique_id=1331441343]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.54640853, 7.3399394e-07, 3.85046e-07, 1)
 text = "-20"
@@ -1059,7 +1130,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PointsColumn/MarginContainer10" unique_id=1708525310]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.54640853, 7.3399394e-07, 3.85046e-07, 1)
 text = "-50"
@@ -1084,7 +1155,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.05
-theme_type_variation = &"LostCities_VaseButton"
+theme_type_variation = &"LostCities_TopBabyVaseButton"
 script = ExtResource("19_yg4bv")
 scribbleable = true
 circle_width = 50.0
@@ -1099,6 +1170,7 @@ size_flags_stretch_ratio = 0.33
 
 [node name="Button1" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/RedColumn/Section1" unique_id=1863693450 groups=["LostCitiesColumnRed", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 9
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1127,6 +1199,7 @@ vertical_alignment = 1
 
 [node name="Button2" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/RedColumn/Section1" unique_id=1157179093 groups=["LostCitiesColumnRed", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 8
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1155,6 +1228,7 @@ vertical_alignment = 1
 
 [node name="Button3" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/RedColumn/Section1" unique_id=1241986536 groups=["LostCitiesColumnRed", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 7
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1202,6 +1276,7 @@ size_flags_stretch_ratio = 0.67
 
 [node name="Button4" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/RedColumn/Section2" unique_id=1873748584 groups=["LostCitiesColumnRed", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 6
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1225,11 +1300,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button5" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/RedColumn/Section2" unique_id=630548137 groups=["LostCitiesColumnRed", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 5
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1254,11 +1331,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button6" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/RedColumn/Section2" unique_id=80456582 groups=["LostCitiesColumnRed", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 4
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1282,11 +1361,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button7" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/RedColumn/Section2" unique_id=388223938 groups=["LostCitiesColumnRed", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 3
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1310,11 +1391,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button8" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/RedColumn/Section2" unique_id=1390740685 groups=["LostCitiesColumnRed", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 2
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1338,11 +1421,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button9" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/RedColumn/Section2" unique_id=881046117 groups=["LostCitiesColumnRed", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1366,6 +1451,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1400,7 +1486,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.05
-theme_type_variation = &"LostCities_VaseButton"
+theme_type_variation = &"LostCities_TopBabyVaseButton"
 script = ExtResource("19_yg4bv")
 scribbleable = true
 circle_width = 50.0
@@ -1415,6 +1501,7 @@ size_flags_stretch_ratio = 0.33
 
 [node name="Button1" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/OrangeColumn/Section1" unique_id=1359567073 groups=["LostCitiesColumnOrange", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 9
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1438,11 +1525,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button2" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/OrangeColumn/Section1" unique_id=1263390286 groups=["LostCitiesColumnOrange", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 8
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1466,11 +1555,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button3" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/OrangeColumn/Section1" unique_id=1393952887 groups=["LostCitiesColumnOrange", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 7
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1494,6 +1585,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1518,6 +1610,7 @@ size_flags_stretch_ratio = 0.67
 
 [node name="Button4" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/OrangeColumn/Section2" unique_id=714151290 groups=["LostCitiesColumnOrange", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 6
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1541,11 +1634,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button5" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/OrangeColumn/Section2" unique_id=745485778 groups=["LostCitiesColumnOrange", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 5
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1569,11 +1664,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button6" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/OrangeColumn/Section2" unique_id=1188498745 groups=["LostCitiesColumnOrange", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 4
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1597,11 +1694,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button7" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/OrangeColumn/Section2" unique_id=2137067673 groups=["LostCitiesColumnOrange", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 3
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1625,11 +1724,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button8" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/OrangeColumn/Section2" unique_id=1032366853 groups=["LostCitiesColumnOrange", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 2
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1653,11 +1754,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button9" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/OrangeColumn/Section2" unique_id=26305421 groups=["LostCitiesColumnOrange", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1681,6 +1784,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1715,7 +1819,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.05
-theme_type_variation = &"LostCities_VaseButton"
+theme_type_variation = &"LostCities_TopBabyVaseButton"
 script = ExtResource("19_yg4bv")
 scribbleable = true
 circle_width = 50.0
@@ -1730,6 +1834,7 @@ size_flags_stretch_ratio = 0.33
 
 [node name="Button1" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/YellowColumn/Section1" unique_id=1542474611 groups=["LostCitiesColumnYellow", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 9
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1758,6 +1863,7 @@ vertical_alignment = 1
 
 [node name="Button2" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/YellowColumn/Section1" unique_id=234440789 groups=["LostCitiesColumnYellow", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 8
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1786,6 +1892,7 @@ vertical_alignment = 1
 
 [node name="Button3" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/YellowColumn/Section1" unique_id=1314776982 groups=["LostCitiesColumnYellow", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 7
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1833,6 +1940,7 @@ size_flags_stretch_ratio = 0.67
 
 [node name="Button4" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/YellowColumn/Section2" unique_id=1408976125 groups=["LostCitiesColumnYellow", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 6
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1861,6 +1969,7 @@ vertical_alignment = 1
 
 [node name="Button5" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/YellowColumn/Section2" unique_id=641434416 groups=["LostCitiesColumnYellow", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 5
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1889,6 +1998,7 @@ vertical_alignment = 1
 
 [node name="Button6" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/YellowColumn/Section2" unique_id=1041955854 groups=["LostCitiesColumnYellow", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 4
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1917,6 +2027,7 @@ vertical_alignment = 1
 
 [node name="Button7" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/YellowColumn/Section2" unique_id=1801827382 groups=["LostCitiesColumnYellow", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 3
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1940,11 +2051,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button8" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/YellowColumn/Section2" unique_id=1880455423 groups=["LostCitiesColumnYellow", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 2
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1968,11 +2081,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button9" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/YellowColumn/Section2" unique_id=902999520 groups=["LostCitiesColumnYellow", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -1996,6 +2111,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2030,7 +2146,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.05
-theme_type_variation = &"LostCities_VaseButton"
+theme_type_variation = &"LostCities_TopBabyVaseButton"
 script = ExtResource("19_yg4bv")
 scribbleable = true
 circle_width = 50.0
@@ -2045,6 +2161,7 @@ size_flags_stretch_ratio = 0.33
 
 [node name="Button1" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/GreenColumn/Section1" unique_id=1343669704 groups=["LostCitiesColumnGreen", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 9
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2073,6 +2190,7 @@ vertical_alignment = 1
 
 [node name="Button2" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/GreenColumn/Section1" unique_id=2114222396 groups=["LostCitiesColumnGreen", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 8
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2101,6 +2219,7 @@ vertical_alignment = 1
 
 [node name="Button3" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/GreenColumn/Section1" unique_id=2079701588 groups=["LostCitiesColumnGreen", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 7
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2148,6 +2267,7 @@ size_flags_stretch_ratio = 0.67
 
 [node name="Button4" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/GreenColumn/Section2" unique_id=165513618 groups=["LostCitiesColumnGreen", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 6
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2176,6 +2296,7 @@ vertical_alignment = 1
 
 [node name="Button5" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/GreenColumn/Section2" unique_id=2012074908 groups=["LostCitiesColumnGreen", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 5
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2199,11 +2320,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button6" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/GreenColumn/Section2" unique_id=246452853 groups=["LostCitiesColumnGreen", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 4
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2227,11 +2350,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button7" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/GreenColumn/Section2" unique_id=164683744 groups=["LostCitiesColumnGreen", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 3
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2255,11 +2380,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button8" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/GreenColumn/Section2" unique_id=1130119739 groups=["LostCitiesColumnGreen", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 2
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2283,11 +2410,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button9" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/GreenColumn/Section2" unique_id=1062914065 groups=["LostCitiesColumnGreen", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2311,6 +2440,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2345,7 +2475,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.05
-theme_type_variation = &"LostCities_VaseButton"
+theme_type_variation = &"LostCities_TopBabyVaseButton"
 script = ExtResource("19_yg4bv")
 scribbleable = true
 circle_width = 50.0
@@ -2360,6 +2490,7 @@ size_flags_stretch_ratio = 0.33
 
 [node name="Button1" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/BlueColumn/Section1" unique_id=296186611 groups=["LostCitiesColumnBlue", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 9
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2388,6 +2519,7 @@ vertical_alignment = 1
 
 [node name="Button2" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/BlueColumn/Section1" unique_id=710515232 groups=["LostCitiesColumnBlue", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 8
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2416,6 +2548,7 @@ vertical_alignment = 1
 
 [node name="Button3" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/BlueColumn/Section1" unique_id=2073554448 groups=["LostCitiesColumnBlue", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 7
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2463,6 +2596,7 @@ size_flags_stretch_ratio = 0.67
 
 [node name="Button4" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/BlueColumn/Section2" unique_id=966431480 groups=["LostCitiesColumnBlue", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 6
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2491,6 +2625,7 @@ vertical_alignment = 1
 
 [node name="Button5" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/BlueColumn/Section2" unique_id=637573991 groups=["LostCitiesColumnBlue", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 5
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2519,6 +2654,7 @@ vertical_alignment = 1
 
 [node name="Button6" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/BlueColumn/Section2" unique_id=362489386 groups=["LostCitiesColumnBlue", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 4
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2547,6 +2683,7 @@ vertical_alignment = 1
 
 [node name="Button7" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/BlueColumn/Section2" unique_id=965094435 groups=["LostCitiesColumnBlue", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 3
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2575,6 +2712,7 @@ vertical_alignment = 1
 
 [node name="Button8" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/BlueColumn/Section2" unique_id=1519950409 groups=["LostCitiesColumnBlue", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 2
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2603,6 +2741,7 @@ vertical_alignment = 1
 
 [node name="Button9" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/BlueColumn/Section2" unique_id=670021860 groups=["LostCitiesColumnBlue", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2660,7 +2799,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.05
-theme_type_variation = &"LostCities_VaseButton"
+theme_type_variation = &"LostCities_TopBabyVaseButton"
 script = ExtResource("19_yg4bv")
 scribbleable = true
 circle_width = 50.0
@@ -2675,6 +2814,7 @@ size_flags_stretch_ratio = 0.33
 
 [node name="Button1" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PurpleColumn/Section1" unique_id=999783377 groups=["LostCitiesColumnPurple", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 9
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2703,6 +2843,7 @@ vertical_alignment = 1
 
 [node name="Button2" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PurpleColumn/Section1" unique_id=1751587526 groups=["LostCitiesColumnPurple", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 8
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2726,11 +2867,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button3" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PurpleColumn/Section1" unique_id=1915001156 groups=["LostCitiesColumnPurple", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 7
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2754,6 +2897,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2778,6 +2922,7 @@ size_flags_stretch_ratio = 0.67
 
 [node name="Button4" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PurpleColumn/Section2" unique_id=1445427874 groups=["LostCitiesColumnPurple", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 6
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2801,11 +2946,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button5" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PurpleColumn/Section2" unique_id=521479880 groups=["LostCitiesColumnPurple", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 5
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2829,11 +2976,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button6" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PurpleColumn/Section2" unique_id=2133725467 groups=["LostCitiesColumnPurple", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 4
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2857,11 +3006,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button7" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PurpleColumn/Section2" unique_id=194966978 groups=["LostCitiesColumnPurple", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 3
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2885,11 +3036,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button8" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PurpleColumn/Section2" unique_id=1802437733 groups=["LostCitiesColumnPurple", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 2
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2913,11 +3066,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button9" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/TopColumnHBox/PurpleColumn/Section2" unique_id=1441569002 groups=["LostCitiesColumnPurple", "LostCitiesNumberButton"]]
 clip_children = 2
+z_index = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 7
@@ -2941,6 +3096,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LostCities_ColoredColumnsNumLabels"
+text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2965,6 +3121,7 @@ stroke_width = 5.0
 [node name="BotColumnHBox" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer" unique_id=994454127]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 25
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox" unique_id=2105988919]
 layout_mode = 2
@@ -2996,7 +3153,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section1/HBoxContainer/MarginContainer" unique_id=673104790]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3011,7 +3168,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section1/HBoxContainer/MarginContainer2" unique_id=1606495023]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.54640853, 7.3399394e-07, 3.85046e-07, 1)
 text = "0"
@@ -3027,7 +3184,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section1/MarginContainer2" unique_id=1469351445]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "70"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3041,7 +3198,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section1/MarginContainer3" unique_id=666888240]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "60"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3067,7 +3224,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section2/MarginContainer4" unique_id=1754649894]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "30"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3081,7 +3238,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section2/MarginContainer5" unique_id=91092807]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "20"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3095,7 +3252,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section2/MarginContainer6" unique_id=732789726]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3109,7 +3266,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section2/MarginContainer7" unique_id=516136716]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.54640853, 7.3399394e-07, 3.85046e-07, 1)
 text = "-20"
@@ -3125,7 +3282,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section2/MarginContainer8" unique_id=29173199]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.54640853, 7.3399394e-07, 3.85046e-07, 1)
 text = "-30"
@@ -3141,7 +3298,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/PointsColumn/Section2/MarginContainer9" unique_id=501108885]
 layout_mode = 2
 size_flags_vertical = 3
-theme_type_variation = &"LostCities_ScoreColumnLabels"
+theme_type_variation = &"LostCities_PointColumnLabels"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.54640853, 7.3399394e-07, 3.85046e-07, 1)
 text = "-40"
@@ -3165,6 +3322,7 @@ size_flags_stretch_ratio = 0.33
 
 [node name="Button1" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/VaseColumn/Section1" unique_id=1916536935 groups=["LostCitiesColumnVase"]]
 clip_children = 2
+z_index = 9
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3179,6 +3337,7 @@ points_per_scribble = 20
 
 [node name="Button2" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/VaseColumn/Section1" unique_id=388801073 groups=["LostCitiesColumnVase"]]
 clip_children = 2
+z_index = 8
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3193,6 +3352,7 @@ points_per_scribble = 20
 
 [node name="Button3" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/VaseColumn/Section1" unique_id=1549252678 groups=["LostCitiesColumnVase"]]
 clip_children = 2
+z_index = 7
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3225,6 +3385,7 @@ size_flags_stretch_ratio = 0.67
 
 [node name="Button4" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/VaseColumn/Section2" unique_id=684586406 groups=["LostCitiesColumnVase"]]
 clip_children = 2
+z_index = 6
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3239,6 +3400,7 @@ points_per_scribble = 20
 
 [node name="Button5" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/VaseColumn/Section2" unique_id=1431549948 groups=["LostCitiesColumnVase"]]
 clip_children = 2
+z_index = 5
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3253,6 +3415,7 @@ points_per_scribble = 20
 
 [node name="Button6" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/VaseColumn/Section2" unique_id=390935098 groups=["LostCitiesColumnVase"]]
 clip_children = 2
+z_index = 4
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3267,6 +3430,7 @@ points_per_scribble = 20
 
 [node name="Button7" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/VaseColumn/Section2" unique_id=1993683038 groups=["LostCitiesColumnVase"]]
 clip_children = 2
+z_index = 3
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3281,6 +3445,7 @@ points_per_scribble = 20
 
 [node name="Button8" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/VaseColumn/Section2" unique_id=1850744615 groups=["LostCitiesColumnVase"]]
 clip_children = 2
+z_index = 2
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3295,6 +3460,7 @@ points_per_scribble = 20
 
 [node name="Button9" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/VaseColumn/Section2" unique_id=422503170 groups=["LostCitiesColumnVase"]]
 clip_children = 2
+z_index = 1
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3319,6 +3485,7 @@ size_flags_stretch_ratio = 0.33
 
 [node name="Button1" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/DiceColumn/Section1" unique_id=491670547 groups=["LostCitiesColumnDice"]]
 clip_children = 2
+z_index = 9
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3333,6 +3500,7 @@ points_per_scribble = 20
 
 [node name="Button2" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/DiceColumn/Section1" unique_id=1562812628 groups=["LostCitiesColumnDice"]]
 clip_children = 2
+z_index = 8
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3347,6 +3515,7 @@ points_per_scribble = 20
 
 [node name="Button3" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/DiceColumn/Section1" unique_id=1369097816 groups=["LostCitiesColumnDice"]]
 clip_children = 2
+z_index = 7
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3379,6 +3548,7 @@ size_flags_stretch_ratio = 0.67
 
 [node name="Button4" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/DiceColumn/Section2" unique_id=1715844507 groups=["LostCitiesColumnDice"]]
 clip_children = 2
+z_index = 6
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3393,6 +3563,7 @@ points_per_scribble = 20
 
 [node name="Button5" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/DiceColumn/Section2" unique_id=2125460848 groups=["LostCitiesColumnDice"]]
 clip_children = 2
+z_index = 5
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3407,6 +3578,7 @@ points_per_scribble = 20
 
 [node name="Button6" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/DiceColumn/Section2" unique_id=1305142140 groups=["LostCitiesColumnDice"]]
 clip_children = 2
+z_index = 4
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3421,6 +3593,7 @@ points_per_scribble = 20
 
 [node name="Button7" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/DiceColumn/Section2" unique_id=551411051 groups=["LostCitiesColumnDice"]]
 clip_children = 2
+z_index = 3
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3435,6 +3608,7 @@ points_per_scribble = 20
 
 [node name="Button8" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/DiceColumn/Section2" unique_id=173799218 groups=["LostCitiesColumnDice"]]
 clip_children = 2
+z_index = 2
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3449,6 +3623,7 @@ points_per_scribble = 20
 
 [node name="Button9" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer/DiceColumn/Section2" unique_id=678244650 groups=["LostCitiesColumnDice"]]
 clip_children = 2
+z_index = 1
 texture_filter = 1
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
@@ -3464,12 +3639,313 @@ points_per_scribble = 20
 [node name="HBoxContainer2" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox" unique_id=1219181053]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
 
-[node name="LostCitiesCalculateButton" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2" unique_id=702652863]
+[node name="VBoxContainer" type="VBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2" unique_id=1965578348]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=1261195744]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer" unique_id=1456544785]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer/HBoxContainer" unique_id=171135592]
+self_modulate = Color(1, 0.5294118, 0.5294118, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("21_iqkpf")
+expand_mode = 1
+
+[node name="LcRedScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer/HBoxContainer" unique_id=721103688]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=2028858895]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer2" unique_id=1831441476]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1000008093]
+self_modulate = Color(0.88235295, 0.627451, 0.43529412, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("22_s3074")
+expand_mode = 1
+
+[node name="LcOrangeScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1220276016]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=1680995187]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer3" unique_id=339302294]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer3/HBoxContainer" unique_id=267848369]
+self_modulate = Color(0.87058824, 0.83137256, 0.0627451, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("23_gexkr")
+expand_mode = 1
+
+[node name="LcYellowScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer3/HBoxContainer" unique_id=1612006392]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=2040783446]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer4" unique_id=1211618196]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer4/HBoxContainer" unique_id=29354744]
+self_modulate = Color(0.32156864, 0.78431374, 0.2509804, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("24_up70b")
+expand_mode = 1
+
+[node name="LcGreenScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer4/HBoxContainer" unique_id=1877216667]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer5" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=1649031847]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer5" unique_id=1448252316]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer5/HBoxContainer" unique_id=1988075985]
+self_modulate = Color(0.15294118, 0.7254902, 0.9411765, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("25_6y3ok")
+expand_mode = 1
+
+[node name="LcBlueScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer5/HBoxContainer" unique_id=652587360]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer6" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=777449624]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer6" unique_id=48356338]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer6/HBoxContainer" unique_id=1407354161]
+self_modulate = Color(0.69411767, 0.58431375, 0.99607843, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("26_im68p")
+expand_mode = 1
+
+[node name="LcPurpleScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer6/HBoxContainer" unique_id=1602369453]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer7" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=184354297]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer7" unique_id=1331497921]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer7/HBoxContainer" unique_id=414480966]
+self_modulate = Color(0.98039216, 0.7411765, 0.5137255, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("32_pobwv")
+expand_mode = 1
+
+[node name="LcVaseScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer7/HBoxContainer" unique_id=1054130992]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer8" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=474493215]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer8" unique_id=1652723735]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer8/HBoxContainer" unique_id=271768764]
+self_modulate = Color(0.98039216, 0.7411765, 0.5137255, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("33_8wrqy")
+expand_mode = 1
+
+[node name="LcDiceScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer8/HBoxContainer" unique_id=1792606994]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer9" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=1722517956]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer9" unique_id=1237001190]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer9/HBoxContainer" unique_id=1068014784]
+self_modulate = Color(0.98039216, 0.7411765, 0.5137255, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("34_0xw5w")
+expand_mode = 1
+
+[node name="LcBridgeScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer9/HBoxContainer" unique_id=1185877280]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer10" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer" unique_id=758741592]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Lost_Cities_ScoreColumnMarginContainerPerRow"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer10" unique_id=1311513712]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_ScoreColumnHBoxPerRow"
+
+[node name="TextureRect" type="TextureRect" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer10/HBoxContainer" unique_id=1133076892]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("35_k2oju")
+expand_mode = 1
+
+[node name="LcFinalScore" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer/MarginContainer10/HBoxContainer" unique_id=500946029]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"LostCities_ScoreColumnLabels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2" unique_id=1002010794]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.7
+theme_override_constants/separation = 16
+
+[node name="LostCitiesCalculateButton" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer2" unique_id=702652863]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"LostCities_MainButtons"
 text = "Calculate"
+
+[node name="LostCitiesClearButton" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/VBoxContainer/BotColumnHBox/HBoxContainer2/VBoxContainer2" unique_id=606902045]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+theme_type_variation = &"LostCities_MainButtons"
+text = "Clear"
 
 [node name="Yahtzee" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=1544048110 groups=["ScorecardContainerInstance"]]
 visible = false
@@ -3483,7 +3959,7 @@ script = ExtResource("9_6fn4h")
 
 [node name="LostCitiesNumberSelector" type="Control" parent="." unique_id=10825265]
 visible = false
-z_index = 10
+z_index = 20
 z_as_relative = false
 layout_mode = 2
 script = ExtResource("22_yg4bv")

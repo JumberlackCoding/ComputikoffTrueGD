@@ -115,10 +115,8 @@ func _check_for_zero_dice(points: int) -> int:
 
     return points
 
-func calculate() -> int:
-    print("New Calculating")
-
-    var total_points: int = 0
+func calculate() -> Dictionary:
+    var points := {}
 
     var red_column := get_tree().get_nodes_in_group("LostCitiesColumnRed")
     var orange_column := get_tree().get_nodes_in_group("LostCitiesColumnOrange")
@@ -139,14 +137,29 @@ func calculate() -> int:
     vase_column.reverse()
     dice_column.reverse()
 
-    total_points += _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(red_column)), "Red")
-    total_points += _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(orange_column)), "Orange")
-    total_points += _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(yellow_column)), "Yellow")
-    total_points += _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(green_column)), "Green")
-    total_points += _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(blue_column)), "Blue")
-    total_points += _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(purple_column)), "Purple")
-    total_points += _get_vase_dice_column_points(_get_highest_scribbled_index(vase_column))
-    total_points += _check_for_zero_dice(_get_vase_dice_column_points(_get_highest_scribbled_index(dice_column)))
-    total_points += _get_bridge_points(bridges)
+    points["red"] = _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(red_column)), "Red")
+    points["red_count"] = _get_highest_entered_number_index(red_column)
+    points["orange"] = _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(orange_column)), "Orange")
+    points["orange_count"] = _get_highest_entered_number_index(orange_column)
+    points["yellow"] = _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(yellow_column)), "Yellow")
+    points["yellow_count"] = _get_highest_entered_number_index(yellow_column)
+    points["green"] = _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(green_column)), "Green")
+    points["green_count"] = _get_highest_entered_number_index(green_column)
+    points["blue"] = _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(blue_column)), "Blue")
+    points["blue_count"] = _get_highest_entered_number_index(blue_column)
+    points["purple"] = _check_for_neg_hundred(_get_color_column_points(_get_highest_entered_number_index(purple_column)), "Purple")
+    points["purple_count"] = _get_highest_entered_number_index(purple_column)
+    points["vase"] = _get_vase_dice_column_points(_get_highest_scribbled_index(vase_column))
+    points["vase_count"] = _get_highest_scribbled_index(vase_column)
+    points["dice"] = _check_for_zero_dice(_get_vase_dice_column_points(_get_highest_scribbled_index(dice_column)))
+    points["dice_count"] = _get_highest_scribbled_index(dice_column)
+    points["bridges"] = _get_bridge_points(bridges)
 
-    return total_points
+
+    var total_points: int = 0
+    for key in points.keys():
+        if !key.match("*_count"):
+            total_points += points[key]
+
+    points["total"] = total_points
+    return points
