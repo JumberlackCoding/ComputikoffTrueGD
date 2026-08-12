@@ -1,3 +1,4 @@
+class_name ScribbleController
 extends Button
 
 @export_group("Scribble parameters")
@@ -37,7 +38,6 @@ var drawn_paths: Array = []
 func _ready() -> void:
     pressed.connect(_cycle_stage)
     call_deferred("_set_width")
-
 
 func _process(_delta: float) -> void:
     queue_redraw()
@@ -88,6 +88,10 @@ func is_circled() -> bool:
 
 func is_xed() -> bool:
     return true if stage == 3 else false
+
+func clear_scribbles() -> void:
+    stage = 0
+    drawn_paths.clear()
 
 func _generate_scribble() -> void:
     drawn_paths.clear()

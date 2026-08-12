@@ -1,3 +1,4 @@
+class_name TweenController
 extends Control
 
 var slide_tweens := {}
@@ -10,7 +11,7 @@ var z_indexes := {}
 signal universal_tween_finished(params: TweenParams)
 
 func _ready() -> void:
-    universal_tween_finished.connect(_cleanup_tween)
+    universal_tween_finished.connect(cleanup_tween)
 
 func _prepare_for_tween(target_node: Control, offset_pivot: Vector2 = Vector2.ZERO, offset_pivot_ratio: Vector2 = Vector2(0.5, 0.5), move_z_index_to_frontish: bool = true) -> void:
     if move_z_index_to_frontish:
@@ -48,7 +49,7 @@ func _prepare_for_color_tween(target_node: Control, color_start: Color = Color.W
     else:
         target_node.self_modulate = color_start
 
-func _cleanup_tween(params: TweenParams) -> void:
+func cleanup_tween(params: TweenParams) -> void:
     params.target_node.offset_transform_position = Vector2.ZERO
     params.target_node.offset_transform_position_ratio = Vector2.ZERO
     params.target_node.offset_transform_scale = Vector2.ONE
@@ -135,10 +136,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
     var color_tween: Tween
 
     if params.slide:
-        if not params.ignore_safety_check:
-            _tween_safety_check(params.target_node, "slide")
         if first_tween_in_set:
-            _prepare_for_slide_tween(params.target_node, params.slide.start, params.slide.by_ratio)
+            _tween_safety_check(params.target_node, "slide")
+        _prepare_for_slide_tween(params.target_node, params.slide.start, params.slide.by_ratio)
         slide_tween = params.target_node.create_tween()
         slide_tweens[params.target_node] = slide_tween
         slide_tween.set_trans(params.slide.transition_type)
@@ -147,10 +147,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         slide_tween.tween_property(params.target_node, slide_transform_property, params.slide.end, params.slide.duration).from(params.slide.start).set_delay(params.slide.delay)
 
     if params.rotate:
-        if not params.ignore_safety_check:
-            _tween_safety_check(params.target_node, "rotate")
         if first_tween_in_set:
-            _prepare_for_rotate_tween(params.target_node, params.rotate.start)
+            _tween_safety_check(params.target_node, "rotate")
+        _prepare_for_rotate_tween(params.target_node, params.rotate.start)
         rotate_tween = params.target_node.create_tween()
         rotate_tweens[params.target_node] = rotate_tween
         rotate_tween.set_trans(params.rotate.transition_type)
@@ -159,10 +158,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         rotate_tween.tween_property(params.target_node, rotate_transform_property, params.rotate.end, params.rotate.duration).from(params.rotate.start).set_delay(params.rotate.delay)
 
     if params.scale:
-        if not params.ignore_safety_check:
-            _tween_safety_check(params.target_node, "scale")
         if first_tween_in_set:
-            _prepare_for_scale_tween(params.target_node, params.scale.start)
+            _tween_safety_check(params.target_node, "scale")
+        _prepare_for_scale_tween(params.target_node, params.scale.start)
         scale_tween = params.target_node.create_tween()
         scale_tweens[params.target_node] = scale_tween
         scale_tween.set_trans(params.scale.transition_type)
@@ -171,10 +169,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         scale_tween.tween_property(params.target_node, scale_transform_property, params.scale.end, params.scale.duration).from(params.scale.start).set_delay(params.scale.delay)
 
     if params.phase:
-        if not params.ignore_safety_check:
-            _tween_safety_check(params.target_node, "phase")
         if first_tween_in_set:
-            _prepare_for_phase_tween(params.target_node, params.phase.start)
+            _tween_safety_check(params.target_node, "phase")
+        _prepare_for_phase_tween(params.target_node, params.phase.start)
         phase_tween = params.target_node.create_tween()
         phase_tweens[params.target_node] = phase_tween
         phase_tween.set_trans(params.phase.transition_type)
@@ -183,10 +180,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         phase_tween.tween_property(params.target_node, phase_transform_property, params.phase.end, params.phase.duration).from(params.phase.start).set_delay(params.phase.delay)
 
     if params.color:
-        if not params.ignore_safety_check:
-            _tween_safety_check(params.target_node, "color")
         if first_tween_in_set:
-            _prepare_for_color_tween(params.target_node, params.color.start)
+            _tween_safety_check(params.target_node, "color")
+        _prepare_for_color_tween(params.target_node, params.color.start)
         color_tween = params.target_node.create_tween()
         color_tweens[params.target_node] = color_tween
         color_tween.set_trans(params.color.transition_type)
@@ -199,10 +195,11 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         _signal_when_universal_tween_finish(dict, params)
     return dict
 
-func tween_text(target: Label, final_text: String, duration: float, from_text: String = "99") -> void:
+func tween_text(target: Label, final_text: String, duration: float, from_text: String = "99") -> Tween:
     var tween: Tween = target.create_tween()
     tween.set_trans(Tween.TRANS_LINEAR)
     tween.tween_property(target, "text", final_text, duration).from(from_text)
+    return tween
 
 func tween_text_size(target: Label, final_size: int, duration: float) -> void:
     var tween: Tween = target.create_tween()
@@ -223,6 +220,52 @@ func tween_override_stylebox_shadow(lbl: Label, shadow_color: Color, shadow_fina
         func(new_size):
             new_stylebox.shadow_size = new_size
             lbl.add_theme_stylebox_override("normal", new_stylebox), 0, shadow_final_size, duration)
+
+func tween_remove_override_stylebox_shadow(lbl: Label, shadow_start_size: int, duration: float) -> void:
+    var existing_stylebox := lbl.get_theme_stylebox("normal")
+    var tween = lbl.create_tween()
+    await tween.tween_method(
+        func(new_size):
+            existing_stylebox.shadow_size = new_size
+            lbl.add_theme_stylebox_override("normal", existing_stylebox), shadow_start_size, 0, duration).finished
+    lbl.remove_theme_stylebox_override("normal")
+
+func print_all_tweens() -> void:
+    print("========= All Tweens =========")
+    for key in slide_tweens:
+        var v = slide_tweens.get(key)
+        print("Slide key: ", key, " for tween: ", v)
+        if v and v.is_running():
+            await v.finished
+        # print(key, " slide finished")
+
+    for key in rotate_tweens:
+        var v = rotate_tweens.get(key)
+        print("Rotate key: ", key, " for tween: ", v)
+        if v and v.is_running():
+            await v.finished
+        # print(key, " rotate finished")
+
+    for key in scale_tweens:
+        var v = scale_tweens.get(key)
+        print("Scale key: ", key, " for tween: ", v)
+        if v and v.is_running():
+            await v.finished
+        print(key, " scale finished")
+
+    for key in phase_tweens:
+        var v = phase_tweens.get(key)
+        print("Phase key: ", key, " for tween: ", v)
+        if v and v.is_running():
+            await v.finished
+        # print(key, " phase finished")
+
+    for key in color_tweens:
+        var v = color_tweens.get(key)
+        print("Color key: ", key, " for tween: ", v)
+        if v and v.is_running():
+            await v.finished
+        # print(key, " color finished")
 
 func wait_for_all(tweens: Variant) -> void:
     if tweens is Array:

@@ -1,3 +1,4 @@
+class_name MainMenuManager
 extends MarginContainer
 
 @export var tween_controller: Control
@@ -50,12 +51,21 @@ extends MarginContainer
 @export var lc_calc_column_properties: TweenParams
 @export var lc_calc_final_score_properties: TweenParams
 
+@export_group("Clear Animation Properties", "lc_clear_")
+@export var lc_clear_top_level_props_begin: TweenParams
+@export var lc_clear_top_level_props_finish: TweenParams
+@export var lc_clear_individual_clearable_props_1: TweenParams
+@export var lc_clear_individual_clearable_props_2: TweenParams
+@export var lc_clear_individual_clearable_props_3: TweenParams
+@export var lc_clear_individual_clearable_props_4: TweenParams
+@export var lc_clear_individual_clearable_props_5: TweenParams
+
 @export_category("Other Properties")
 @export_group("Shared Nodes")
 @export var main_menu_container: Control
 @export var background_color_rect: ColorRect
 @export var main_menu_button: BaseButton
-@export var inputBlocker: Control
+@export var input_blocker: Button
 @export var instance_switch_ddl: Control
 
 enum Scorecard {FLIP7, LOST_CITIES, YAHTZEE}
@@ -104,6 +114,11 @@ func _ready() -> void:
     # Lost Cities
     lost_cities_calculate_button.pressed.connect(_on_lost_cities_calculate_pressed)
     lost_cities_clear_button.pressed.connect(_on_lost_cities_clear_pressed)
+
+    call_deferred("_hide_top_instance")
+
+func _hide_top_instance() -> void:
+    top_instance_container.visible = false
 
 func _nav_deeper_to(page: Page) -> void:
     page_history.append(current_page)
@@ -291,31 +306,251 @@ func _on_lost_cities_calculate_pressed() -> void:
     var fscore = %LcFinalScore as Label
     lc_calc_final_score_properties.target_node = fscore
     var screen_center := position + size / 2
-    var final_size := lc_calc_final_score_properties.target_node.global_position + (lc_calc_final_score_properties.target_node.size / 2) # * lc_calc_final_score_properties.scale.end)
+    var final_size := lc_calc_final_score_properties.target_node.global_position + (lc_calc_final_score_properties.target_node.size / 2)
     lc_calc_final_score_properties.slide.end = screen_center - final_size
 
     tween_controller.tween_override_stylebox_shadow(fscore, lc_calc_final_score_shadow_color, lc_calc_final_score_shadow_final_size, lc_calc_final_score_shadow_duration)
     await tween_controller.wait_for_all(tween_controller.universal_tween(lc_calc_final_score_properties, true, false))
-    tween_controller.tween_text(fscore, str(points["total"]), lc_calc_text_animation_duration * 3, "999")
+    await tween_controller.tween_text(fscore, str(points["total"]), lc_calc_text_animation_duration * 3, "999").finished
 
-    _try_unlock_ui()
+    set_input_blocker_connection(tween_controller.tween_remove_override_stylebox_shadow.bind(fscore, lc_calc_final_score_shadow_final_size, lc_calc_final_score_shadow_duration / 3))
+    set_input_blocker_connection(_clean_up_post_calculate, false)
+    # _try_unlock_ui()
     # print(points)
 
+func _clean_up_post_calculate() -> void:
+    await tween_controller.wait_for_all(tween_controller.universal_tween(_generate_tweenparams_reset(lc_calc_final_score_properties, false)))
+
+func _set_delay_and_stuff(old_params: Variant, new_params: Variant, universal_delay: float, longest_duration: float) -> Variant:
+    if (new_params.delay + universal_delay) < longest_duration:
+        new_params.delay = longest_duration
+    elif old_params and (new_params.delay + universal_delay) < old_params.duration:
+        new_params.delay = old_params.duration + universal_delay
+    else:
+        new_params.delay += universal_delay
+
+    if old_params:
+        new_params.start = old_params.end
+
+    return new_params
+
+## [param universal_delay] adds a flat wait time to all existing delays
+## [br]If [param set_delay_to_longest_prev_tween] is [code]true[/code], it will check every subtween of the [param old_params] and find the one with the longest duration.
+## Then it will go through each subtween of the [param new_params] and set the delay to that longest duration [b]if the [param new_params] subtween's delay is not already
+## longer than the longest duration[/b].
+## [br]If [param set_delay_to_longest_prev_tween] is [code]false[/code], it will compare each subtween's delay of [param new_params] against
+## the corresponding subtween's duration of [param old_params] and if that subtween of [param old_params] exists and has a longer duration than the delay of
+## [param new_params], it will set the delay of that subtween of [param new_params] to the duration of [param old_params][br]
+## Essentially, [param set_delay_to_longest_prev_tween] sets the delays of [param new_params] to mimic [code]await[/code] [method TweenController.wait_for_all] without
+## actually using [code]await[/code] during the execution of the tweens in [method MainMenuManager._execute_tween_set]
+func _prepare_sequential_tweens(old_params: TweenParams, new_params: TweenParams, universal_delay: float = 0, set_delay_to_longest_prev_tween: bool = false) -> TweenParams:
+    var longest_duration: float = -1
+    if set_delay_to_longest_prev_tween:
+        if old_params.slide:
+            if old_params.slide.duration > longest_duration:
+                longest_duration = old_params.slide.duration
+        if old_params.rotate:
+            if old_params.rotate.duration > longest_duration:
+                longest_duration = old_params.rotate.duration
+        if old_params.scale:
+            if old_params.scale.duration > longest_duration:
+                longest_duration = old_params.scale.duration
+        if old_params.phase:
+            if old_params.phase.duration > longest_duration:
+                longest_duration = old_params.phase.duration
+        if old_params.color:
+            if old_params.color.duration > longest_duration:
+                longest_duration = old_params.color.duration
+        longest_duration += universal_delay
+
+    if new_params.slide:
+        new_params.slide = _set_delay_and_stuff(old_params.slide, new_params.slide, universal_delay, longest_duration)
+    if new_params.rotate:
+        new_params.rotate = _set_delay_and_stuff(old_params.rotate, new_params.rotate, universal_delay, longest_duration)
+    if new_params.scale:
+        new_params.scale = _set_delay_and_stuff(old_params.scale, new_params.scale, universal_delay, longest_duration)
+    if new_params.phase:
+        new_params.phase = _set_delay_and_stuff(old_params.phase, new_params.phase, universal_delay, longest_duration)
+    if new_params.color:
+        new_params.color = _set_delay_and_stuff(old_params.color, new_params.color, universal_delay, longest_duration)
+
+    return new_params
+
+func _execute_tween_set(tween_set: Array[TweenParams]) -> Array[Tween]:
+    if tween_set.size() < 1:
+        push_error("Expected at least one tween in the tween_set", tween_set)
+
+    var tweens := []
+
+    if tween_set.size() > 1:
+        # Initial tween that executes the prepare for tweens
+        tweens.append(tween_controller.universal_tween(tween_set[0], true, false))
+        # await tween_controller.wait_for_all(tween_controller.universal_tween(tween_set[0], true, false))
+
+        # All the middle tweens that skip prepare and skip cleanup
+        for i in (tween_set.size() - 2):
+            print("I: ", i)
+            tweens.append(tween_controller.universal_tween(tween_set[i + 1], false, false))
+
+        # Final tween that skips prepare but executes cleanup
+        # tween_set[-1].debug()
+        tweens.append(tween_controller.universal_tween(tween_set[-1], false, true))
+    else:
+        tweens.append(tween_controller.universal_tween(tween_set[0], true, false))
+
+    return tweens
+
+func _perform_clear_animation_out() -> void:
+    var all_clearables := get_tree().get_nodes_in_group("LostCitiesClearable")
+
+    var tweens := []
+    var tparams := lc_clear_top_level_props_begin.duplicate(true)
+    tparams.target_node = top_instance_container
+    await tween_controller.wait_for_all(tween_controller.universal_tween(tparams, true, false))
+
+    for node in all_clearables:
+        var cparams_1: TweenParams
+        var cparams_2: TweenParams
+        var cparams_3: TweenParams
+        var cparams_4: TweenParams
+        var cparams_5: TweenParams
+        var tween_set: Array[TweenParams] = []
+
+        cparams_1 = lc_clear_individual_clearable_props_1.duplicate(true)
+        cparams_1.target_node = node
+
+        tween_set.append(cparams_1)
+
+        if lc_clear_individual_clearable_props_2:
+            cparams_2 = lc_clear_individual_clearable_props_2.duplicate(true)
+            cparams_2.target_node = node
+            cparams_2 = _prepare_sequential_tweens(cparams_1, cparams_2, 0, true)
+            tween_set.append(cparams_2)
+
+            if lc_clear_individual_clearable_props_3:
+                cparams_3 = lc_clear_individual_clearable_props_3.duplicate(true)
+                cparams_3.target_node = node
+                cparams_3 = _prepare_sequential_tweens(cparams_2, cparams_3, 0, true)
+                tween_set.append(cparams_3)
+
+                if lc_clear_individual_clearable_props_4:
+                    cparams_4 = lc_clear_individual_clearable_props_4.duplicate(true)
+                    cparams_4.target_node = node
+                    cparams_4 = _prepare_sequential_tweens(cparams_3, cparams_4, 0, true)
+                    tween_set.append(cparams_4)
+
+                    if lc_clear_individual_clearable_props_5:
+                        cparams_5 = lc_clear_individual_clearable_props_5.duplicate(true)
+                        cparams_5.target_node = node
+                        cparams_5 = _prepare_sequential_tweens(cparams_4, cparams_5, 0, true)
+                        tween_set.append(cparams_5)
+
+        tweens.append_array(_execute_tween_set(tween_set))
+    await tween_controller.wait_for_all(tweens)
+    await get_tree().create_timer(0.5).timeout
+
+func _perform_clear_animation_in() -> void:
+    var all_clearables := get_tree().get_nodes_in_group("LostCitiesClearable")
+
+    var tweens := []
+    var all_tween_sets: Array[TweenParams] = []
+    var tparams := lc_clear_top_level_props_finish.duplicate(true)
+    tparams.target_node = top_instance_container
+    await tween_controller.wait_for_all(tween_controller.universal_tween(tparams))
+
+    for node in all_clearables:
+        var cparams_1: TweenParams
+        var cparams_2: TweenParams
+        var cparams_3: TweenParams
+        var cparams_4: TweenParams
+        var cparams_5: TweenParams
+        var tween_set: Array[TweenParams] = []
+
+        cparams_1 = lc_clear_individual_clearable_props_1.duplicate(true)
+        cparams_1.target_node = node
+
+        tween_set.append(_generate_tweenparams_reset(cparams_1, false))
+
+        if lc_clear_individual_clearable_props_2:
+            cparams_2 = lc_clear_individual_clearable_props_2.duplicate(true)
+            cparams_2.target_node = node
+            cparams_2 = _prepare_sequential_tweens(cparams_1, cparams_2, 0, true)
+            tween_set.append(_generate_tweenparams_reset(cparams_2, false))
+
+            if lc_clear_individual_clearable_props_3:
+                cparams_3 = lc_clear_individual_clearable_props_3.duplicate(true)
+                cparams_3.target_node = node
+                cparams_3 = _prepare_sequential_tweens(cparams_2, cparams_3, 0, true)
+                tween_set.append(_generate_tweenparams_reset(cparams_3, false))
+
+                if lc_clear_individual_clearable_props_4:
+                    cparams_4 = lc_clear_individual_clearable_props_4.duplicate(true)
+                    cparams_4.target_node = node
+                    cparams_4 = _prepare_sequential_tweens(cparams_3, cparams_4, 0, true)
+                    tween_set.append(_generate_tweenparams_reset(cparams_4, false))
+
+                    if lc_clear_individual_clearable_props_5:
+                        cparams_5 = lc_clear_individual_clearable_props_5.duplicate(true)
+                        cparams_5.target_node = node
+                        cparams_5 = _prepare_sequential_tweens(cparams_4, cparams_5, 0, true)
+                        tween_set.append(_generate_tweenparams_reset(cparams_5, false))
+
+        all_tween_sets.append_array(tween_set)
+        tweens.append_array(_execute_tween_set(tween_set))
+    await tween_controller.wait_for_all(tweens)
+
+    for tween_params in all_tween_sets:
+        tween_controller.cleanup_tween(tween_params)
+
+    await get_tree().create_timer(0.5).timeout
+
+func _reset_offset_properties(nodes: Array) -> void:
+    for node: Control in nodes:
+        node.offset_transform_position = Vector2.ZERO
+        node.offset_transform_position_ratio = Vector2.ZERO
+        node.offset_transform_scale = Vector2.ONE
+        node.offset_transform_rotation = 0.0
+        node.offset_transform_pivot = Vector2.ZERO
+        node.offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+        node.offset_transform_enabled = false
+        node.modulate.a = 1.0
+        # node.self_modulate = Color.WHITE
+
 func _on_lost_cities_clear_pressed() -> void:
-    print("clear")
-    pass
+    _lock_ui()
+    await _perform_clear_animation_out()
+
+    var all_clearables := get_tree().get_nodes_in_group("LostCitiesClearable")
+
+    for con in all_clearables:
+        # Bridges, vases and dice
+        if con is ScribbleController:
+            con.clear_scribbles()
+        # Button which should have a label child
+        elif con.get_node_or_null("Label"):
+            con.get_node("Label").text = ""
+        # Score labels
+        elif con is Label:
+            con.text = ""
+        else:
+            push_error("Unexpected control attempting to be cleared", con)
+
+    await _perform_clear_animation_in()
+    _reset_offset_properties(all_clearables)
+    tween_controller.print_all_tweens()
+    _try_unlock_ui()
 
 func _ui_is_locked() -> bool:
-    return inputBlocker.visible
+    return input_blocker.visible
 
 func _lock_ui() -> void:
-    inputBlocker.visible = true
+    input_blocker.visible = true
 
 func _try_unlock_ui() -> void:
     var max_attempts = 2
     for attempt in max_attempts:
         if tween_controller.all_tweens_finished() and _ui_is_locked():
-            inputBlocker.visible = false
+            input_blocker.visible = false
             if attempt > 1:
                 print("_try_unlock_ui() succeeded")
             break
@@ -324,6 +559,12 @@ func _try_unlock_ui() -> void:
                 await get_tree().create_timer(0.1).timeout
                 print("_try_unlock_ui() failed")
             # await get_tree().process_frame
+
+func _reset_input_blocker() -> void:
+    input_blocker.visible = false
+
+    for con in input_blocker.pressed.get_connections():
+        input_blocker.pressed.disconnect(con.callable)
 
 func _scorecard_hide_everything() -> void:
     for con: Control in get_tree().get_nodes_in_group("ScorecardContainerInstance"):
@@ -339,52 +580,81 @@ func _prep_scorecard_instance(scorecard: Scorecard) -> void:
     data.get_logo().visible = true
     background_color_rect.color = data.background_color
 
-func _generate_tweenparams_reset(params: TweenParams) -> TweenParams:
+func _generate_tweenparams_reset(params: TweenParams, add_delay: bool = true) -> TweenParams:
     var new_params = TweenParams.new()
 
     new_params.target_node = params.target_node
     new_params.pivot = params.pivot
     new_params.pivot_ratio = params.pivot_ratio
     new_params.move_z_index_to_frontish = params.move_z_index_to_frontish
-    new_params.ignore_safety_check = params.ignore_safety_check
     new_params.visual_only = params.visual_only
 
     if params.slide:
         new_params.slide = SlideParams.new()
         new_params.slide.duration = params.slide.duration
-        new_params.slide.delay = params.slide.duration # offset it so it executes right after the previous one without needing to await
+        if add_delay:
+            new_params.slide.delay = params.slide.duration # offset it so it executes right after the previous one without needing to await
         new_params.slide.start = params.slide.end
         new_params.slide.by_ratio = params.slide.by_ratio
         new_params.slide.transition_type = params.slide.transition_type
-        new_params.slide.ease_type = params.slide.ease_type
+        if params.slide.ease_type == Tween.EASE_IN:
+            new_params.slide.ease_type = Tween.EASE_OUT
+        elif params.slide.ease_type == Tween.EASE_OUT:
+            new_params.slide.ease_type = Tween.EASE_IN
+        else:
+            new_params.slide.ease_type = params.slide.ease_type
     if params.rotate:
         new_params.rotate = RotateParams.new()
         new_params.rotate.duration = params.rotate.duration
-        new_params.rotate.delay = params.rotate.duration # offset it so it executes right after the previous one without needing to await
+        if add_delay:
+            new_params.rotate.delay = params.rotate.duration # offset it so it executes right after the previous one without needing to await
         new_params.rotate.start = params.rotate.end
         new_params.rotate.transition_type = params.rotate.transition_type
-        new_params.rotate.ease_type = params.rotate.ease_type
+        if params.rotate.ease_type == Tween.EASE_IN:
+            new_params.rotate.ease_type = Tween.EASE_OUT
+        elif params.rotate.ease_type == Tween.EASE_OUT:
+            new_params.rotate.ease_type = Tween.EASE_IN
+        else:
+            new_params.rotate.ease_type = params.rotate.ease_type
     if params.scale:
         new_params.scale = ScaleParams.new()
         new_params.scale.duration = params.scale.duration
-        new_params.scale.delay = params.scale.duration # offset it so it executes right after the previous one without needing to await
+        if add_delay:
+            new_params.scale.delay = params.scale.duration # offset it so it executes right after the previous one without needing to await
         new_params.scale.start = params.scale.end
         new_params.scale.transition_type = params.scale.transition_type
-        new_params.scale.ease_type = params.scale.ease_type
+        if params.scale.ease_type == Tween.EASE_IN:
+            new_params.scale.ease_type = Tween.EASE_OUT
+        elif params.scale.ease_type == Tween.EASE_OUT:
+            new_params.scale.ease_type = Tween.EASE_IN
+        else:
+            new_params.scale.ease_type = params.scale.ease_type
     if params.phase:
         new_params.phase = PhaseParams.new()
         new_params.phase.duration = params.phase.duration
-        new_params.phase.delay = params.phase.duration # offset it so it executes right after the previous one without needing to await
+        if add_delay:
+            new_params.phase.delay = params.phase.duration # offset it so it executes right after the previous one without needing to await
         new_params.phase.start = params.phase.end
         new_params.phase.transition_type = params.phase.transition_type
-        new_params.phase.ease_type = params.phase.ease_type
+        if params.phase.ease_type == Tween.EASE_IN:
+            new_params.phase.ease_type = Tween.EASE_OUT
+        elif params.phase.ease_type == Tween.EASE_OUT:
+            new_params.phase.ease_type = Tween.EASE_IN
+        else:
+            new_params.phase.ease_type = params.phase.ease_type
     if params.color:
         new_params.color = ColorParams.new()
         new_params.color.duration = params.color.duration
-        new_params.color.delay = params.color.duration # offset it so it executes right after the previous one without needing to await
+        if add_delay:
+            new_params.color.delay = params.color.duration # offset it so it executes right after the previous one without needing to await
         new_params.color.start = params.color.end
         new_params.color.transition_type = params.color.transition_type
-        new_params.color.ease_type = params.color.ease_type
+        if params.color.ease_type == Tween.EASE_IN:
+            new_params.color.ease_type = Tween.EASE_OUT
+        elif params.color.ease_type == Tween.EASE_OUT:
+            new_params.color.ease_type = Tween.EASE_IN
+        else:
+            new_params.color.ease_type = params.color.ease_type
 
     return new_params
 
@@ -502,3 +772,11 @@ func on_shake_num_button(target_node: Control) -> void:
     shake_params.slide.end = shake_final_end
     await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params))
     target_node.z_index = z
+
+func set_input_blocker_connection(connection: Callable, override: bool = true) -> void:
+    if override:
+        for con in input_blocker.pressed.get_connections():
+            input_blocker.pressed.disconnect(con.callable)
+        input_blocker.pressed.connect(_reset_input_blocker)
+
+    input_blocker.pressed.connect(connection)
