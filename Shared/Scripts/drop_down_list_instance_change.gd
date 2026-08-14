@@ -10,6 +10,7 @@ extends Control
 var switch_buttons: Array[Node]
 
 var tween: Tween
+var first_run: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,8 +30,8 @@ func _ready() -> void:
         lbl.text = data[card].scorecard_name
         lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
         lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-        lbl.theme_type_variation = "LostCities_SwitchInstanceChildLabel"
-        btn.theme_type_variation = "LostCities_SwitchInstanceChildButton"
+        lbl.theme_type_variation = "Scorecard_SwitchInstanceChildLabel"
+        btn.theme_type_variation = "Scorecard_SwitchInstanceChildButton"
         lbl.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
         btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -68,9 +69,18 @@ func _on_button_toggled(toggled_on: bool) -> void:
 
         tween = create_tween()
         tween.tween_property(collapse_control, "custom_minimum_size:y", collapsable_content.size.y, expand_time)
+
+        if not first_run:
+            z_index = 150
+            main_menu.set_input_blocker_connection(manually_toggle_button_off)
+            main_menu.lock_ui()
     else:
         tween = create_tween()
         tween.tween_property(collapse_control, "custom_minimum_size:y", 0, expand_time)
+        z_index = 0
 
 func manually_toggle_button_off() -> void:
     toggle_button.button_pressed = false
+
+    if first_run:
+        first_run = false

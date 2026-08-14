@@ -32,6 +32,10 @@ extends Button
 @export var stroke_width: float = 3.0
 @export var stroke_color: Color = Color.BLACK
 
+@onready var lost_cities: LostCities = %LostCities
+
+@onready var main_menu: MarginContainer = get_node("/root/MainMenu")
+
 var stage: int = 0 # 0 = none, 1 = scribble, 2 = circle, 3 = X
 var drawn_paths: Array = []
 
@@ -60,7 +64,9 @@ func _cycle_stage():
     match stage:
         0:
             # Clear
-            drawn_paths.clear()
+            clear_scribbles()
+            if name == "Vase":
+                clear_scribbles_lc_top_vase()
         1:
             # Scribble
             if scribbleable:
@@ -80,6 +86,10 @@ func _cycle_stage():
             else:
                 _cycle_stage()
 
+func scribble() -> void:
+    _generate_scribble()
+    stage = 1
+
 func is_scribbled() -> bool:
     return true if stage == 1 else false
 
@@ -92,6 +102,15 @@ func is_xed() -> bool:
 func clear_scribbles() -> void:
     stage = 0
     drawn_paths.clear()
+
+func clear_scribbles_lc_top_vase() -> void:
+    if name == "Vase":
+        var vase := lost_cities.get_cur_vase()
+        if vase:
+            main_menu.lock_ui()
+            await main_menu.animate_vase(vase)
+            vase.clear_scribbles()
+            main_menu.try_unlock_ui()
 
 func _generate_scribble() -> void:
     drawn_paths.clear()
@@ -115,6 +134,14 @@ func _generate_scribble() -> void:
                 drawn_paths.append(_draw_horizontal_scribble(rect))
         elif scribble_vertical:
                 drawn_paths.append(_draw_vertical_scribble(rect))
+
+    if name == "Vase":
+        var vase := lost_cities.get_next_vase()
+        if vase:
+            main_menu.lock_ui()
+            await main_menu.animate_vase(vase)
+            vase.scribble()
+            main_menu.try_unlock_ui()
 
 func _generate_circle() -> void:
     drawn_paths.clear()

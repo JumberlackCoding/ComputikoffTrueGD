@@ -60,7 +60,6 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xy8dj"]
 texture = ExtResource("1_3kgdn")
-modulate_color = Color(0.98039216, 0.7411765, 0.5137255, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kgdn"]
 bg_color = Color(1, 1, 1, 1)
@@ -73,9 +72,35 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu2c6"]
+bg_color = Color(0.38549232, 0.38549256, 0.3854924, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.15127608, 0.15127608, 0.15127608, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi7lq"]
+bg_color = Color(0.26459998, 0.38481334, 0.49, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.1254902, 0.19607843, 0.25882354, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.12503287, 0.19499037, 0.25774398, 1)
+shadow_size = 50
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ti8mq"]
 texture = ExtResource("2_qu2c6")
-modulate_color = Color(0.98039216, 0.7411765, 0.5137255, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w7el"]
 bg_color = Color(0.9691369, 0.9691369, 0.9691368, 1)
@@ -90,7 +115,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu2c6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nas6w"]
 bg_color = Color(0.35906908, 0.35906908, 0.35906908, 1)
 border_width_left = 6
 border_width_top = 6
@@ -168,7 +193,6 @@ modulate_color = Color(0.9811292, 0.74262935, 0.51482224, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3kgdn"]
 texture = ExtResource("1_jme7d")
-modulate_color = Color(0.98039216, 0.7411765, 0.5137255, 1)
 
 [resource]
 CategoryButtonLabel_MainMenu/base_type = &"Label"
@@ -246,6 +270,28 @@ LostCities_ColoredColumnsNumLabels/constants/shadow_outline_size = 0
 LostCities_ColoredColumnsNumLabels/font_sizes/font_size = 50
 LostCities_ColumnVBox/base_type = &"VBoxContainer"
 LostCities_ColumnVBox/constants/separation = 5
+LostCities_ConfirmationButton/base_type = &"Button"
+LostCities_ConfirmationButton/colors/font_color = Color(1, 1, 1, 1)
+LostCities_ConfirmationButton/colors/font_hover_color = Color(1, 1, 1, 1)
+LostCities_ConfirmationButton/colors/font_outline_color = Color(0, 0, 0, 1)
+LostCities_ConfirmationButton/colors/font_pressed_color = Color(1, 1, 1, 1)
+LostCities_ConfirmationButton/constants/outline_size = 15
+LostCities_ConfirmationButton/font_sizes/font_size = 40
+LostCities_ConfirmationButton/styles/hover = SubResource("StyleBoxFlat_qu2c6")
+LostCities_ConfirmationButton/styles/normal = SubResource("StyleBoxFlat_qu2c6")
+LostCities_ConfirmationButton/styles/pressed = SubResource("StyleBoxFlat_qu2c6")
+LostCities_ConfirmationLabel/base_type = &"Label"
+LostCities_ConfirmationLabel/colors/font_color = Color(1, 1, 1, 1)
+LostCities_ConfirmationLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+LostCities_ConfirmationLabel/constants/outline_size = 15
+LostCities_ConfirmationLabel/font_sizes/font_size = 50
+LostCities_ConfirmationMarginContainer/base_type = &"MarginContainer"
+LostCities_ConfirmationMarginContainer/constants/margin_bottom = 10
+LostCities_ConfirmationMarginContainer/constants/margin_left = 4
+LostCities_ConfirmationMarginContainer/constants/margin_right = 4
+LostCities_ConfirmationMarginContainer/constants/margin_top = 0
+LostCities_ConfirmationPanel/base_type = &"PanelContainer"
+LostCities_ConfirmationPanel/styles/panel = SubResource("StyleBoxFlat_gi7lq")
 LostCities_DiceColumnButtons/base_type = &"Button"
 LostCities_DiceColumnButtons/styles/hover = SubResource("StyleBoxTexture_ti8mq")
 LostCities_DiceColumnButtons/styles/normal = SubResource("StyleBoxTexture_ti8mq")
@@ -261,7 +307,7 @@ LostCities_MainButtons/styles/hover = SubResource("StyleBoxFlat_2w7el")
 LostCities_MainButtons/styles/normal = SubResource("StyleBoxFlat_2w7el")
 LostCities_MainButtons/styles/pressed = SubResource("StyleBoxFlat_2w7el")
 LostCities_NumberPickerButtons/base_type = &"Button"
-LostCities_NumberPickerButtons/styles/disabled = SubResource("StyleBoxFlat_qu2c6")
+LostCities_NumberPickerButtons/styles/disabled = SubResource("StyleBoxFlat_nas6w")
 LostCities_NumberPickerButtons/styles/hover = SubResource("StyleBoxFlat_fccoc")
 LostCities_NumberPickerButtons/styles/normal = SubResource("StyleBoxFlat_ti8mq")
 LostCities_NumberPickerButtons/styles/pressed = SubResource("StyleBoxFlat_v4as0")
@@ -288,15 +334,6 @@ LostCities_ScoreColumnLabels/colors/font_outline_color = Color(0, 0, 0, 1)
 LostCities_ScoreColumnLabels/constants/outline_size = 0
 LostCities_ScoreColumnLabels/font_sizes/font_size = 40
 LostCities_ScoreColumnLabels/styles/normal = SubResource("StyleBoxFlat_a8igl")
-LostCities_SwitchInstanceButton/base_type = &"Button"
-LostCities_SwitchInstanceChildButton/base_type = &"Button"
-LostCities_SwitchInstanceChildLabel/base_type = &"Label"
-LostCities_SwitchInstanceChildLabel/font_sizes/font_size = 20
-LostCities_SwitchInstanceLabel/base_type = &"Label"
-LostCities_SwitchInstanceLabel/colors/font_color = Color(1, 1, 1, 1)
-LostCities_SwitchInstanceLabel/colors/font_outline_color = Color(0.06879826, 0.06879829, 0.068798244, 1)
-LostCities_SwitchInstanceLabel/constants/outline_size = 5
-LostCities_SwitchInstanceLabel/font_sizes/font_size = 25
 LostCities_TopBabyVaseButton/base_type = &"Button"
 LostCities_TopBabyVaseButton/styles/hover = SubResource("StyleBoxTexture_iqkpf")
 LostCities_TopBabyVaseButton/styles/normal = SubResource("StyleBoxTexture_iqkpf")
@@ -320,6 +357,15 @@ MainTitleLabel/constants/shadow_offset_y = 5
 MainTitleLabel/constants/shadow_outline_size = 16
 MainTitleLabel/font_sizes/font_size = 82
 PanelContainer_MainMenu_Games/base_type = &"PanelContainer"
+Scorecard_SwitchInstanceButton/base_type = &"Button"
+Scorecard_SwitchInstanceChildButton/base_type = &"Button"
+Scorecard_SwitchInstanceChildLabel/base_type = &"Label"
+Scorecard_SwitchInstanceChildLabel/font_sizes/font_size = 20
+Scorecard_SwitchInstanceLabel/base_type = &"Label"
+Scorecard_SwitchInstanceLabel/colors/font_color = Color(1, 1, 1, 1)
+Scorecard_SwitchInstanceLabel/colors/font_outline_color = Color(0.06879826, 0.06879829, 0.068798244, 1)
+Scorecard_SwitchInstanceLabel/constants/outline_size = 5
+Scorecard_SwitchInstanceLabel/font_sizes/font_size = 25
 TopLevelGame_MarginContainer/base_type = &"MarginContainer"
 TopLevelGame_MarginContainer/constants/margin_bottom = 30
 TopLevelGame_MarginContainer/constants/margin_left = 30

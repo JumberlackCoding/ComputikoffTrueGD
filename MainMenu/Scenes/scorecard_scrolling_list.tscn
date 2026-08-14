@@ -121,26 +121,3 @@ offset_right = 150.0
 offset_bottom = 90.0
 scale_xy_separately = false
 scale_xy = 1.1
-
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=75517519]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="BackButton" type="TextureButton" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1143268781]
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 3
-texture_normal = ExtResource("8_jpa2a")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="HoverButtonScale" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/BackButton" unique_id=1884467207 instance=ExtResource("5_2dl6b")]
-layout_mode = 0
-scale_xy_separately = false
-scale_xy = 1.1
