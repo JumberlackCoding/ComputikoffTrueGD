@@ -6,16 +6,34 @@ var rotate_tweens := {}
 var scale_tweens := {}
 var phase_tweens := {}
 var color_tweens := {}
-var z_indexes := {}
+var base_z := {}
 
 signal universal_tween_finished(params: TweenParams)
 
 func _ready() -> void:
     universal_tween_finished.connect(cleanup_tween)
+    call_deferred("_set_base_z")
+
+func _set_base_z() -> void:
+    var all_nodes := _get_all_nodes()
+
+    for node in all_nodes:
+        if node is Control:
+            base_z[node] = node.z_index
+
+func _get_all_nodes() -> Array:
+    var all_nodes := []
+    _collect_node(get_node("/root/MainMenu"), all_nodes)
+    return all_nodes
+
+func _collect_node(node: Node, out: Array) -> void:
+    out.append(node)
+
+    for child in node.get_children():
+        _collect_node(child, out)
 
 func _prepare_for_tween(target_node: Control, offset_pivot: Vector2 = Vector2.ZERO, offset_pivot_ratio: Vector2 = Vector2(0.5, 0.5), move_z_index_to_frontish: bool = true) -> void:
     if move_z_index_to_frontish:
-        z_indexes[target_node] = target_node.z_index
         target_node.z_index += 10
 
     target_node.offset_transform_pivot = offset_pivot
@@ -55,10 +73,10 @@ func cleanup_tween(params: TweenParams) -> void:
     params.target_node.offset_transform_scale = Vector2.ONE
 
     if params.move_z_index_to_frontish:
-        if z_indexes.has(params.target_node):
-            params.target_node.z_index = z_indexes[params.target_node]
+        if base_z.has(params.target_node):
+            params.target_node.z_index = base_z[params.target_node]
         else:
-            push_error("Failed to retrieve z_index")
+            push_error("Failed to retrieve z_index", params.target_node)
 
     params.target_node.offset_transform_enabled = false
 
@@ -116,19 +134,16 @@ func _get_offset_color_property(target_node: Control) -> String:
     return "color" if target_node is ColorRect else "self_modulate"
 
 func _signal_when_universal_tween_finish(tweens: Dictionary, params: TweenParams) -> void:
-    for key in tweens.keys():
-        var v = tweens.get(key)
-
-        if v and v.is_running():
-            await v.finished
-
+    await wait_for_all(tweens)
     universal_tween_finished.emit(params)
 
-func universal_tween(params: TweenParams, first_tween_in_set := true, final_tween_in_set := true) -> Dictionary:
+func universal_tween(params: TweenParams, perform_prepare_and_safety_check := true, signal_cleanup_when_finished := true) -> Dictionary:
     if not params.target_node:
         push_error("TweenParams missing target_node")
 
-    _prepare_for_tween(params.target_node, params.pivot, params.pivot_ratio, params.move_z_index_to_frontish)
+    if perform_prepare_and_safety_check:
+        _prepare_for_tween(params.target_node, params.pivot, params.pivot_ratio, params.move_z_index_to_frontish)
+
     var slide_tween: Tween
     var rotate_tween: Tween
     var scale_tween: Tween
@@ -136,9 +151,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
     var color_tween: Tween
 
     if params.slide:
-        if first_tween_in_set:
+        if perform_prepare_and_safety_check:
             _tween_safety_check(params.target_node, "slide")
-        _prepare_for_slide_tween(params.target_node, params.slide.start, params.slide.by_ratio)
+            _prepare_for_slide_tween(params.target_node, params.slide.start, params.slide.by_ratio)
         slide_tween = params.target_node.create_tween()
         slide_tweens[params.target_node] = slide_tween
         slide_tween.set_trans(params.slide.transition_type)
@@ -147,9 +162,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         slide_tween.tween_property(params.target_node, slide_transform_property, params.slide.end, params.slide.duration).from(params.slide.start).set_delay(params.slide.delay)
 
     if params.rotate:
-        if first_tween_in_set:
+        if perform_prepare_and_safety_check:
             _tween_safety_check(params.target_node, "rotate")
-        _prepare_for_rotate_tween(params.target_node, params.rotate.start)
+            _prepare_for_rotate_tween(params.target_node, params.rotate.start)
         rotate_tween = params.target_node.create_tween()
         rotate_tweens[params.target_node] = rotate_tween
         rotate_tween.set_trans(params.rotate.transition_type)
@@ -158,9 +173,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         rotate_tween.tween_property(params.target_node, rotate_transform_property, params.rotate.end, params.rotate.duration).from(params.rotate.start).set_delay(params.rotate.delay)
 
     if params.scale:
-        if first_tween_in_set:
+        if perform_prepare_and_safety_check:
             _tween_safety_check(params.target_node, "scale")
-        _prepare_for_scale_tween(params.target_node, params.scale.start)
+            _prepare_for_scale_tween(params.target_node, params.scale.start)
         scale_tween = params.target_node.create_tween()
         scale_tweens[params.target_node] = scale_tween
         scale_tween.set_trans(params.scale.transition_type)
@@ -169,9 +184,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         scale_tween.tween_property(params.target_node, scale_transform_property, params.scale.end, params.scale.duration).from(params.scale.start).set_delay(params.scale.delay)
 
     if params.phase:
-        if first_tween_in_set:
+        if perform_prepare_and_safety_check:
             _tween_safety_check(params.target_node, "phase")
-        _prepare_for_phase_tween(params.target_node, params.phase.start)
+            _prepare_for_phase_tween(params.target_node, params.phase.start)
         phase_tween = params.target_node.create_tween()
         phase_tweens[params.target_node] = phase_tween
         phase_tween.set_trans(params.phase.transition_type)
@@ -180,9 +195,9 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         phase_tween.tween_property(params.target_node, phase_transform_property, params.phase.end, params.phase.duration).from(params.phase.start).set_delay(params.phase.delay)
 
     if params.color:
-        if first_tween_in_set:
+        if perform_prepare_and_safety_check:
             _tween_safety_check(params.target_node, "color")
-        _prepare_for_color_tween(params.target_node, params.color.start)
+            _prepare_for_color_tween(params.target_node, params.color.start)
         color_tween = params.target_node.create_tween()
         color_tweens[params.target_node] = color_tween
         color_tween.set_trans(params.color.transition_type)
@@ -191,7 +206,7 @@ func universal_tween(params: TweenParams, first_tween_in_set := true, final_twee
         color_tween.tween_property(params.target_node, color_transform_property, params.color.end, params.color.duration).from(params.color.start).set_delay(params.color.delay)
 
     var dict := {"slide": slide_tween, "rotate": rotate_tween, "scale": scale_tween, "phase": phase_tween, "color": color_tween}
-    if final_tween_in_set:
+    if signal_cleanup_when_finished:
         _signal_when_universal_tween_finish(dict, params)
     return dict
 

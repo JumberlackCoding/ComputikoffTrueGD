@@ -172,14 +172,6 @@ func _animate_higher(current: Page, previous_page: Page) -> void:
     await tween_controller.wait_for_all(tweens)
     try_unlock_ui()
 
-# func _on_scorecard_button_pressed() -> void:
-#     # This logically steps down in the UI
-#     _nav_deeper_to(Page.SCORECARD_SELECT)
-
-# func _on_scorecard_grid_back_button_pressed() -> void:
-#     # This logically steps up in the UI
-#     _nav_back()
-
 func _on_flip7_grid_button_pressed() -> void:
     _prep_scorecard_instance(Scorecard.FLIP7)
     # This steps down in the UI
@@ -308,7 +300,7 @@ func animate_lost_cities_calculate(points: Dictionary) -> void:
     set_input_blocker_connection(_clean_up_post_calculate, false)
 
 func _clean_up_post_calculate() -> void:
-    await tween_controller.wait_for_all(tween_controller.universal_tween(_generate_tweenparams_reset(lc_calc_final_score_properties, false)))
+    await tween_controller.wait_for_all(tween_controller.universal_tween(_generate_tweenparams_reset(lc_calc_final_score_properties)))
 
 func _set_delay_and_stuff(old_params: Variant, new_params: Variant, universal_delay: float, longest_duration: float) -> Variant:
     if (new_params.delay + universal_delay) < longest_duration:
@@ -535,19 +527,16 @@ func _ui_is_locked() -> bool:
 func lock_ui() -> void:
     input_blocker.visible = true
 
-func try_unlock_ui() -> void:
-    var max_attempts = 2
-    for attempt in max_attempts:
-        if tween_controller.all_tweens_finished() and _ui_is_locked():
-            input_blocker.visible = false
-            if attempt > 1:
-                print("try_unlock_ui() succeeded")
-            break
-        elif _ui_is_locked():
-            if attempt < max_attempts:
-                await get_tree().create_timer(0.1).timeout
-                print("try_unlock_ui() failed")
-            # await get_tree().process_frame
+func try_unlock_ui(attempts: int = 0) -> void:
+    if tween_controller.all_tweens_finished() and _ui_is_locked():
+        input_blocker.visible = false
+        if attempts > 0:
+            print("UI unlocked on attempt: ", attempts + 1, " (attempts = ", attempts, ")")
+    elif _ui_is_locked():
+        await get_tree().create_timer(0.3).timeout
+        if attempts > 0:
+            print("Tweens not finished, UI still locked. Attempt: ", attempts)
+        try_unlock_ui(attempts + 1)
 
 func _reset_input_blocker() -> void:
     input_blocker.visible = false
@@ -754,20 +743,17 @@ func on_shake_num_button(target_node: Control) -> void:
     var shake_params := lc_shake_tween_parameters.duplicate(true)
     shake_params.target_node = target_node
     shake_params.slide.duration = shake_params.slide.duration / lc_shake_repetitions
-    # Must store z_index so we can set it back to its original value since we lose it by doing multiple tweens between cleaning up
-    var z = target_node.z_index
-    await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params))
+    await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params, true, false))
     var shake_final_end: Vector2 = shake_params.slide.start
 
     for rep in (lc_shake_repetitions - 2):
         shake_params.slide.start = shake_params.slide.end
         shake_params.slide.end = - shake_params.slide.end
-        await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params))
+        await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params, false, false))
 
     shake_params.slide.start = target_node.offset_transform_position_ratio if shake_params.slide.by_ratio else target_node.offset_transform_position
     shake_params.slide.end = shake_final_end
-    await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params))
-    target_node.z_index = z
+    await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params, false, true))
 
 func set_input_blocker_connection(connection: Callable, override: bool = true) -> void:
     if override:
