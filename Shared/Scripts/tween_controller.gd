@@ -23,7 +23,7 @@ func _set_base_z() -> void:
 
 func _get_all_nodes() -> Array:
     var all_nodes := []
-    _collect_node(get_node("/root/MainMenu"), all_nodes)
+    _collect_node(get_node("/root/Main"), all_nodes)
     return all_nodes
 
 func _collect_node(node: Node, out: Array) -> void:

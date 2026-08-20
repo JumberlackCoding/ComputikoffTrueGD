@@ -9,8 +9,7 @@ extends MarginContainer
 enum color {RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, VASE_DICE_BRIDGE}
 @export var confirmation_box: Control
 
-@onready var main_menu: MarginContainer = get_tree().current_scene
-
+@onready var main_manager: MarginContainer = get_tree().current_scene
 
 const COLOR_COLUMN_POINTS = [-20, -15, -10, 5, 10, 15, 30, 35, 50, 0]
 const VASE_DICE_COLUMN_POINTS = [-40, -30, -20, 10, 20, 30, 60, 70, 100, 0]
@@ -122,10 +121,10 @@ func _show_number_selector(target: Control, contains_vase: bool = false, contain
                 # print("Next Num: ", next_number)
 
     if below_button_number == 10 or previous_number > 0:
-        main_menu.on_show_lc_num_selector(number_selector, target)
+        main_manager.on_show_lc_num_selector(number_selector, target)
         number_selector.prepare_number_selector(target, previous_number, next_number, contains_vase, contains_arrow)
     else:
-        main_menu.on_shake_num_button(target)
+        main_manager.on_shake_num_button(target)
 
 func _get_number(button: Button) -> int:
     return button.get_node("Label").text.to_int()
@@ -238,10 +237,10 @@ func _calculate() -> void:
 
     points["total"] = total_points
 
-    main_menu.animate_lost_cities_calculate(points)
+    main_manager.animate_lost_cities_calculate(points)
 
 func _clear() -> void:
-    confirmation_box.set_confirmation_box_confirm_action(main_menu.animate_lost_cities_clear)
+    confirmation_box.set_confirmation_box_confirm_action(main_manager.animate_lost_cities_clear)
     confirmation_box.show_confirmation_box()
 
 func get_next_button(colored_button: Button) -> Button:

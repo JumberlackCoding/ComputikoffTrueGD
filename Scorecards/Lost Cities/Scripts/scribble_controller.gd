@@ -34,7 +34,7 @@ extends Button
 
 @onready var lost_cities: LostCities = %LostCities
 
-@onready var main_menu: MarginContainer = get_node("/root/MainMenu")
+@onready var main_manager: MarginContainer = get_node("/root/Main")
 
 var stage: int = 0 # 0 = none, 1 = scribble, 2 = circle, 3 = X
 var drawn_paths: Array = []
@@ -107,10 +107,10 @@ func clear_scribbles_lc_top_vase() -> void:
     if name == "Vase":
         var vase := lost_cities.get_cur_vase()
         if vase:
-            main_menu.lock_ui()
-            await main_menu.animate_vase(vase)
+            main_manager.lock_ui()
+            await main_manager.animate_vase(vase)
             vase.clear_scribbles()
-            main_menu.try_unlock_ui()
+            main_manager.try_unlock_ui()
 
 func _generate_scribble() -> void:
     drawn_paths.clear()
@@ -138,10 +138,10 @@ func _generate_scribble() -> void:
     if name == "Vase":
         var vase := lost_cities.get_next_vase()
         if vase:
-            main_menu.lock_ui()
-            await main_menu.animate_vase(vase)
+            main_manager.lock_ui()
+            await main_manager.animate_vase(vase)
             vase.scribble()
-            main_menu.try_unlock_ui()
+            main_manager.try_unlock_ui()
 
 func _generate_circle() -> void:
     drawn_paths.clear()

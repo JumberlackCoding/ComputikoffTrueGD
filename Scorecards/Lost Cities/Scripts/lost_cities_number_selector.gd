@@ -5,7 +5,7 @@ extends Control
 @onready var lost_cities: LostCities = %LostCities
 @onready var button_container: GridContainer = $PanelContainer/MarginContainer/GridContainer
 @onready var go_away_button: Button = $GoAwayButton
-@onready var main_menu: MarginContainer = get_node("/root/MainMenu")
+@onready var main_manager: MarginContainer = get_node("/root/Main")
 
 var colored_button_pressed: Button
 var space_contains_vase: bool = false
@@ -37,53 +37,52 @@ func _number_selected(button_selected: Control):
             var prev_text: String = colored_label.text
             colored_label.text = selection_label.text
             await _go_away()
-            main_menu.lock_ui()
+            main_manager.lock_ui()
             if space_contains_vase:
                 if prev_text.is_empty():
                     var vase := lost_cities.get_next_vase()
                     if vase:
-                        await main_menu.animate_vase(vase)
+                        await main_manager.animate_vase(vase)
                         vase.scribble()
             if space_contains_arrow:
                 var next_button := lost_cities.get_next_button(colored_button_pressed)
                 var lbl := next_button.get_node("Label") as Label
                 if lbl:
                     # await get_tree().create_timer(delay_between_arrow_anims).timeout
-                    await main_menu.animate_arrow_up(colored_button_pressed)
+                    await main_manager.animate_arrow_up(colored_button_pressed)
                     lbl.text = selection_label.text
                 if next_button.has_node("Arrow"):
                     var next_next_button := lost_cities.get_next_button(next_button)
                     var lbl2 := next_next_button.get_node("Label") as Label
                     if lbl2:
                         # await get_tree().create_timer(delay_between_arrow_anims).timeout
-                        await main_menu.animate_arrow_up(next_button)
+                        await main_manager.animate_arrow_up(next_button)
                         lbl2.text = selection_label.text
             else:
                 var prev_button := lost_cities.get_prev_button(colored_button_pressed)
                 if prev_button and prev_button.has_node("Arrow"):
-                    await main_menu.animate_arrow_down(colored_button_pressed)
+                    await main_manager.animate_arrow_down(colored_button_pressed)
                     var lbl3 := prev_button.get_node("Label") as Label
                     if lbl3:
                         lbl3.text = selection_label.text
                     var prev_prev_button := lost_cities.get_prev_button(prev_button)
                     if prev_prev_button.has_node("Arrow"):
-                        await main_menu.animate_arrow_down(prev_button)
+                        await main_manager.animate_arrow_down(prev_button)
                         var lbl4 := prev_prev_button.get_node("Label") as Label
                         if lbl4:
                             lbl4.text = selection_label.text
-            main_menu.try_unlock_ui()
+            main_manager.try_unlock_ui()
     elif button_selected.name.match("Clear"):
         if colored_label:
             var prev_text: String = colored_label.text
             colored_label.text = ""
             await _go_away()
-            main_menu.lock_ui()
+            main_manager.lock_ui()
             if not prev_text.is_empty() and colored_button_pressed.has_node("Vase"):
                 var vase := lost_cities.get_cur_vase()
                 if vase:
-                    if vase:
-                        await main_menu.animate_vase(vase)
-                        vase.clear_scribbles()
+                    await main_manager.animate_vase(vase)
+                    vase.clear_scribbles()
             var clearing: bool = true
             var next_button := colored_button_pressed
             var cur_button := colored_button_pressed
@@ -93,35 +92,36 @@ func _number_selected(button_selected: Control):
                 if next_button:
                     var lbl := next_button.get_node("Label") as Label
                     if lbl and not lbl.text.is_empty():
-                        await main_menu.animate_arrow_up(cur_button)
+                        await main_manager.animate_arrow_up(cur_button)
                         lbl.text = ""
                         if next_button.has_node("Vase"):
                             var vase := lost_cities.get_cur_vase()
                             if vase:
-                                await main_menu.animate_vase(vase)
+                                await main_manager.animate_vase(vase)
                                 vase.clear_scribbles()
                 else:
                     clearing = false
             var prev_button := lost_cities.get_prev_button(colored_button_pressed)
-            if prev_button.has_node("Arrow"):
-                await main_menu.animate_arrow_down(colored_button_pressed)
-                var lbl3 := prev_button.get_node("Label") as Label
-                if lbl3:
-                    lbl3.text = ""
-                var prev_prev_button := lost_cities.get_prev_button(prev_button)
-                if prev_prev_button.has_node("Arrow"):
-                    await main_menu.animate_arrow_down(prev_button)
-                    var lbl4 := prev_prev_button.get_node("Label") as Label
-                    if lbl4:
-                        lbl4.text = ""
-            main_menu.try_unlock_ui()
+            if prev_button:
+                if prev_button.has_node("Arrow"):
+                    await main_manager.animate_arrow_down(colored_button_pressed)
+                    var lbl3 := prev_button.get_node("Label") as Label
+                    if lbl3:
+                        lbl3.text = ""
+                    var prev_prev_button := lost_cities.get_prev_button(prev_button)
+                    if prev_prev_button.has_node("Arrow"):
+                        await main_manager.animate_arrow_down(prev_button)
+                        var lbl4 := prev_prev_button.get_node("Label") as Label
+                        if lbl4:
+                            lbl4.text = ""
+            main_manager.try_unlock_ui()
 
     await _go_away()
     _clear_colored_button()
 
 func _go_away() -> void:
     if visible:
-        await main_menu.on_hide_lc_num_selector(self, colored_button_pressed)
+        await main_manager.on_hide_lc_num_selector(self, colored_button_pressed)
 
 func _clear_colored_button() -> void:
     colored_button_pressed = null
