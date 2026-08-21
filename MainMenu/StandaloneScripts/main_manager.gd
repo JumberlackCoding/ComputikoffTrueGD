@@ -1,8 +1,6 @@
 class_name MainMenuManager
 extends MarginContainer
 
-@export var tween_controller: Control
-
 @export_category("Main Menu Tween Properties")
 @export_group("Main Menu Category Buttons", "cat_buts_")
 # @export var cat_buts_main_category_container: Control
@@ -91,6 +89,8 @@ var page_history: Array[Page] = []
 @export var main_menu_background_color: Color = Color("c1e0fc")
 
 # Setup all the node references
+@onready var tween_controller: Control = TweenController.new()
+
 @onready var games_grid_back_button: BaseButton
 @onready var scorecards_flip7_button: BaseButton = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/Flip7Container/Flip7Button")
 @onready var scorecards_lost_cities_button: BaseButton = main_scorecard_list_container.get_node("ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer/LostCitiesContainer/LostCitiesButton")
@@ -134,7 +134,7 @@ func _prep_main_menu() -> void:
     color_params.target_node = background_color_rect
     color_params.color.start = background_color_rect.color
     color_params.color.end = main_menu_background_color
-    await tween_controller.wait_for_all(tween_controller.universal_tween(color_params))
+    await tween_controller.universal_tween(color_params).finished
     try_unlock_ui()
 
 func _nav_to_main_menu() -> void:
@@ -562,7 +562,7 @@ func _prep_scorecard_instance(scorecard: Scorecard) -> void:
     color_params.target_node = background_color_rect
     color_params.color.start = background_color_rect.color
     color_params.color.end = data.background_color
-    await tween_controller.wait_for_all(tween_controller.universal_tween(color_params))
+    await tween_controller.universal_tween(color_params).finished
     try_unlock_ui()
 
 func on_switch_scorecard_instance(target_scorecard: Scorecard) -> void:
@@ -665,17 +665,17 @@ func on_shake_num_button(target_node: Control) -> void:
     var shake_params := lc_shake_tween_parameters.duplicate(true)
     shake_params.target_node = target_node
     shake_params.slide.duration = shake_params.slide.duration / lc_shake_repetitions
-    await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params, true, false))
+    await tween_controller.universal_tween(shake_params, true, false).finished
     var shake_final_end: Vector2 = shake_params.slide.start
 
     for rep in (lc_shake_repetitions - 2):
         shake_params.slide.start = shake_params.slide.end
         shake_params.slide.end = - shake_params.slide.end
-        await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params, false, false))
+        await tween_controller.universal_tween(shake_params, false, false).finished
 
     shake_params.slide.start = target_node.offset_transform_position_ratio if shake_params.slide.by_ratio else target_node.offset_transform_position
     shake_params.slide.end = shake_final_end
-    await tween_controller.wait_for_all(tween_controller.universal_tween(shake_params, false, true))
+    await tween_controller.universal_tween(shake_params, false, true).finished
 
 func set_input_blocker_connection(connection: Callable, override: bool = true) -> void:
     if override:
@@ -690,8 +690,8 @@ func animate_arrow_up(con: Control) -> void:
     var params := lc_arrow_animation_properties.duplicate(true)
     params.target_node = con
 
-    await tween_controller.wait_for_all(tween_controller.universal_tween(params))
-    await tween_controller.wait_for_all(tween_controller.universal_tween(params.reset(false)))
+    await tween_controller.universal_tween(params).finished
+    await tween_controller.universal_tween(params.reset(false)).finished
     # try_unlock_ui()
 
 func animate_arrow_down(con: Control) -> void:
@@ -700,8 +700,8 @@ func animate_arrow_down(con: Control) -> void:
     params.target_node = con
     params.slide.end *= -1
 
-    await tween_controller.wait_for_all(tween_controller.universal_tween(params))
-    await tween_controller.wait_for_all(tween_controller.universal_tween(params.reset(false)))
+    await tween_controller.universal_tween(params).finished
+    await tween_controller.universal_tween(params.reset(false)).finished
     # try_unlock_ui()
 
 func animate_vase(vase: Control) -> void:
@@ -709,18 +709,18 @@ func animate_vase(vase: Control) -> void:
     var params := lc_vase_animation_properties.duplicate(true)
     params.target_node = vase
 
-    await tween_controller.wait_for_all(tween_controller.universal_tween(params))
-    await tween_controller.wait_for_all(tween_controller.universal_tween(params.reset(false)))
+    await tween_controller.universal_tween(params).finished
+    await tween_controller.universal_tween(params.reset(false)).finished
     # try_unlock_ui()
 
-func open_lc_confirmbox() -> void:
-    var params := lc_confirmbox_open_properties.duplicate(true)
-    params.target_node = lc_confirmbox_confirmation_box
+# func open_lc_confirmbox() -> void:
+#     var params := lc_confirmbox_open_properties.duplicate(true)
+#     params.target_node = lc_confirmbox_confirmation_box
 
-    await tween_controller.wait_for_all(tween_controller.universal_tween(params))
+#     await tween_controller.universal_tween(params).finished
 
-func close_lc_confirmbox() -> void:
-    var params := lc_confirmbox_close_properties.duplicate(true)
-    params.target_node = lc_confirmbox_confirmation_box
+# func close_lc_confirmbox() -> void:
+#     var params := lc_confirmbox_close_properties.duplicate(true)
+#     params.target_node = lc_confirmbox_confirmation_box
 
-    await tween_controller.wait_for_all(tween_controller.universal_tween(params))
+#     await tween_controller.universal_tween(params).finished

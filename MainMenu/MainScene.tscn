@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://8qov178sl2e6" path="res://Shared/Scripts/tween_params_color.gd" id="5_a8igl"]
 [ext_resource type="Texture2D" uid="uid://c7crho3rkjibp" path="res://Scorecards/Yahtzee/Textures/yahtzee_banner.png" id="5_o1r2d"]
 [ext_resource type="Script" uid="uid://c8usgae3nvmi7" path="res://Shared/Scripts/tween_params_rotate.gd" id="7_2w7el"]
-[ext_resource type="Script" uid="uid://dlkh1w8uf43jt" path="res://Shared/Scripts/tween_controller.gd" id="9_6fn4h"]
 [ext_resource type="Texture2D" uid="uid://ylr0v7qm18wm" path="res://Scorecards/Flip7/Textures/flip7_banner_shrunk.png" id="10_5ai8d"]
 [ext_resource type="Texture2D" uid="uid://cgexj6g3tivig" path="res://Scorecards/Lost Cities/Textures/ComputikoffLogoBackground.jpg" id="11_o2rkg"]
 [ext_resource type="Script" uid="uid://bi00d0oqae352" path="res://Shared/Scripts/drop_down_list_instance_change.gd" id="11_un1er"]
@@ -35,6 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://c2dcg244t1edv" path="res://Scorecards/Lost Cities/Textures/PlusSymbol.png" id="25_6y3ok"]
 [ext_resource type="Texture2D" uid="uid://bpsfleyg0suxu" path="res://Scorecards/Lost Cities/Textures/UpArrow.png" id="25_30ei6"]
 [ext_resource type="Texture2D" uid="uid://dfotqbn356thn" path="res://Scorecards/Lost Cities/Textures/StarSymbol.png" id="26_im68p"]
+[ext_resource type="Script" uid="uid://btfnjen1l5tk8" path="res://Scorecards/Lost Cities/Scripts/button_orchestrator.gd" id="26_nydkn"]
+[ext_resource type="Script" uid="uid://bl7uq0puhrxym" path="res://Scorecards/Lost Cities/Scripts/tween_orchestrator.gd" id="27_tte43"]
 [ext_resource type="Texture2D" uid="uid://16h3i1ertuj1" path="res://Scorecards/Lost Cities/Textures/VaseOnTop.png" id="32_pobwv"]
 [ext_resource type="Texture2D" uid="uid://8yxekqplkimu" path="res://Scorecards/Lost Cities/Textures/Dice.png" id="33_8wrqy"]
 [ext_resource type="Texture2D" uid="uid://cvubhrhggd601" path="res://Scorecards/Lost Cities/Textures/BridgeSymbol.png" id="34_0xw5w"]
@@ -466,7 +467,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 shadow_size = 17
 
-[node name="Main" type="MarginContainer" unique_id=1579489465 node_paths=PackedStringArray("tween_controller", "main_scorecard_list_container", "top_instance_container", "lc_confirmbox_confirmation_box", "main_menu_container", "background_color_rect", "main_menu_button", "input_blocker", "instance_switch_ddl", "scorecard_data", "pages")]
+[node name="Main" type="MarginContainer" unique_id=1579489465 node_paths=PackedStringArray("main_scorecard_list_container", "top_instance_container", "lc_confirmbox_confirmation_box", "main_menu_container", "background_color_rect", "main_menu_button", "input_blocker", "instance_switch_ddl", "scorecard_data", "pages")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -476,7 +477,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
 script = ExtResource("1_vlxbm")
-tween_controller = NodePath("TweenController")
 cat_buts_transition_higher_out_props = SubResource("Resource_lr37w")
 cat_buts_transition_deeper_in_props = SubResource("Resource_re0uk")
 cat_buts_transition_higher_in_props = SubResource("Resource_hhhu8")
@@ -1075,6 +1075,14 @@ vase_texture = ExtResource("24_gi7lq")
 arrow_texture = ExtResource("25_30ei6")
 vase_arrow_alpha = 0.75
 confirmation_box = NodePath("CanvasLayer/ConfirmationBox")
+
+[node name="ButtonOrchestrator" type="Control" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=997218284]
+layout_mode = 2
+script = ExtResource("26_nydkn")
+
+[node name="TweenOrchestrator" type="Control" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=1570393199]
+layout_mode = 2
+script = ExtResource("27_tte43")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=1846048456]
 layout_mode = 2
@@ -4163,12 +4171,6 @@ text = "Confirm"
 [node name="Yahtzee" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=1544048110 groups=["ScorecardContainerInstance"]]
 visible = false
 layout_mode = 2
-
-[node name="TweenController" type="Control" parent="." unique_id=159117966]
-visible = false
-layout_mode = 2
-mouse_filter = 2
-script = ExtResource("9_6fn4h")
 
 [node name="LostCitiesNumberSelector" type="Control" parent="." unique_id=10825265]
 visible = false
