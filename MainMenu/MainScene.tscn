@@ -412,6 +412,281 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ml3xc"]
 texture = ExtResource("14_t6dt3")
 
+[sub_resource type="Resource" id="Resource_jfmsd"]
+script = ExtResource("3_g0flb")
+duration = 0.5
+end = Vector2(0.15, 0)
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_72wwy"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_jfmsd")
+move_z_index_to_frontish = true
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_7nxrw"]
+script = ExtResource("2_yhftf")
+duration = 0.25
+delay = 0.25
+start = 0.0
+transition_type = 8
+ease_type = 1
+metadata/_custom_type_script = "uid://cpxo1am25deec"
+
+[sub_resource type="Resource" id="Resource_tw382"]
+script = ExtResource("2_adqwt")
+phase = SubResource("Resource_7nxrw")
+move_z_index_to_frontish = true
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_hcit3"]
+script = ExtResource("2_yhftf")
+duration = 0.4
+end = 0.0
+transition_type = 8
+ease_type = 0
+metadata/_custom_type_script = "uid://cpxo1am25deec"
+
+[sub_resource type="Resource" id="Resource_ob7xw"]
+script = ExtResource("3_a8igl")
+duration = 0.3
+metadata/_custom_type_script = "uid://db7cfelcmki2x"
+
+[sub_resource type="Resource" id="Resource_cc72q"]
+script = ExtResource("3_g0flb")
+duration = 0.3
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_h31el"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_cc72q")
+scale = SubResource("Resource_ob7xw")
+phase = SubResource("Resource_hcit3")
+move_z_index_to_frontish = true
+final_alpha = 0.0
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_s58rr"]
+script = ExtResource("2_yhftf")
+duration = 0.3
+end = 0.0
+metadata/_custom_type_script = "uid://cpxo1am25deec"
+
+[sub_resource type="Resource" id="Resource_d6ygq"]
+script = ExtResource("2_adqwt")
+phase = SubResource("Resource_s58rr")
+move_z_index_to_frontish = true
+final_visibility = false
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_01i1b"]
+script = ExtResource("2_yhftf")
+duration = 0.3
+delay = 0.1
+start = 0.0
+transition_type = 1
+ease_type = 1
+metadata/_custom_type_script = "uid://cpxo1am25deec"
+
+[sub_resource type="Resource" id="Resource_68b2h"]
+script = ExtResource("3_a8igl")
+duration = 0.3
+delay = 0.2
+metadata/_custom_type_script = "uid://db7cfelcmki2x"
+
+[sub_resource type="Resource" id="Resource_dtkcl"]
+script = ExtResource("3_g0flb")
+duration = 0.3
+delay = 0.2
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_nqvuk"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_dtkcl")
+scale = SubResource("Resource_68b2h")
+phase = SubResource("Resource_01i1b")
+move_z_index_to_frontish = true
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_7umg8"]
+script = ExtResource("3_g0flb")
+duration = 0.2
+end = Vector2(0, -1.2)
+transition_type = 1
+ease_type = 1
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_0covw"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_7umg8")
+move_z_index_to_frontish = true
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_n2jvm"]
+script = ExtResource("3_a8igl")
+duration = 0.3
+end = Vector2(2, 2)
+transition_type = 1
+ease_type = 1
+metadata/_custom_type_script = "uid://db7cfelcmki2x"
+
+[sub_resource type="Resource" id="Resource_p8lk5"]
+script = ExtResource("2_adqwt")
+scale = SubResource("Resource_n2jvm")
+move_z_index_to_frontish = true
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_1o103"]
+script = ExtResource("7_2w7el")
+duration = 0.3
+end = 0.17453292519943295
+transition_type = 1
+metadata/_custom_type_script = "uid://c8usgae3nvmi7"
+
+[sub_resource type="Resource" id="Resource_toke1"]
+script = ExtResource("3_a8igl")
+duration = 0.3
+end = Vector2(1.5, 1.5)
+transition_type = 1
+metadata/_custom_type_script = "uid://db7cfelcmki2x"
+
+[sub_resource type="Resource" id="Resource_u72yl"]
+script = ExtResource("3_g0flb")
+duration = 0.3
+end = Vector2(-0.4, -0.4)
+transition_type = 1
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_oepdp"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_u72yl")
+rotate = SubResource("Resource_1o103")
+scale = SubResource("Resource_toke1")
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_0rnlv"]
+script = ExtResource("5_a8igl")
+end = Color(1, 0.84313726, 0, 1)
+metadata/_custom_type_script = "uid://8qov178sl2e6"
+
+[sub_resource type="Resource" id="Resource_xp538"]
+script = ExtResource("7_2w7el")
+end = 6.283185307179586
+transition_type = 1
+metadata/_custom_type_script = "uid://c8usgae3nvmi7"
+
+[sub_resource type="Resource" id="Resource_1onee"]
+script = ExtResource("3_a8igl")
+end = Vector2(2, 2)
+transition_type = 1
+metadata/_custom_type_script = "uid://db7cfelcmki2x"
+
+[sub_resource type="Resource" id="Resource_kyery"]
+script = ExtResource("3_g0flb")
+by_ratio = false
+transition_type = 1
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_8euav"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_kyery")
+rotate = SubResource("Resource_xp538")
+scale = SubResource("Resource_1onee")
+color = SubResource("Resource_0rnlv")
+move_z_index_to_frontish = true
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_6dbe8"]
+script = ExtResource("7_2w7el")
+duration = 2.0
+end = 3.141592653589793
+transition_type = 6
+metadata/_custom_type_script = "uid://c8usgae3nvmi7"
+
+[sub_resource type="Resource" id="Resource_ftmvu"]
+script = ExtResource("2_adqwt")
+rotate = SubResource("Resource_6dbe8")
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_px6pu"]
+script = ExtResource("7_2w7el")
+duration = 2.0
+start = 3.141592653589793
+end = 6.283185307179586
+transition_type = 6
+metadata/_custom_type_script = "uid://c8usgae3nvmi7"
+
+[sub_resource type="Resource" id="Resource_adr7s"]
+script = ExtResource("2_adqwt")
+rotate = SubResource("Resource_px6pu")
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_8m02w"]
+script = ExtResource("7_2w7el")
+duration = 2.0
+end = 6.283185307179586
+transition_type = 1
+ease_type = 0
+metadata/_custom_type_script = "uid://c8usgae3nvmi7"
+
+[sub_resource type="Resource" id="Resource_i5jr2"]
+script = ExtResource("3_g0flb")
+duration = 2.0
+end = Vector2(0, -1600)
+by_ratio = false
+transition_type = 7
+ease_type = 0
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_87e63"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_i5jr2")
+rotate = SubResource("Resource_8m02w")
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_kpitc"]
+script = ExtResource("3_a8igl")
+duration = 0.3
+start = Vector2(0, 0)
+transition_type = 1
+metadata/_custom_type_script = "uid://db7cfelcmki2x"
+
+[sub_resource type="Resource" id="Resource_o3n7r"]
+script = ExtResource("3_g0flb")
+duration = 0.3
+start = Vector2(0, 100)
+by_ratio = false
+transition_type = 1
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_24mo2"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_o3n7r")
+scale = SubResource("Resource_kpitc")
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
+[sub_resource type="Resource" id="Resource_ku0ih"]
+script = ExtResource("3_a8igl")
+duration = 0.3
+end = Vector2(0, 0)
+transition_type = 1
+metadata/_custom_type_script = "uid://db7cfelcmki2x"
+
+[sub_resource type="Resource" id="Resource_hkfam"]
+script = ExtResource("3_g0flb")
+duration = 0.3
+end = Vector2(0, 100)
+by_ratio = false
+transition_type = 1
+metadata/_custom_type_script = "uid://ddl1q4a4aoicm"
+
+[sub_resource type="Resource" id="Resource_4cuxo"]
+script = ExtResource("2_adqwt")
+slide = SubResource("Resource_hkfam")
+scale = SubResource("Resource_ku0ih")
+final_visibility = false
+metadata/_custom_type_script = "uid://c1h3wh3ssi3fu"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yg4bv"]
 texture = ExtResource("21_iqkpf")
 
@@ -505,7 +780,7 @@ lc_calc_final_score_properties = SubResource("Resource_o1rpt")
 lc_clear_top_level_props_begin = SubResource("Resource_6hhxk")
 lc_clear_top_level_props_finish = SubResource("Resource_0fgbj")
 lc_clear_individual_clearable_props_1 = SubResource("Resource_8ohnn")
-lc_confirmbox_confirmation_box = NodePath("TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox")
+lc_confirmbox_confirmation_box = NodePath("TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox")
 lc_confirmbox_open_properties = SubResource("Resource_301j0")
 lc_confirmbox_close_properties = SubResource("Resource_ukl4i")
 main_menu_container = NodePath("MainMenuContainer")
@@ -1065,24 +1340,46 @@ max_lines_visible = 1
 [node name="RoundContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/Flip7/ScrollContainer/ScorecardColumns/ScrollContainer/MarginContainer/RoundsVbox" unique_id=64290086 instance=ExtResource("14_o1r2d")]
 layout_mode = 2
 
-[node name="LostCities" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=2067309494 node_paths=PackedStringArray("number_selector", "confirmation_box") groups=["ScorecardContainerInstance"]]
+[node name="LostCities" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=2067309494 node_paths=PackedStringArray("confirmation_box") groups=["ScorecardContainerInstance"]]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("18_xy8dj")
-number_selector = NodePath("../../../../../LostCitiesNumberSelector")
 vase_texture = ExtResource("24_gi7lq")
 arrow_texture = ExtResource("25_30ei6")
 vase_arrow_alpha = 0.75
-confirmation_box = NodePath("CanvasLayer/ConfirmationBox")
+colors = Array[Color]([Color(1, 0.5294118, 0.5294118, 1), Color(0.93, 0.63379496, 0.08369998, 1), Color(0.87, 0.82954496, 0.060899995, 1), Color(0.32156864, 0.78431374, 0.2509804, 1), Color(0.15294118, 0.7254902, 0.9411765, 1), Color(0.69411767, 0.58431375, 0.99607843, 1), Color(0.98039216, 0.7411765, 0.5137255, 1)])
+confirmation_box = NodePath("ConfirmBoxLayer/ConfirmationBox")
 
 [node name="ButtonOrchestrator" type="Control" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=997218284]
 layout_mode = 2
 script = ExtResource("26_nydkn")
 
-[node name="TweenOrchestrator" type="Control" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=1570393199]
+[node name="TweenOrchestrator" type="Control" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=1570393199 node_paths=PackedStringArray("lc_confirmbox_confirmation_box")]
 layout_mode = 2
 script = ExtResource("27_tte43")
+lc_shake_repetitions = 8
+lc_shake_tween_parameters = SubResource("Resource_72wwy")
+lc_col_to_num_sel_num_selector_properties = SubResource("Resource_tw382")
+lc_col_to_num_sel_color_button_properties = SubResource("Resource_h31el")
+lc_num_sel_to_col_num_selector_properties = SubResource("Resource_d6ygq")
+lc_num_sel_to_col_color_button_properties = SubResource("Resource_nqvuk")
+lc_arrow_animation_properties = SubResource("Resource_0covw")
+lc_vase_animation_properties = SubResource("Resource_p8lk5")
+lc_calc_text_animation_duration = 1.0
+lc_calc_minimum_delay_between_columns = 0.5
+lc_calc_column_climb_delay = 0.1
+lc_calc_final_score_shadow_color = Color(0.43137255, 0.43137255, 0.43137255, 1)
+lc_calc_final_score_shadow_final_size = 500
+lc_calc_final_score_shadow_duration = 3.0
+lc_calc_column_properties = SubResource("Resource_oepdp")
+lc_calc_final_score_properties = SubResource("Resource_8euav")
+lc_clear_top_level_props_begin = SubResource("Resource_ftmvu")
+lc_clear_top_level_props_finish = SubResource("Resource_adr7s")
+lc_clear_individual_clearable_props_1 = SubResource("Resource_87e63")
+lc_confirmbox_confirmation_box = NodePath("../ConfirmBoxLayer/ConfirmationBox")
+lc_confirmbox_open_properties = SubResource("Resource_24mo2")
+lc_confirmbox_close_properties = SubResource("Resource_4cuxo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=1846048456]
 layout_mode = 2
@@ -4101,10 +4398,10 @@ size_flags_stretch_ratio = 0.6
 theme_type_variation = &"LostCities_MainButtons"
 text = "Clear"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=1400404032]
+[node name="ConfirmBoxLayer" type="CanvasLayer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=1400404032]
+layer = 150
 
-[node name="ConfirmationBox" type="Control" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer" unique_id=1341196291]
-z_index = 150
+[node name="ConfirmationBox" type="Control" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer" unique_id=1341196291]
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
@@ -4115,7 +4412,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("38_30ei6")
 
-[node name="MarginContainer" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox" unique_id=2011386183]
+[node name="MarginContainer" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox" unique_id=2011386183]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2
@@ -4125,15 +4422,15 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox/MarginContainer" unique_id=814521917]
+[node name="PanelContainer" type="PanelContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox/MarginContainer" unique_id=814521917]
 layout_mode = 2
 theme_type_variation = &"LostCities_ConfirmationPanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox/MarginContainer/PanelContainer" unique_id=541371918]
+[node name="VBoxContainer" type="VBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox/MarginContainer/PanelContainer" unique_id=541371918]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer" unique_id=736394644]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer" unique_id=736394644]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -4142,45 +4439,48 @@ text = "Are you sure?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer" unique_id=408294604]
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer" unique_id=408294604]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=424514936]
+[node name="MarginContainer" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=424514936]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"LostCities_ConfirmationMarginContainer"
 
-[node name="CancelButton" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=2023289649]
+[node name="CancelButton" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=2023289649]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"LostCities_ConfirmationButton"
 text = "Cancel"
 
-[node name="MarginContainer2" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1458118551]
+[node name="MarginContainer2" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1458118551]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"LostCities_ConfirmationMarginContainer"
 
-[node name="OkButton" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/CanvasLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer2" unique_id=1108447231]
+[node name="OkButton" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/ConfirmBoxLayer/ConfirmationBox/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer2" unique_id=1108447231]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"LostCities_ConfirmationButton"
 text = "Confirm"
 
-[node name="Yahtzee" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=1544048110 groups=["ScorecardContainerInstance"]]
-visible = false
-layout_mode = 2
+[node name="NumberSelectorLayer" type="CanvasLayer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities" unique_id=2046052562]
+layer = 20
 
-[node name="LostCitiesNumberSelector" type="Control" parent="." unique_id=10825265]
+[node name="LostCitiesNumberSelector" type="Control" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer" unique_id=10825265]
 visible = false
-z_index = 20
 z_as_relative = false
-layout_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("22_yg4bv")
 disabled_text_color = Color(1, 0.5353729, 0.52156204, 1)
 
-[node name="GoAwayButton" type="Button" parent="LostCitiesNumberSelector" unique_id=1591463798]
+[node name="GoAwayButton" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector" unique_id=1591463798]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4189,7 +4489,7 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="PanelContainer" type="PanelContainer" parent="LostCitiesNumberSelector" unique_id=1039575415]
+[node name="PanelContainer" type="PanelContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector" unique_id=1039575415]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2
@@ -4200,26 +4500,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xy8dj")
 
-[node name="MarginContainer" type="MarginContainer" parent="LostCitiesNumberSelector/PanelContainer" unique_id=868376586]
+[node name="MarginContainer" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer" unique_id=868376586]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="GridContainer" type="GridContainer" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer" unique_id=1406334261]
+[node name="GridContainer" type="GridContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer" unique_id=1406334261]
 layout_mode = 2
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 3
 
-[node name="Button1" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=468338730]
+[node name="Button1" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=468338730]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button1" unique_id=1919293833]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button1" unique_id=1919293833]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4231,13 +4531,13 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button2" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1170889351]
+[node name="Button2" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1170889351]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button2" unique_id=1028567002]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button2" unique_id=1028567002]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4249,13 +4549,13 @@ text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button3" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1705713804]
+[node name="Button3" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1705713804]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button3" unique_id=2102382715]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button3" unique_id=2102382715]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4267,13 +4567,13 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button4" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=949013487]
+[node name="Button4" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=949013487]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button4" unique_id=772912336]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button4" unique_id=772912336]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4285,13 +4585,13 @@ text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button5" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1982101038]
+[node name="Button5" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1982101038]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button5" unique_id=2126384852]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button5" unique_id=2126384852]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4303,13 +4603,13 @@ text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button6" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=747300815]
+[node name="Button6" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=747300815]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button6" unique_id=1374319227]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button6" unique_id=1374319227]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4321,13 +4621,13 @@ text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button7" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=26583409]
+[node name="Button7" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=26583409]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button7" unique_id=893495429]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button7" unique_id=893495429]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4339,13 +4639,13 @@ text = "7"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button8" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1363700958]
+[node name="Button8" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1363700958]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button8" unique_id=1607044414]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button8" unique_id=1607044414]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4357,13 +4657,13 @@ text = "8"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button9" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=483271503]
+[node name="Button9" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=483271503]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button9" unique_id=1182383091]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button9" unique_id=1182383091]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4375,13 +4675,13 @@ text = "9"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Clear" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=375172953]
+[node name="Clear" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=375172953]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Clear" unique_id=136786900]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Clear" unique_id=136786900]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4393,13 +4693,13 @@ text = "⌫"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button10" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1143047231]
+[node name="Button10" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1143047231]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button10" unique_id=93917044]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Button10" unique_id=93917044]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4413,13 +4713,13 @@ text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Back" type="Button" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1506900354]
+[node name="Back" type="Button" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer" unique_id=1506900354]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"LostCities_NumberPickerButtons"
 
-[node name="Label" type="Label" parent="LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Back" unique_id=1714090109]
+[node name="Label" type="Label" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer/LostCities/NumberSelectorLayer/LostCitiesNumberSelector/PanelContainer/MarginContainer/GridContainer/Back" unique_id=1714090109]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4431,9 +4731,13 @@ text = "↩"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Yahtzee" type="MarginContainer" parent="TopInstanceContainer/VBoxContainer/ScrollContainer/ScorecardContainer" unique_id=1544048110 groups=["ScorecardContainerInstance"]]
+visible = false
+layout_mode = 2
+
 [node name="InputBlocker" type="Button" parent="." unique_id=1237752665]
 visible = false
-z_index = 100
+z_index = 200
 z_as_relative = false
 layout_mode = 2
 flat = true
