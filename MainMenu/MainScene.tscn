@@ -1039,7 +1039,7 @@ mouse_filter = 2
 [node name="ButtonParent" type="VBoxContainer" parent="TopInstanceContainer/VBoxContainer/TopBar/MarginContainer/DropDownListInstanceChange/CanvasLayer/CollapseControl/CollapsableContent" unique_id=915443369]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 1
 alignment = 1
 
 [node name="MainMenuButton" type="TextureButton" parent="TopInstanceContainer/VBoxContainer/TopBar" unique_id=1989252846]

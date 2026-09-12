@@ -194,6 +194,35 @@ modulate_color = Color(0.9811292, 0.74262935, 0.51482224, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3kgdn"]
 texture = ExtResource("1_jme7d")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8bgs"]
+bg_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+skew = Vector2(0.15, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.13682574, 0.13682577, 0.13682562, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_taepb"]
+content_margin_top = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.40941438, 0.5018146, 0.76098007, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.22724676, 0.21731359, 0.7336972, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [resource]
 CategoryButtonLabel_MainMenu/base_type = &"Label"
 CategoryButtonLabel_MainMenu/colors/font_color = Color(1, 1, 1, 1)
@@ -358,14 +387,23 @@ MainTitleLabel/constants/shadow_outline_size = 16
 MainTitleLabel/font_sizes/font_size = 82
 PanelContainer_MainMenu_Games/base_type = &"PanelContainer"
 Scorecard_SwitchInstanceButton/base_type = &"Button"
+Scorecard_SwitchInstanceButton/styles/hover = SubResource("StyleBoxFlat_h8bgs")
+Scorecard_SwitchInstanceButton/styles/normal = SubResource("StyleBoxFlat_h8bgs")
+Scorecard_SwitchInstanceButton/styles/pressed = SubResource("StyleBoxFlat_h8bgs")
 Scorecard_SwitchInstanceChildButton/base_type = &"Button"
+Scorecard_SwitchInstanceChildButton/styles/hover = SubResource("StyleBoxFlat_taepb")
+Scorecard_SwitchInstanceChildButton/styles/normal = SubResource("StyleBoxFlat_taepb")
+Scorecard_SwitchInstanceChildButton/styles/pressed = SubResource("StyleBoxFlat_taepb")
 Scorecard_SwitchInstanceChildLabel/base_type = &"Label"
-Scorecard_SwitchInstanceChildLabel/font_sizes/font_size = 20
+Scorecard_SwitchInstanceChildLabel/colors/font_color = Color(1, 1, 1, 1)
+Scorecard_SwitchInstanceChildLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+Scorecard_SwitchInstanceChildLabel/constants/outline_size = 8
+Scorecard_SwitchInstanceChildLabel/font_sizes/font_size = 25
 Scorecard_SwitchInstanceLabel/base_type = &"Label"
 Scorecard_SwitchInstanceLabel/colors/font_color = Color(1, 1, 1, 1)
 Scorecard_SwitchInstanceLabel/colors/font_outline_color = Color(0.06879826, 0.06879829, 0.068798244, 1)
-Scorecard_SwitchInstanceLabel/constants/outline_size = 5
-Scorecard_SwitchInstanceLabel/font_sizes/font_size = 25
+Scorecard_SwitchInstanceLabel/constants/outline_size = 7
+Scorecard_SwitchInstanceLabel/font_sizes/font_size = 28
 TopLevelGame_MarginContainer/base_type = &"MarginContainer"
 TopLevelGame_MarginContainer/constants/margin_bottom = 30
 TopLevelGame_MarginContainer/constants/margin_left = 30
